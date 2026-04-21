@@ -4,665 +4,241 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Horizon Creations</title>
-<meta
-    name="description"
-    content="Horizon Creations builds leatherwork, practical tools, and one-off handmade projects."
->
-<style>
-    :root {
-        --bg: #191511;
-        --panel: rgba(44, 33, 24, 0.82);
-        --panel-strong: rgba(59, 43, 31, 0.94);
-        --text: #f7efe5;
-        --muted: #d0bda8;
-        --line: rgba(255, 230, 204, 0.15);
-        --accent: #d98b3a;
-        --accent-soft: #f2c18d;
-        --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-    }
-
-    * {
-        box-sizing: border-box;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        margin: 0;
-        font-family: Georgia, "Times New Roman", serif;
-        color: var(--text);
-        background:
-            radial-gradient(circle at top, rgba(217, 139, 58, 0.18), transparent 35%),
-            linear-gradient(180deg, #120f0c 0%, #1a1511 40%, #100d0a 100%);
-    }
-
-    a {
-        color: inherit;
-    }
-
-    .page-shell {
-        min-height: 100vh;
-        padding: 24px;
-    }
-
-    .site-frame {
-        max-width: 1120px;
-        margin: 0 auto;
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        overflow: hidden;
-        background:
-            linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%),
-            rgba(16, 12, 9, 0.72);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(8px);
-    }
-
-    .hero {
-        padding: 28px 24px 64px;
-        background:
-            linear-gradient(135deg, rgba(217, 139, 58, 0.1), transparent 45%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 60%);
-    }
-
-    .nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 64px;
-    }
-
-    .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.95rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--muted);
-    }
-
-    .brand-mark {
-        width: 12px;
-        height: 12px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-        box-shadow: 0 0 24px rgba(217, 139, 58, 0.5);
-    }
-
-    .nav-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 12px;
-    }
-
-    .nav-links a,
-    .button,
-    .social-link {
-        transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
-    }
-
-    .nav-links a {
-        padding: 10px 14px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        text-decoration: none;
-        font-size: 0.95rem;
-        color: var(--muted);
-    }
-
-    .nav-links a:hover,
-    .button:hover,
-    .social-link:hover {
-        transform: translateY(-2px);
-        border-color: rgba(255, 230, 204, 0.3);
-    }
-
-    .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.85fr);
-        gap: 28px;
-        align-items: stretch;
-    }
-
-    .eyebrow {
-        margin: 0 0 16px;
-        color: var(--accent-soft);
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        font-size: 0.8rem;
-    }
-
-    h1 {
-        margin: 0;
-        font-size: clamp(2.8rem, 7vw, 5.6rem);
-        line-height: 0.95;
-        letter-spacing: -0.04em;
-    }
-
-    .hero-copy p {
-        max-width: 52ch;
-        margin: 22px 0 0;
-        color: var(--muted);
-        font-size: 1.1rem;
-        line-height: 1.7;
-    }
-
-    .button-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 14px;
-        margin-top: 30px;
-    }
-
-    .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 176px;
-        padding: 14px 20px;
-        border-radius: 999px;
-        border: 1px solid transparent;
-        text-decoration: none;
-        font-size: 1rem;
-    }
-
-    .button-primary {
-        background: linear-gradient(135deg, var(--accent), #bb6f27);
-        color: #130d08;
-        font-weight: bold;
-    }
-
-    .button-secondary {
-        border-color: var(--line);
-        background: rgba(255, 255, 255, 0.03);
-        color: var(--text);
-    }
-
-    .hero-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 26px;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        background: linear-gradient(180deg, rgba(68, 49, 34, 0.92), rgba(36, 28, 22, 0.96));
-    }
-
-    .hero-card-label {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        color: var(--accent-soft);
-    }
-
-    .hero-card strong {
-        display: block;
-        font-size: 1.5rem;
-        margin-top: 10px;
-    }
-
-    .hero-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-    }
-
-    .hero-preview {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        border-radius: 18px;
-        border: 1px solid var(--line);
-    }
-
-    .section {
-        padding: 0 24px 24px;
-    }
-
-    .section-card {
-        padding: 28px;
-        border: 1px solid var(--line);
-        border-radius: 24px;
-        background: var(--panel);
-    }
-
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 18px;
-        margin-bottom: 22px;
-    }
-
-    .section-header h2 {
-        margin: 0;
-        font-size: clamp(1.8rem, 3.6vw, 2.8rem);
-    }
-
-    .section-header p {
-        margin: 0;
-        max-width: 46ch;
-        color: var(--muted);
-        line-height: 1.7;
-    }
-
-    .craft-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    .craft-card {
-        padding: 22px;
-        border-radius: 20px;
-        background: var(--panel-strong);
-        border: 1px solid var(--line);
-    }
-
-    .craft-card h3 {
-        margin: 0 0 12px;
-        font-size: 1.2rem;
-    }
-
-    .craft-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-    }
-
-    .photo-section {
-        overflow: hidden;
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    .gallery-item {
-        margin: 0;
-        padding: 14px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        background: var(--panel-strong);
-    }
-
-    .gallery-item img {
-        display: block;
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        border-radius: 14px;
-    }
-
-    .gallery-item figcaption {
-        margin-top: 12px;
-        color: var(--muted);
-        line-height: 1.6;
-        font-size: 0.95rem;
-    }
-
-    .gallery-item-wide {
-        grid-column: span 2;
-    }
-
-    .gallery-item-wide img {
-        aspect-ratio: 16 / 9;
-    }
-
-    .gallery-item-tall img {
-        aspect-ratio: 4 / 5;
-    }
-
-    .process-layout {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-    .process-step {
-        padding: 22px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.02);
-    }
-
-    .process-step span {
-        display: inline-block;
-        margin-bottom: 14px;
-        color: var(--accent-soft);
-        font-size: 0.85rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-    }
-
-    .process-step h3 {
-        margin: 0 0 10px;
-        font-size: 1.15rem;
-    }
-
-    .process-step p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.7;
-    }
-
-    .social-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-    }
-
-    .social-link {
-        display: block;
-        padding: 22px;
-        border-radius: 20px;
-        border: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.03);
-        text-decoration: none;
-    }
-
-    .social-link strong {
-        display: block;
-        margin-bottom: 8px;
-        font-size: 1.15rem;
-    }
-
-    .social-link span {
-        color: var(--muted);
-        line-height: 1.6;
-    }
-
-    .footer {
-        padding: 12px 24px 32px;
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.95rem;
-    }
-
-    @media (max-width: 900px) {
-        .hero-grid,
-        .craft-grid,
-        .gallery-grid,
-        .process-layout,
-        .social-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .gallery-item-wide {
-            grid-column: auto;
-        }
-
-        .section-header,
-        .nav {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .nav-links {
-            justify-content: flex-start;
-        }
-    }
-
-    @media (max-width: 640px) {
-        .page-shell {
-            padding: 12px;
-        }
-
-        .hero,
-        .section {
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-
-        .hero {
-            padding-top: 20px;
-            padding-bottom: 44px;
-        }
-
-        .section-card,
-        .hero-card,
-        .craft-card,
-        .gallery-item,
-        .process-step,
-        .social-link {
-            padding: 20px;
-        }
-
-        .button {
-            width: 100%;
-        }
-    }
-</style>
+<meta name="description" content="Horizon Creations builds leatherwork, practical tools, and one-off handmade projects.">
+<link rel="icon" type="image/jpeg" href="/HorizonCreaion-Base-logo.jpg">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
-<body>
-    <div class="page-shell">
-        <main class="site-frame">
-            <section class="hero">
-                <nav class="nav" aria-label="Primary">
-                    <div class="brand">
-                        <span class="brand-mark" aria-hidden="true"></span>
-                        Horizon Creations
-                    </div>
-                    <div class="nav-links">
-                        <a href="#craft">What I Make</a>
-                        <a href="#gallery">Gallery</a>
-                        <a href="#process">How It Works</a>
-                        <a href="#contact">Find Me</a>
-                    </div>
-                </nav>
-
-                <div class="hero-grid">
-                    <div class="hero-copy">
-                        <p class="eyebrow">Leatherwork / Tools / One-Off Builds</p>
-                        <h1>Built by hand for people who actually use their gear.</h1>
-                        <p>
-                            Horizon Creations is where practical craftsmanship meets weird ideas worth
-                            building. I make leather goods, useful tools, and custom projects that are
-                            meant to get used, worn in, and carried for a long time.
-                        </p>
-                        <div class="button-row">
-                            <a class="button button-primary" href="#gallery">See My Work</a>
-                            <a class="button button-secondary" href="#process">How Custom Orders Work</a>
-                        </div>
-                    </div>
-
-                    <aside class="hero-card">
-                        <div>
-                            <div class="hero-card-label">Current Focus</div>
-                            <strong>Small-batch handmade work with room for custom builds.</strong>
-                        </div>
-                        <p>
-                            If you found this site from something I made in the real world, you are in the
-                            right place. This page is the home base while the full gallery keeps growing.
-                        </p>
-                        <img
-                            class="hero-preview"
-                            src="670357497_3141434112729833_6301884170978220197_n.jpg"
-                            alt="Close-up leather pouch made by Horizon Creations"
-                        >
-                    </aside>
-                </div>
-            </section>
-
-            <section class="section" id="craft">
-                <div class="section-card">
-                    <div class="section-header">
-                        <h2>What I Make</h2>
-                        <p>
-                            The goal is simple: make things that feel solid, useful, and personal instead
-                            of mass-produced.
-                        </p>
-                    </div>
-                    <div class="craft-grid">
-                        <article class="craft-card">
-                            <h3>Leather Goods</h3>
-                            <p>
-                                Wallets, sheaths, straps, organizers, and durable everyday pieces with a
-                                hand-built feel.
-                            </p>
-                        </article>
-                        <article class="craft-card">
-                            <h3>Practical Tools</h3>
-                            <p>
-                                Shop-built tools, workbench helpers, and functional objects designed around
-                                real use instead of shelf appeal.
-                            </p>
-                        </article>
-                        <article class="craft-card">
-                            <h3>Custom Projects</h3>
-                            <p>
-                                If the idea is odd, specific, or hard to find anywhere else, that is
-                                usually where the fun starts.
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="gallery">
-                <div class="section-card photo-section">
-                    <div class="section-header">
-                        <h2>Recent Work</h2>
-                        <p>
-                            A few pieces from the bench: finished leatherwork, pattern and mold development,
-                            and shop-built tools that support the process.
-                        </p>
-                    </div>
-                    <div class="gallery-grid">
-                        <figure class="gallery-item gallery-item-tall">
-                            <img
-                                src="670276763_3141434116063166_720848187585220305_n.jpg"
-                                alt="Handmade leather pouch with green and gold knotwork detail"
-                            >
-                            <figcaption>Finished pouch with hand-painted knotwork detail.</figcaption>
-                        </figure>
-                        <figure class="gallery-item">
-                            <img
-                                src="670357497_3141434112729833_6301884170978220197_n.jpg"
-                                alt="Close-up view of painted knotwork on leather"
-                            >
-                            <figcaption>Close-up texture and color work on the leather surface.</figcaption>
-                        </figure>
-                        <figure class="gallery-item">
-                            <img
-                                src="661441164_3134815153391729_4578658901083435453_n.jpg"
-                                alt="Embossed floral pattern on natural leather beside a dark template"
-                            >
-                            <figcaption>Pattern development from template to leather.</figcaption>
-                        </figure>
-                        <figure class="gallery-item gallery-item-wide">
-                            <img
-                                src="670278837_3144025165804061_1264480456386805943_n.jpg"
-                                alt="Leather molds and pouch forms laid out on a workbench"
-                            >
-                            <figcaption>Molds and forms used to shape consistent builds.</figcaption>
-                        </figure>
-                        <figure class="gallery-item">
-                            <img
-                                src="666405799_3136768519863059_3115910676813586129_n.jpg"
-                                alt="Blue reptile-style texture detail on black leather next to a ruler"
-                            >
-                            <figcaption>Texture experiments and finishing details.</figcaption>
-                        </figure>
-                        <figure class="gallery-item">
-                            <img
-                                src="669672792_3142990739240837_1054050261613962998_n.jpg"
-                                alt="Shop-built machine or tooling setup on a workbench"
-                            >
-                            <figcaption>Shop-built tooling that helps turn ideas into repeatable work.</figcaption>
-                        </figure>
-                        <figure class="gallery-item gallery-item-wide">
-                            <img
-                                src="674127845_3145950328944878_2751835270767473407_n.jpg"
-                                alt="Workshop shelving with several 3D printers and fabrication tools"
-                            >
-                            <figcaption>The shop side of Horizon Creations, where forms, fixtures, and prototypes come together.</figcaption>
-                        </figure>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="process">
-                <div class="section-card">
-                    <div class="section-header">
-                        <h2>How It Works</h2>
-                        <p>
-                            Keeping this simple makes it easier for people to reach out, ask questions, and
-                            figure out whether a custom build makes sense.
-                        </p>
-                    </div>
-                    <div class="process-layout">
-                        <div class="process-step">
-                            <span>Step 1</span>
-                            <h3>Send the idea</h3>
-                            <p>
-                                Message me on Instagram or Facebook with what you need, what it should do,
-                                and anything you want it to fit or match.
-                            </p>
-                        </div>
-                        <div class="process-step">
-                            <span>Step 2</span>
-                            <h3>We shape the build</h3>
-                            <p>
-                                I will figure out whether it is a quick make, a custom order, or something
-                                that needs a little prototyping first.
-                            </p>
-                        </div>
-                        <div class="process-step">
-                            <span>Step 3</span>
-                            <h3>You get updates</h3>
-                            <p>
-                                As the site grows, this is where finished pieces, photos, and available work
-                                will start showing up more regularly.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="contact">
-                <div class="section-card">
-                    <div class="section-header">
-                        <h2>Find Horizon Creations</h2>
-                        <p>
-                            For now, social is the easiest way to see recent work and start a conversation.
-                        </p>
-                    </div>
-                    <div class="social-grid">
-                        <a
-                            class="social-link"
-                            href="https://www.facebook.com/profile.php?id=61574262374190"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <strong>Facebook</strong>
-                            <span>Follow updates, see posts, and reach out about available or custom work.</span>
-                        </a>
-                        <a
-                            class="social-link"
-                            href="https://instagram.com/horizoncreations.art/"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <strong>Instagram</strong>
-                            <span>Best place for photos, fresh builds, in-progress shots, and quick messages.</span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <div class="footer">
-                Handmade projects from Horizon Creations.
+<body class="">
+  <div class="page-shell">
+    <main class="site-frame">
+      
+      <section class="hero">
+        
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Horizon Creations
+      </a>
+      <div class="nav-links">
+        <a href="/" aria-current="page">Home</a><a href="/standard-pieces/">Standard Pieces</a><a href="/custom-pieces/">Custom Pieces</a><a href="/workbench/">Workbench</a><a href="/#connect">Connect</a>
+      </div>
+    </nav>
+  
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Leatherwork / Tools / Custom Builds</p>
+            <h1>Built by hand for people who actually use their gear.</h1>
+            <p>
+              If you landed here from a tag, you are in the right place. Horizon Creations is the home
+              base for handmade leatherwork, practical shop-built tools, and custom pieces shaped around
+              real use instead of shelf display.
+            </p>
+            <p>
+              Start with the gallery that fits what you want to see, or jump straight to Facebook or
+              Instagram if you want to ask about a build.
+            </p>
+            <div class="button-row">
+              <a class="button button-primary" href="/custom-pieces/">See Custom Work</a>
+              <a class="button button-secondary" href="/standard-pieces/">Browse Standard Pieces</a>
             </div>
-        </main>
+          </div>
+          <aside class="hero-card">
+            <div>
+              <div class="hero-card-label">Start Here</div>
+              <strong>Tap in, look around, and message when something feels like your kind of build.</strong>
+            </div>
+            <p>
+              The homepage stays simple on purpose: quick contact, clear galleries, and a straightforward
+              path into the work without turning this into a heavy storefront.
+            </p>
+            <img class="hero-preview" src="/content/custom-pieces/blue-scale-finish/hero.jpg" alt="Blue Scale Finish Study by Horizon Creations">
+          </aside>
+        </div>
+      </section>
+      <section class="section" id="connect">
+        <div class="section-card section-card-accent">
+          <div class="section-header">
+            <h2>Connect Fast</h2>
+            <p>Facebook and Instagram stay up front so someone arriving from a tag can reach you without hunting through the page.</p>
+          </div>
+          
+    <div class="social-grid">
+      <a class="social-link" href="https://www.facebook.com/profile.php?id=61574262374190" target="_blank" rel="noreferrer">
+        <strong>Facebook</strong>
+        <span>Follow updates, check recent posts, and message directly about available or custom work.</span>
+      </a>
+      <a class="social-link" href="https://instagram.com/horizoncreations.art/" target="_blank" rel="noreferrer">
+        <strong>Instagram</strong>
+        <span>Best place for fresh photos, in-progress shots, and quick conversations about a build.</span>
+      </a>
     </div>
+  
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>Browse the Work</h2>
+            <p>
+              The site now separates the main product-style pieces, one-off custom work, and the bench-side
+              process shots so visitors can get where they want quickly.
+            </p>
+          </div>
+          
+    <div class="category-grid">
+      
+            <a class="category-link" href="/standard-pieces/">
+              <img src="/content/standard-pieces/everyday-carry-pouch/hero.jpg" alt="Everyday Carry Pouch by Horizon Creations">
+              <div>
+                <span>Core work / repeatable builds</span>
+                <h3>Standard Pieces</h3>
+                <p>Repeatable product-style work, dependable formats, and pieces that show the main line of what Horizon Creations builds.</p>
+              </div>
+            </a>
+          
+            <a class="category-link" href="/custom-pieces/">
+              <img src="/content/custom-pieces/tree-of-life-pair/hero.jpg" alt="Tree of Life leather pair by Horizon Creations">
+              <div>
+                <span>One-off builds / commissions</span>
+                <h3>Custom Pieces</h3>
+                <p>Custom builds, one-off experiments, and commissions shaped around a specific need instead of a fixed catalog.</p>
+              </div>
+            </a>
+          
+            <a class="category-link" href="/workbench/">
+              <img src="/content/workbench/tree-of-life-bench-run/detail-close.jpg" alt="Tree of Life leatherwork detail by Horizon Creations">
+              <div>
+                <span>Process / tools / shop</span>
+                <h3>Workbench</h3>
+                <p>Behind-the-scenes views of molds, forms, tooling, prototypes, and the practical side of how the work gets made.</p>
+              </div>
+            </a>
+          
+    </div>
+  
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>Selected From the Bench</h2>
+            <p>
+              A small cross-section of current work and process, pulled from the same content folders that drive the gallery pages.
+            </p>
+          </div>
+          <div class="entry-grid">
+            
+    <article class="entry-card">
+      <div class="entry-hero-wrap">
+        <img class="entry-hero" src="/content/standard-pieces/everyday-carry-pouch/hero.jpg" alt="Everyday Carry Pouch by Horizon Creations">
+        <div class="thumb-strip"><img src="/content/standard-pieces/everyday-carry-pouch/detail-knotwork.jpg" alt="Everyday Carry Pouch detail 1"></div>
+      </div>
+      <div class="entry-copy">
+        <div class="badge-row">
+          <span class="badge">Standard Pieces</span>
+          <span class="stat-chip">2 photos</span>
+        </div>
+        <div class="entry-header">
+          <h2>Everyday Carry Pouch</h2>
+          <div class="entry-date">April 18, 2026</div>
+        </div>
+        <p>Compact pouch work built for repeatable everyday use with a hand-finished feel.</p>
+        <p>This is the kind of standard piece that anchors the product side of the bench: useful proportions, durable leather, and finish choices that still feel handmade instead of factory-flat.</p>
+        <div class="tag-row"><span class="tag">leather</span><span class="tag">pouch</span><span class="tag">everyday carry</span></div>
+      </div>
+    </article>
+  
+    <article class="entry-card">
+      <div class="entry-hero-wrap">
+        <img class="entry-hero" src="/content/custom-pieces/blue-scale-finish/hero.jpg" alt="Blue Scale Finish Study by Horizon Creations">
+        
+      </div>
+      <div class="entry-copy">
+        <div class="badge-row">
+          <span class="badge">Custom Pieces</span>
+          <span class="stat-chip">1 photo</span>
+        </div>
+        <div class="entry-header">
+          <h2>Blue Scale Finish Study</h2>
+          <div class="entry-date">April 15, 2026</div>
+        </div>
+        <p>Custom color and texture exploration with a more experimental finish direction.</p>
+        <p>Custom projects are where unusual ideas usually show up first. This finish study leans into color, texture, and a look that would never belong in a one-size-fits-all product line.</p>
+        <div class="tag-row"><span class="tag">custom</span><span class="tag">finish study</span><span class="tag">texture</span></div>
+      </div>
+    </article>
+  
+    <article class="entry-card">
+      <div class="entry-hero-wrap">
+        <img class="entry-hero" src="/content/workbench/molds-and-forms/hero.jpg" alt="Molds and Forms by Horizon Creations">
+        
+      </div>
+      <div class="entry-copy">
+        <div class="badge-row">
+          <span class="badge">Workbench</span>
+          <span class="stat-chip">1 photo</span>
+        </div>
+        <div class="entry-header">
+          <h2>Molds and Forms</h2>
+          <div class="entry-date">April 14, 2026</div>
+        </div>
+        <p>The shaping side of the bench: forms, molds, and fixtures that help pieces come out clean and consistent.</p>
+        <p>Workbench entries show the less polished side on purpose. Tools, forming rigs, and in-progress bench layouts are part of why finished work looks deliberate instead of improvised.</p>
+        <div class="tag-row"><span class="tag">workbench</span><span class="tag">molds</span><span class="tag">forming</span></div>
+      </div>
+    </article>
+  
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Keeping the process simple makes it easier to start a conversation and figure out whether a build makes sense.</p>
+          </div>
+          <div class="process-layout">
+            <div class="process-step">
+              <span>Step 1</span>
+              <h3>See the style</h3>
+              <p>Look through Standard Pieces, Custom Pieces, or Workbench to get a feel for materials, finish, and the kind of work coming off the bench.</p>
+            </div>
+            <div class="process-step">
+              <span>Step 2</span>
+              <h3>Send the idea</h3>
+              <p>Message on Instagram or Facebook with what you need, what it should do, and anything you want it to fit or match.</p>
+            </div>
+            <div class="process-step">
+              <span>Step 3</span>
+              <h3>Build from there</h3>
+              <p>From quick makes to one-off commissions, the next step is figuring out the right format instead of forcing every project into a store listing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>Connect</h2>
+            <p>When you are ready to ask about something similar, a custom order, or what is available now, social is still the easiest way to reach out.</p>
+          </div>
+          
+    <div class="social-grid">
+      <a class="social-link" href="https://www.facebook.com/profile.php?id=61574262374190" target="_blank" rel="noreferrer">
+        <strong>Facebook</strong>
+        <span>Follow updates, check recent posts, and message directly about available or custom work.</span>
+      </a>
+      <a class="social-link" href="https://instagram.com/horizoncreations.art/" target="_blank" rel="noreferrer">
+        <strong>Instagram</strong>
+        <span>Best place for fresh photos, in-progress shots, and quick conversations about a build.</span>
+      </a>
+    </div>
+  
+        </div>
+      </section>
+    
+      <div class="footer">Handmade projects from Horizon Creations.</div>
+    </main>
+  </div>
 </body>
 </html>
