@@ -246,11 +246,11 @@ function renderSocialLinks({ spotlight = false } = {}) {
     <div class="${gridClass}">
       <a class="social-link" href="${site.facebook}" target="_blank" rel="noreferrer">
         <strong>Facebook</strong>
-        <span>Follow updates, check recent posts, and message directly about available or custom work.</span>
+        <span>Fresh posts, current work, and the easiest place to message me about something you want made.</span>
       </a>
       <a class="social-link" href="${site.instagram}" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
-        <span>Best place for fresh photos, in-progress shots, and quick conversations about a build.</span>
+        <span>Bench photos, in-progress shots, and the weird stuff that shows up before it lands on the site.</span>
       </a>
     </div>
   `;
@@ -262,24 +262,24 @@ function renderStatsGrid() {
       <article class="stat-card">
         <div class="stat-label">Instagram Followers</div>
         <div class="stat-value">${escapeHtml(site.stats.instagramFollowers)}</div>
-        <p class="stat-note">Public Instagram profile count checked ${escapeHtml(site.stats.statsCheckedOn)}.</p>
+        <p class="stat-note">What Instagram was showing publicly on ${escapeHtml(site.stats.statsCheckedOn)}.</p>
       </article>
       <article class="stat-card">
         <div class="stat-label">Facebook Likes</div>
         <div class="stat-value">${escapeHtml(site.stats.facebookLikes)}</div>
-        <p class="stat-note">Public Facebook page count visible right now.</p>
+        <p class="stat-note">Current public page likes on Facebook.</p>
       </article>
       <article class="stat-card">
         <div class="stat-label">Talking About It</div>
         <div class="stat-value">${escapeHtml(site.stats.facebookTalking)}</div>
-        <p class="stat-note">A useful live signal for current Facebook activity.</p>
+        <p class="stat-note">A quick read on whether the page is moving around right now.</p>
       </article>
       <article class="stat-card">
         <div class="stat-label">Page Hits</div>
         <div class="stat-value stat-value-badge">
           <img class="stat-badge-image" src="${site.stats.pageHitsBadge}" alt="Live page hit counter for Horizon Creations">
         </div>
-        <p class="stat-note">Live counter from a lightweight external badge service.</p>
+        <p class="stat-note">Rough live traffic count for this page.</p>
       </article>
     </div>
   `;
@@ -424,30 +424,31 @@ function renderHomePage(sectionEntries) {
         ${renderNav("/")}
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Leatherwork / Tools / Custom Builds</p>
-            <h1>Built by hand for people who actually use their gear.</h1>
+            <p class="eyebrow">Leather / tools / custom work / shop mess</p>
+            <h1>Handmade leather goods with some grit on them.</h1>
             <p>
-              If you landed here from a tag, you are in the right place. Horizon Creations is the home
-              base for handmade leatherwork, practical shop-built tools, and custom pieces shaped around
-              real use instead of shelf display.
+              This is the home base for Horizon Creations. I am a guy at the bench smashing stamps,
+              pounding rivets, slinging dye, and trying to make things that feel solid in the hand instead
+              of factory-flat.
             </p>
             <p>
-              Start with the gallery that fits what you want to see, or jump straight to Facebook or
-              Instagram if you want to ask about a build.
+              Some of it is clean everyday carry stuff. Some of it gets a little strange. If it looks like
+              something you would actually carry, wear, beat up, or hand to somebody and say "yeah, that
+              one is mine," you are in the right place.
             </p>
             <div class="button-row">
-              <a class="button button-primary" href="${withBase("/#connect")}">Connect Fast</a>
-              <a class="button button-secondary" href="${withBase("/custom-pieces/")}">See Custom Work</a>
+              <a class="button button-primary" href="${withBase("/#connect")}">Message Me</a>
+              <a class="button button-secondary" href="${withBase("/custom-pieces/")}">See The Work</a>
             </div>
           </div>
           <aside class="hero-card">
             <div>
-              <div class="hero-card-label">Current Focus</div>
-              <strong>Strong contact links up front, live social proof, and a cleaner path into the work.</strong>
+              <div class="hero-card-label">Bench Right Now</div>
+              <strong>Leather goods, custom pieces, and whatever else survives getting dragged across the bench.</strong>
             </div>
             <p>
-              If someone lands here from a tag, a post, or a custom piece in the real world, they should
-              be able to reach out fast, see what is active, and keep moving without hunting through the page.
+              The point of this page is simple: show the work, make it easy to reach me, and keep the whole
+              thing feeling like an actual shop instead of a fake polished storefront.
             </p>
             <img class="hero-preview" src="${customLead.images[0]}" alt="${escapeHtml(customLead.heroAlt)}">
           </aside>
@@ -456,14 +457,14 @@ function renderHomePage(sectionEntries) {
       <section class="section" id="connect">
         <div class="section-card section-card-accent connect-spotlight">
           <div class="section-header">
-            <h2>Connect And Follow The Work</h2>
-            <p>Make the contact options obvious, keep the current reach visible, and let someone decide in seconds whether they want to message, follow, or keep browsing.</p>
+            <h2>Find Me Here</h2>
+            <p>If you want to ask about a build, watch new work show up, or just keep an eye on what is coming off the bench, this is where to do it.</p>
           </div>
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Instagram and Facebook are the fastest way into the conversation. If someone wants to ask about a custom build,
-                check fresh progress photos, or see whether the bench is active, this is the lane.
+                Facebook and Instagram are the fast lane. That is where the fresh stuff goes first, where progress shots land,
+                and where it is easiest to say "hey, can you make something like this?"
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>
@@ -474,10 +475,10 @@ function renderHomePage(sectionEntries) {
       <section class="section">
         <div class="section-card">
           <div class="section-header">
-            <h2>Browse the Work</h2>
+            <h2>What Is On The Bench</h2>
             <p>
-              The site now separates the main product-style pieces, one-off custom work, and the bench-side
-              process shots so visitors can get where they want quickly.
+              The site is split up so you can go straight to the kind of stuff you actually want to see:
+              standard pieces, one-off customs, or the rough in-progress bench side of it.
             </p>
           </div>
           ${renderCategoryCards(sectionEntries)}
@@ -486,9 +487,9 @@ function renderHomePage(sectionEntries) {
       <section class="section">
         <div class="section-card">
           <div class="section-header">
-            <h2>Selected From the Bench</h2>
+            <h2>Recent Pieces</h2>
             <p>
-              A small cross-section of current work and process, pulled from the same content folders that drive the gallery pages.
+              A few pieces pulled straight from the same folders that run the rest of the site. Nothing fancy, just the current work.
             </p>
           </div>
           <div class="entry-grid">
@@ -499,24 +500,24 @@ function renderHomePage(sectionEntries) {
       <section class="section">
         <div class="section-card">
           <div class="section-header">
-            <h2>How It Works</h2>
-            <p>Keeping the process simple makes it easier to start a conversation and figure out whether a build makes sense.</p>
+            <h2>How A Build Usually Goes</h2>
+            <p>Nothing complicated here. You reach out, we talk through it, and then I figure out whether it wants to be a standard piece, a custom, or something a little weirder.</p>
           </div>
           <div class="process-layout">
             <div class="process-step">
               <span>Step 1</span>
-              <h3>See the style</h3>
-              <p>Look through Standard Pieces, Custom Pieces, or Workbench to get a feel for materials, finish, and the kind of work coming off the bench.</p>
+              <h3>Look around first</h3>
+              <p>Check the galleries so you can see the kind of leather, finish, color, and general feel I tend to work in.</p>
             </div>
             <div class="process-step">
               <span>Step 2</span>
-              <h3>Send the idea</h3>
-              <p>Message on Instagram or Facebook with what you need, what it should do, and anything you want it to fit or match.</p>
+              <h3>Send me the idea</h3>
+              <p>Message me with what you need, what it should fit, what it should do, or even just a rough half-baked idea.</p>
             </div>
             <div class="process-step">
               <span>Step 3</span>
-              <h3>Build from there</h3>
-              <p>From quick makes to one-off commissions, the next step is figuring out the right format instead of forcing every project into a store listing.</p>
+              <h3>We figure it out from there</h3>
+              <p>Sometimes it is a straightforward make. Sometimes it turns into a custom job. Sometimes it needs a little shop chaos first.</p>
             </div>
           </div>
         </div>
