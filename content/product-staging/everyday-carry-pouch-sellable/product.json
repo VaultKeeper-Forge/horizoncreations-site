@@ -1,0 +1,40 @@
+{
+  "kind": "sellable-product",
+  "title": "Everyday Carry Pouch",
+  "description": "Compact leather pouch work built for repeatable everyday use with a hand-finished feel.",
+  "price": "85.00",
+  "status": "ready-for-review",
+  "quantity": 1,
+  "category": "pouch",
+  "tags": ["leather", "pouch", "everyday carry"],
+  "images": [
+    {
+      "path": "/content/standard-pieces/everyday-carry-pouch/hero.jpg",
+      "alt": "Everyday Carry Pouch hero image",
+      "role": "hero"
+    },
+    {
+      "path": "/content/standard-pieces/everyday-carry-pouch/detail-knotwork.jpg",
+      "alt": "Everyday Carry Pouch detail",
+      "role": "detail"
+    }
+  ],
+  "sku": "HC-ECP-001",
+  "sellable": true,
+  "publish": false,
+  "source": {
+    "entrySection": "standard-pieces",
+    "entrySlug": "everyday-carry-pouch"
+  },
+  "workflow": {
+    "readyForReview": true,
+    "approvedForExport": false,
+    "notes": "Sample sellable staging entry. Safe for validation and payload previews."
+  },
+  "shopify": {
+    "syncState": "not-ready",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}

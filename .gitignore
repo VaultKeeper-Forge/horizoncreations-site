@@ -1,3 +1,6 @@
 .DS_Store
 Thumbs.db
 Desktop.ini
+.env
+.env.local
+.env.*.local

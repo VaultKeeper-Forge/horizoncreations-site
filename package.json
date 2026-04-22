@@ -2,6 +2,10 @@
   "name": "horizoncreations-website",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-site.mjs"
+    "build": "node scripts/build-site.mjs",
+    "shopify:validate": "node scripts/shopify/validate-staged-products.mjs",
+    "shopify:preview": "node scripts/shopify/preview-shopify-payloads.mjs",
+    "shopify:export:dry-run": "node scripts/shopify/export-staged-products.mjs --dry-run",
+    "shopify:export": "node scripts/shopify/export-staged-products.mjs"
   }
 }

@@ -1,0 +1,35 @@
+{
+  "kind": "custom-not-for-sale",
+  "title": "Tree of Life Pair",
+  "description": "Custom leather pair carrying the tree motif from tooling direction into finished pieces.",
+  "price": "",
+  "status": "draft",
+  "quantity": 0,
+  "category": "custom leatherwork",
+  "tags": ["custom", "tree of life", "leather"],
+  "images": [
+    {
+      "path": "/content/custom-pieces/tree-of-life-pair/hero.jpg",
+      "alt": "Tree of Life Pair hero image",
+      "role": "hero"
+    }
+  ],
+  "sku": "",
+  "sellable": false,
+  "publish": false,
+  "source": {
+    "entrySection": "custom-pieces",
+    "entrySlug": "tree-of-life-pair"
+  },
+  "workflow": {
+    "readyForReview": false,
+    "approvedForExport": false,
+    "notes": "Custom example. Kept here to distinguish one-off work from actual sellable items."
+  },
+  "shopify": {
+    "syncState": "not-applicable",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}

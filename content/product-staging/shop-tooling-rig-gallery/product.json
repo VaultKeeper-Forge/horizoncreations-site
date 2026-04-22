@@ -1,0 +1,35 @@
+{
+  "kind": "gallery-only",
+  "title": "Shop Tooling Rig",
+  "description": "Bench-side tooling setup that belongs in the site gallery, not in a store listing.",
+  "price": "",
+  "status": "draft",
+  "quantity": 0,
+  "category": "shop tool",
+  "tags": ["workbench", "tooling", "shop"],
+  "images": [
+    {
+      "path": "/content/workbench/shop-tooling-rig/hero.jpg",
+      "alt": "Shop Tooling Rig hero image",
+      "role": "hero"
+    }
+  ],
+  "sku": "",
+  "sellable": false,
+  "publish": false,
+  "source": {
+    "entrySection": "workbench",
+    "entrySlug": "shop-tooling-rig"
+  },
+  "workflow": {
+    "readyForReview": false,
+    "approvedForExport": false,
+    "notes": "Gallery-only example. Useful for organization, never for Shopify export."
+  },
+  "shopify": {
+    "syncState": "not-applicable",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}

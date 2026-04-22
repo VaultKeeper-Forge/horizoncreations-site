@@ -6,6 +6,10 @@ This site is generated from the folders inside:
 - `content/custom-pieces/`
 - `content/workbench/`
 
+Separate backend-only product staging for future Shopify work lives in:
+
+- `content/product-staging/`
+
 ## Add a New Entry
 
 1. Create a new folder inside the correct section with a simple slug name.
@@ -34,3 +38,4 @@ This site is generated from the folders inside:
 - If `featuredImage` is omitted, the first image file in the folder becomes the hero image.
 - Every image file in the folder is automatically included on the gallery card.
 - `featured: true` lets an entry surface on the homepage.
+- `content/product-staging/` is not rendered on the live site. It exists for backend prep, sellable-item validation, and future Shopify export workflows.
