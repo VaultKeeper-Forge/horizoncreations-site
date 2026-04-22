@@ -5,6 +5,7 @@ const rootDir = process.cwd();
 const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
+const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
 
 const site = {
   name: "Horizon Creations",
@@ -215,6 +216,9 @@ function renderLayout({ title, description, currentPath, bodyClass = "", body })
 <meta name="description" content="${escapeHtml(description)}">
 <link rel="icon" type="image/jpeg" href="${withBase(site.logo)}">
 <link rel="stylesheet" href="${withBase("/assets/site.css")}">
+<style>
+${inlineSiteCss}
+</style>
 </head>
 <body class="${bodyClass}">
   <div class="page-shell">
