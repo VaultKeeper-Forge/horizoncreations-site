@@ -10,11 +10,11 @@ const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "
 const site = {
   name: "Horizon Creations",
   description:
-    "Horizon Creations builds leatherwork, practical tools, and one-off handmade projects.",
+    "Handmade leather goods, custom work, bench-built tools, and the rough shop side of Horizon Creations.",
   instagram: "https://instagram.com/horizoncreations.art/",
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
   logo: "/HorizonCreaion-Base-logo.jpg",
-  footer: "Handmade projects from Horizon Creations.",
+  footer: "Horizon Creations. Handmade leather goods, custom work, and shop-built nonsense.",
   stats: {
     instagramFollowers: "1,529",
     facebookLikes: "65",
@@ -32,7 +32,7 @@ const sections = [
     title: "Standard Pieces",
     navLabel: "Standard Pieces",
     summary:
-      "Repeatable product-style work, dependable formats, and pieces that show the main line of what Horizon Creations builds.",
+      "Regular builds. Pouches, straps, sheaths, and other pieces I can make again without pretending every one of them is a rare artifact.",
   },
   {
     slug: "custom-pieces",
@@ -41,7 +41,7 @@ const sections = [
     title: "Custom Pieces",
     navLabel: "Custom Pieces",
     summary:
-      "Custom builds, one-off experiments, and commissions shaped around a specific need instead of a fixed catalog.",
+      "One-offs, commissions, odd requests, and the jobs that do not fit neatly into a product listing.",
   },
   {
     slug: "workbench",
@@ -50,8 +50,14 @@ const sections = [
     title: "Workbench",
     navLabel: "Workbench",
     summary:
-      "Behind-the-scenes views of molds, forms, tooling, prototypes, and the practical side of how the work gets made.",
+      "The shop side of it. Tools, forms, scraps, half-finished pieces, and the mess that gets the work done.",
   },
+];
+
+const infoPages = [
+  { href: "/about/", label: "About" },
+  { href: "/custom-orders/", label: "Custom Orders" },
+  { href: "/contact/", label: "Contact" },
 ];
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
@@ -189,7 +195,7 @@ function renderNav(currentPath) {
       href: `/${section.slug}/`,
       label: section.navLabel,
     })),
-    { href: "/#connect", label: "Connect" },
+    ...infoPages,
   ];
 
   return `
@@ -210,6 +216,33 @@ function renderNav(currentPath) {
           .join("")}
       </div>
     </nav>
+  `;
+}
+
+function renderPageHero({ currentPath, eyebrow, title, copy, primaryCta, secondaryCta, calloutLabel, calloutTitle, calloutCopy, imageUrl, imageAlt }) {
+  return `
+    <section class="page-hero">
+      ${renderNav(currentPath)}
+      <div class="page-hero-grid">
+        <div class="page-hero-copy">
+          <p class="eyebrow">${escapeHtml(eyebrow)}</p>
+          <h1>${escapeHtml(title)}</h1>
+          <p>${escapeHtml(copy)}</p>
+          <div class="button-row">
+            <a class="button button-primary" href="${primaryCta.href}">${escapeHtml(primaryCta.label)}</a>
+            <a class="button button-secondary" href="${secondaryCta.href}">${escapeHtml(secondaryCta.label)}</a>
+          </div>
+        </div>
+        <aside class="gallery-callout">
+          <div>
+            <div class="callout-label">${escapeHtml(calloutLabel)}</div>
+            <strong>${escapeHtml(calloutTitle)}</strong>
+          </div>
+          <p>${escapeHtml(calloutCopy)}</p>
+          <img class="callout-preview" src="${imageUrl}" alt="${escapeHtml(imageAlt)}">
+        </aside>
+      </div>
+    </section>
   `;
 }
 
@@ -357,35 +390,26 @@ function renderGalleryPage(section, entries) {
     description: section.summary,
     currentPath: `/${section.slug}/`,
     body: `
-      <section class="page-hero">
-        ${renderNav(`/${section.slug}/`)}
-        <div class="page-hero-grid">
-          <div class="page-hero-copy">
-            <p class="eyebrow">${escapeHtml(section.eyebrow)}</p>
-            <h1>${escapeHtml(section.title)}</h1>
-            <p>${escapeHtml(section.summary)}</p>
-            <div class="button-row">
-              <a class="button button-primary" href="${withBase("/#connect")}">Connect</a>
-              <a class="button button-secondary" href="${withBase("/")}">Back Home</a>
-            </div>
-          </div>
-          <aside class="gallery-callout">
-            <div>
-              <div class="callout-label">What You Will Find Here</div>
-              <strong>${escapeHtml(introEntry.title)}</strong>
-            </div>
-            <p>${escapeHtml(introEntry.caption)}</p>
-            <img class="callout-preview" src="${introEntry.images[0]}" alt="${escapeHtml(introEntry.heroAlt)}">
-          </aside>
-        </div>
-      </section>
+      ${renderPageHero({
+        currentPath: `/${section.slug}/`,
+        eyebrow: section.eyebrow,
+        title: section.title,
+        copy: section.summary,
+        primaryCta: { href: withBase("/contact/"), label: "Get In Touch" },
+        secondaryCta: { href: withBase("/"), label: "Back Home" },
+        calloutLabel: "First One Up",
+        calloutTitle: introEntry.title,
+        calloutCopy: introEntry.caption,
+        imageUrl: introEntry.images[0],
+        imageAlt: introEntry.heroAlt,
+      })}
       <section class="section">
         <div class="section-card">
           <div class="section-header">
-            <h2>${escapeHtml(section.title)} Gallery</h2>
+            <h2>${escapeHtml(section.title)}</h2>
             <p>
-              These entries are grouped so you can keep adding new work without touching the layout.
-              Drop photos into the right content folder, add the entry metadata, and rebuild.
+              This is the running pile for ${escapeHtml(section.label.toLowerCase())}. Some of it is cleaner,
+              some of it is rougher, but it all belongs here for a reason.
             </p>
           </div>
           <div class="entry-grid">
@@ -396,10 +420,197 @@ function renderGalleryPage(section, entries) {
       <section class="section" id="connect">
         <div class="section-card section-card-accent">
           <div class="section-header">
-            <h2>Connect</h2>
-            <p>Questions about a similar piece, a custom order, or what is currently available are easiest to start on social.</p>
+            <h2>Want Something Like This?</h2>
+            <p>The fastest way to ask about a similar piece, a custom order, or what is ready now is still a direct message.</p>
           </div>
           ${renderSocialLinks()}
+        </div>
+      </section>
+    `,
+  });
+}
+
+function renderAboutPage(sectionEntries) {
+  const customLead = sectionEntries["custom-pieces"][0];
+
+  return renderLayout({
+    title: `About | ${site.name}`,
+    description: "Who is behind the bench and what Horizon Creations is actually about.",
+    currentPath: "/about/",
+    body: `
+      ${renderPageHero({
+        currentPath: "/about/",
+        eyebrow: "who is behind the bench",
+        title: "About Horizon Creations",
+        copy: "This is not a giant brand operation. It is one guy at the bench making leather goods, custom pieces, and whatever tools or fixtures need to exist so the work can get done right.",
+        primaryCta: { href: withBase("/contact/"), label: "Reach Out" },
+        secondaryCta: { href: withBase("/custom-pieces/"), label: "See Custom Work" },
+        calloutLabel: "Short Version",
+        calloutTitle: "Smashing stamps. Pounding rivets. Slinging dye.",
+        calloutCopy: "That Facebook header line is pretty close to the truth. The work starts at the bench and usually stays a little rough around the edges in the best possible way.",
+        imageUrl: customLead.images[0],
+        imageAlt: customLead.heroAlt,
+      })}
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>What This Is</h2>
+            <p>Not a catalog pretending to be a craft shop. Not a polished luxury pitch either. Just real bench work, good leather, and ideas that end up becoming something you can actually use.</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>Built To Be Used</h3>
+              <p>If it cannot be carried, worn, worked, scuffed up, or handed off to somebody who will actually put it through life, it is probably not the right direction.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Room For Weird Ideas</h3>
+              <p>Some pieces are straightforward. Some are oddball customs. Both matter. Half the fun is when a request does not already exist in a clean little product category.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Shop Built When Needed</h3>
+              <p>Molds, forms, jigs, and shop tools are part of the work too. Sometimes the thing that has to be made first is the thing that helps make the real thing better.</p>
+            </article>
+            <article class="detail-card">
+              <h3>No Fake Storytelling</h3>
+              <p>The site is supposed to feel like the actual bench. Good work, rough edges, progress photos, mistakes, fixes, and finished pieces all living in the same world.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+}
+
+function renderCustomOrdersPage(sectionEntries) {
+  const customLead = sectionEntries["custom-pieces"][0];
+
+  return renderLayout({
+    title: `Custom Orders | ${site.name}`,
+    description: "How custom work usually starts, what to send, and what to expect.",
+    currentPath: "/custom-orders/",
+    body: `
+      ${renderPageHero({
+        currentPath: "/custom-orders/",
+        eyebrow: "custom jobs / one-offs / strange requests welcome",
+        title: "Custom Orders",
+        copy: "Custom work is usually pretty simple on the front end. You send the idea, we talk through the job, and then I figure out whether it is a quick make, a true one-off, or something that needs a little figuring out first.",
+        primaryCta: { href: withBase("/contact/"), label: "Send The Idea" },
+        secondaryCta: { href: withBase("/custom-pieces/"), label: "See Examples" },
+        calloutLabel: "Good To Know",
+        calloutTitle: "Half-baked ideas are fine",
+        calloutCopy: "You do not need a perfect spec sheet. A rough idea, a few measurements, and a good sense of what the piece needs to do is usually enough to start.",
+        imageUrl: customLead.images[0],
+        imageAlt: customLead.heroAlt,
+      })}
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>What Helps</h2>
+            <p>The better the starting info, the less guessing has to happen.</p>
+          </div>
+          <div class="process-layout">
+            <div class="process-step">
+              <span>01</span>
+              <h3>Tell Me What It Is For</h3>
+              <p>Not just what it looks like. What it needs to hold, protect, fit, hang on, strap to, or survive.</p>
+            </div>
+            <div class="process-step">
+              <span>02</span>
+              <h3>Send Size Or Fit Notes</h3>
+              <p>If it needs to fit a tool, knife, notebook, belt size, or weird object, send those details early.</p>
+            </div>
+            <div class="process-step">
+              <span>03</span>
+              <h3>Show References If You Have Them</h3>
+              <p>Photos, sketches, rough doodles, screenshots, or “something like this but not exactly” all help.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>What To Expect</h2>
+            <p>Every custom is a little different, but the rhythm is usually the same.</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>Some Jobs Are Straightforward</h3>
+              <p>Those are the easy ones. Quick discussion, clear dimensions, then get to work.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Some Need Bench Time First</h3>
+              <p>If it is a new pattern, a weird fit, or something that needs tooling built around it, there may be a little setup before the finished piece happens.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Updates Happen In Real Life</h3>
+              <p>Fresh photos and progress tend to show up on social first, which is another reason to message there.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Not Everything Becomes A Catalog Item</h3>
+              <p>Some jobs stay one-offs forever. That is part of the point.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    `,
+  });
+}
+
+function renderContactPage(sectionEntries) {
+  const workbenchLead = sectionEntries["workbench"][0];
+
+  return renderLayout({
+    title: `Contact | ${site.name}`,
+    description: "Where to message and what to send if you want to start a build.",
+    currentPath: "/contact/",
+    body: `
+      ${renderPageHero({
+        currentPath: "/contact/",
+        eyebrow: "message me here",
+        title: "Contact",
+        copy: "If you want to ask about a piece, a custom order, or whether something is available right now, social is still the easiest way to get through to me.",
+        primaryCta: { href: site.facebook, label: "Message On Facebook" },
+        secondaryCta: { href: site.instagram, label: "Open Instagram" },
+        calloutLabel: "Best First Message",
+        calloutTitle: "Keep it simple",
+        calloutCopy: "Tell me what the piece needs to do, what it needs to fit, and anything important about the look. That is enough to start a real conversation.",
+        imageUrl: workbenchLead.images[0],
+        imageAlt: workbenchLead.heroAlt,
+      })}
+      <section class="section">
+        <div class="section-card section-card-accent">
+          <div class="section-header">
+            <h2>Fastest Way In</h2>
+            <p>These are still the main doors into the shop.</p>
+          </div>
+          ${renderSocialLinks()}
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-card">
+          <div class="section-header">
+            <h2>What To Send</h2>
+            <p>You do not need a perfect message. Just enough to point things in the right direction.</p>
+          </div>
+          <div class="detail-grid">
+            <article class="detail-card">
+              <h3>The Job</h3>
+              <p>What the piece is supposed to be, what it is for, and whether this is a repeatable item or a one-off idea.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Fit Notes</h3>
+              <p>Dimensions, sizes, belt width, tool model, blade length, notebook size, or anything else the build has to fit around.</p>
+            </article>
+            <article class="detail-card">
+              <h3>Look And Feel</h3>
+              <p>Color, tooling, carved patterns, rough references, or just “something darker and meaner than this one.”</p>
+            </article>
+            <article class="detail-card">
+              <h3>Anything Weird</h3>
+              <p>If the request is strange, specific, or hard to explain, that is fine. Send it anyway.</p>
+            </article>
+          </div>
         </div>
       </section>
     `,
@@ -437,7 +648,7 @@ function renderHomePage(sectionEntries) {
               one is mine," you are in the right place.
             </p>
             <div class="button-row">
-              <a class="button button-primary" href="${withBase("/#connect")}">Message Me</a>
+              <a class="button button-primary" href="${withBase("/contact/")}">Message Me</a>
               <a class="button button-secondary" href="${withBase("/custom-pieces/")}">See The Work</a>
             </div>
           </div>
@@ -550,6 +761,9 @@ async function buildSite() {
   }
 
   await writePage(".", "index.html", renderHomePage(sectionEntries));
+  await writePage("about", "index.html", renderAboutPage(sectionEntries));
+  await writePage("custom-orders", "index.html", renderCustomOrdersPage(sectionEntries));
+  await writePage("contact", "index.html", renderContactPage(sectionEntries));
 
   for (const section of sections) {
     const html = renderGalleryPage(section, sectionEntries[section.slug]);

@@ -339,6 +339,30 @@ h1 {
     gap: 16px;
 }
 
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.detail-card {
+    padding: 22px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: var(--panel-strong);
+}
+
+.detail-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+}
+
+.detail-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
 .stat-card {
     display: flex;
     flex-direction: column;
@@ -582,7 +606,8 @@ h1 {
 @media (max-width: 1000px) {
     .entry-grid,
     .category-grid,
-    .connect-spotlight-grid {
+    .connect-spotlight-grid,
+    .detail-grid {
         grid-template-columns: 1fr;
     }
 }

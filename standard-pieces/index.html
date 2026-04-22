@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Standard Pieces | Horizon Creations</title>
-<meta name="description" content="Repeatable product-style work, dependable formats, and pieces that show the main line of what Horizon Creations builds.">
+<meta name="description" content="Regular builds. Pouches, straps, sheaths, and other pieces I can make again without pretending every one of them is a rare artifact.">
 <link rel="icon" type="image/jpeg" href="/HorizonCreaion-Base-logo.jpg">
 <link rel="stylesheet" href="/assets/site.css">
 <style>
@@ -349,6 +349,30 @@ h1 {
     gap: 16px;
 }
 
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.detail-card {
+    padding: 22px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: var(--panel-strong);
+}
+
+.detail-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.15rem;
+}
+
+.detail-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
 .stat-card {
     display: flex;
     flex-direction: column;
@@ -592,7 +616,8 @@ h1 {
 @media (max-width: 1000px) {
     .entry-grid,
     .category-grid,
-    .connect-spotlight-grid {
+    .connect-spotlight-grid,
+    .detail-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -664,45 +689,47 @@ h1 {
   <div class="page-shell">
     <main class="site-frame">
       
-      <section class="page-hero">
-        
+      
+    <section class="page-hero">
+      
     <nav class="nav" aria-label="Primary">
       <a class="brand" href="/">
         <span class="brand-mark" aria-hidden="true"></span>
         Horizon Creations
       </a>
       <div class="nav-links">
-        <a href="/">Home</a><a href="/standard-pieces/" aria-current="page">Standard Pieces</a><a href="/custom-pieces/">Custom Pieces</a><a href="/workbench/">Workbench</a><a href="/#connect">Connect</a>
+        <a href="/">Home</a><a href="/standard-pieces/" aria-current="page">Standard Pieces</a><a href="/custom-pieces/">Custom Pieces</a><a href="/workbench/">Workbench</a><a href="/about/">About</a><a href="/custom-orders/">Custom Orders</a><a href="/contact/">Contact</a>
       </div>
     </nav>
   
-        <div class="page-hero-grid">
-          <div class="page-hero-copy">
-            <p class="eyebrow">Core work / repeatable builds</p>
-            <h1>Standard Pieces</h1>
-            <p>Repeatable product-style work, dependable formats, and pieces that show the main line of what Horizon Creations builds.</p>
-            <div class="button-row">
-              <a class="button button-primary" href="/#connect">Connect</a>
-              <a class="button button-secondary" href="/">Back Home</a>
-            </div>
+      <div class="page-hero-grid">
+        <div class="page-hero-copy">
+          <p class="eyebrow">Core work / repeatable builds</p>
+          <h1>Standard Pieces</h1>
+          <p>Regular builds. Pouches, straps, sheaths, and other pieces I can make again without pretending every one of them is a rare artifact.</p>
+          <div class="button-row">
+            <a class="button button-primary" href="/contact/">Get In Touch</a>
+            <a class="button button-secondary" href="/">Back Home</a>
           </div>
-          <aside class="gallery-callout">
-            <div>
-              <div class="callout-label">What You Will Find Here</div>
-              <strong>Everyday Carry Pouch</strong>
-            </div>
-            <p>Compact pouch work built for repeatable everyday use with a hand-finished feel.</p>
-            <img class="callout-preview" src="/content/standard-pieces/everyday-carry-pouch/hero.jpg" alt="Everyday Carry Pouch by Horizon Creations">
-          </aside>
         </div>
-      </section>
+        <aside class="gallery-callout">
+          <div>
+            <div class="callout-label">First One Up</div>
+            <strong>Everyday Carry Pouch</strong>
+          </div>
+          <p>Compact pouch work built for repeatable everyday use with a hand-finished feel.</p>
+          <img class="callout-preview" src="/content/standard-pieces/everyday-carry-pouch/hero.jpg" alt="Everyday Carry Pouch by Horizon Creations">
+        </aside>
+      </div>
+    </section>
+  
       <section class="section">
         <div class="section-card">
           <div class="section-header">
-            <h2>Standard Pieces Gallery</h2>
+            <h2>Standard Pieces</h2>
             <p>
-              These entries are grouped so you can keep adding new work without touching the layout.
-              Drop photos into the right content folder, add the entry metadata, and rebuild.
+              This is the running pile for standard pieces. Some of it is cleaner,
+              some of it is rougher, but it all belongs here for a reason.
             </p>
           </div>
           <div class="entry-grid">
@@ -733,8 +760,8 @@ h1 {
       <section class="section" id="connect">
         <div class="section-card section-card-accent">
           <div class="section-header">
-            <h2>Connect</h2>
-            <p>Questions about a similar piece, a custom order, or what is currently available are easiest to start on social.</p>
+            <h2>Want Something Like This?</h2>
+            <p>The fastest way to ask about a similar piece, a custom order, or what is ready now is still a direct message.</p>
           </div>
           
     <div class="social-grid">
@@ -751,7 +778,7 @@ h1 {
         </div>
       </section>
     
-      <div class="footer">Handmade projects from Horizon Creations.</div>
+      <div class="footer">Horizon Creations. Handmade leather goods, custom work, and shop-built nonsense.</div>
     </main>
   </div>
 </body>
