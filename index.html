@@ -299,6 +299,10 @@ h1 {
     gap: 16px;
 }
 
+.social-grid-spotlight {
+    grid-template-columns: 1fr;
+}
+
 .social-link {
     display: block;
     padding: 22px;
@@ -317,6 +321,73 @@ h1 {
 .social-link span {
     color: var(--muted);
     line-height: 1.6;
+}
+
+.connect-spotlight {
+    background:
+        linear-gradient(135deg, rgba(217, 139, 58, 0.17), transparent 54%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 40%),
+        rgba(28, 21, 16, 0.97);
+}
+
+.connect-spotlight-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 18px;
+    align-items: stretch;
+}
+
+.connect-spotlight-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 184px;
+    padding: 22px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background:
+        linear-gradient(180deg, rgba(73, 53, 37, 0.96), rgba(37, 28, 22, 0.98));
+}
+
+.stat-value {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.stat-value-badge {
+    display: flex;
+    align-items: center;
+    min-height: 54px;
+}
+
+.stat-badge-image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 24px;
+    border-radius: 999px;
+}
+
+.stat-note {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .category-grid {
@@ -520,7 +591,8 @@ h1 {
 
 @media (max-width: 1000px) {
     .entry-grid,
-    .category-grid {
+    .category-grid,
+    .connect-spotlight-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -529,6 +601,7 @@ h1 {
     .hero-grid,
     .page-hero-grid,
     .social-grid,
+    .stats-grid,
     .process-layout,
     .entry-card {
         grid-template-columns: 1fr;
@@ -617,31 +690,37 @@ h1 {
               Instagram if you want to ask about a build.
             </p>
             <div class="button-row">
-              <a class="button button-primary" href="/custom-pieces/">See Custom Work</a>
-              <a class="button button-secondary" href="/standard-pieces/">Browse Standard Pieces</a>
+              <a class="button button-primary" href="/#connect">Connect Fast</a>
+              <a class="button button-secondary" href="/custom-pieces/">See Custom Work</a>
             </div>
           </div>
           <aside class="hero-card">
             <div>
-              <div class="hero-card-label">Start Here</div>
-              <strong>Tap in, look around, and message when something feels like your kind of build.</strong>
+              <div class="hero-card-label">Current Focus</div>
+              <strong>Strong contact links up front, live social proof, and a cleaner path into the work.</strong>
             </div>
             <p>
-              The homepage stays simple on purpose: quick contact, clear galleries, and a straightforward
-              path into the work without turning this into a heavy storefront.
+              If someone lands here from a tag, a post, or a custom piece in the real world, they should
+              be able to reach out fast, see what is active, and keep moving without hunting through the page.
             </p>
             <img class="hero-preview" src="/content/custom-pieces/blue-scale-finish/hero.jpg" alt="Blue Scale Finish Study by Horizon Creations">
           </aside>
         </div>
       </section>
       <section class="section" id="connect">
-        <div class="section-card section-card-accent">
+        <div class="section-card section-card-accent connect-spotlight">
           <div class="section-header">
-            <h2>Connect Fast</h2>
-            <p>Facebook and Instagram stay up front so someone arriving from a tag can reach you without hunting through the page.</p>
+            <h2>Connect And Follow The Work</h2>
+            <p>Make the contact options obvious, keep the current reach visible, and let someone decide in seconds whether they want to message, follow, or keep browsing.</p>
           </div>
-          
-    <div class="social-grid">
+          <div class="connect-spotlight-grid">
+            <div class="connect-spotlight-copy">
+              <p class="lede">
+                Instagram and Facebook are the fastest way into the conversation. If someone wants to ask about a custom build,
+                check fresh progress photos, or see whether the bench is active, this is the lane.
+              </p>
+              
+    <div class="social-grid social-grid-spotlight">
       <a class="social-link" href="https://www.facebook.com/profile.php?id=61574262374190" target="_blank" rel="noreferrer">
         <strong>Facebook</strong>
         <span>Follow updates, check recent posts, and message directly about available or custom work.</span>
@@ -652,6 +731,34 @@ h1 {
       </a>
     </div>
   
+            </div>
+            
+    <div class="stats-grid" aria-label="Current site and social stats">
+      <article class="stat-card">
+        <div class="stat-label">Instagram Followers</div>
+        <div class="stat-value">1,529</div>
+        <p class="stat-note">Public Instagram profile count checked April 21, 2026.</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Facebook Likes</div>
+        <div class="stat-value">65</div>
+        <p class="stat-note">Public Facebook page count visible right now.</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Talking About It</div>
+        <div class="stat-value">156</div>
+        <p class="stat-note">A useful live signal for current Facebook activity.</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Page Hits</div>
+        <div class="stat-value stat-value-badge">
+          <img class="stat-badge-image" src="https://visitor-badge.laobi.icu/badge?page_id=horizoncreations.art.home" alt="Live page hit counter for Horizon Creations">
+        </div>
+        <p class="stat-note">Live counter from a lightweight external badge service.</p>
+      </article>
+    </div>
+  
+          </div>
         </div>
       </section>
       <section class="section">
@@ -793,26 +900,6 @@ h1 {
               <p>From quick makes to one-off commissions, the next step is figuring out the right format instead of forcing every project into a store listing.</p>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="section-card">
-          <div class="section-header">
-            <h2>Connect</h2>
-            <p>When you are ready to ask about something similar, a custom order, or what is available now, social is still the easiest way to reach out.</p>
-          </div>
-          
-    <div class="social-grid">
-      <a class="social-link" href="https://www.facebook.com/profile.php?id=61574262374190" target="_blank" rel="noreferrer">
-        <strong>Facebook</strong>
-        <span>Follow updates, check recent posts, and message directly about available or custom work.</span>
-      </a>
-      <a class="social-link" href="https://instagram.com/horizoncreations.art/" target="_blank" rel="noreferrer">
-        <strong>Instagram</strong>
-        <span>Best place for fresh photos, in-progress shots, and quick conversations about a build.</span>
-      </a>
-    </div>
-  
         </div>
       </section>
     

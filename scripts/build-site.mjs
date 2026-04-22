@@ -15,6 +15,13 @@ const site = {
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
   logo: "/HorizonCreaion-Base-logo.jpg",
   footer: "Handmade projects from Horizon Creations.",
+  stats: {
+    instagramFollowers: "1,529",
+    facebookLikes: "65",
+    facebookTalking: "156",
+    statsCheckedOn: "April 21, 2026",
+    pageHitsBadge: "https://visitor-badge.laobi.icu/badge?page_id=horizoncreations.art.home",
+  },
 };
 
 const sections = [
@@ -232,9 +239,11 @@ ${inlineSiteCss}
 `;
 }
 
-function renderSocialLinks() {
+function renderSocialLinks({ spotlight = false } = {}) {
+  const gridClass = spotlight ? "social-grid social-grid-spotlight" : "social-grid";
+
   return `
-    <div class="social-grid">
+    <div class="${gridClass}">
       <a class="social-link" href="${site.facebook}" target="_blank" rel="noreferrer">
         <strong>Facebook</strong>
         <span>Follow updates, check recent posts, and message directly about available or custom work.</span>
@@ -243,6 +252,35 @@ function renderSocialLinks() {
         <strong>Instagram</strong>
         <span>Best place for fresh photos, in-progress shots, and quick conversations about a build.</span>
       </a>
+    </div>
+  `;
+}
+
+function renderStatsGrid() {
+  return `
+    <div class="stats-grid" aria-label="Current site and social stats">
+      <article class="stat-card">
+        <div class="stat-label">Instagram Followers</div>
+        <div class="stat-value">${escapeHtml(site.stats.instagramFollowers)}</div>
+        <p class="stat-note">Public Instagram profile count checked ${escapeHtml(site.stats.statsCheckedOn)}.</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Facebook Likes</div>
+        <div class="stat-value">${escapeHtml(site.stats.facebookLikes)}</div>
+        <p class="stat-note">Public Facebook page count visible right now.</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Talking About It</div>
+        <div class="stat-value">${escapeHtml(site.stats.facebookTalking)}</div>
+        <p class="stat-note">A useful live signal for current Facebook activity.</p>
+      </article>
+      <article class="stat-card">
+        <div class="stat-label">Page Hits</div>
+        <div class="stat-value stat-value-badge">
+          <img class="stat-badge-image" src="${site.stats.pageHitsBadge}" alt="Live page hit counter for Horizon Creations">
+        </div>
+        <p class="stat-note">Live counter from a lightweight external badge service.</p>
+      </article>
     </div>
   `;
 }
@@ -398,30 +436,39 @@ function renderHomePage(sectionEntries) {
               Instagram if you want to ask about a build.
             </p>
             <div class="button-row">
-              <a class="button button-primary" href="${withBase("/custom-pieces/")}">See Custom Work</a>
-              <a class="button button-secondary" href="${withBase("/standard-pieces/")}">Browse Standard Pieces</a>
+              <a class="button button-primary" href="${withBase("/#connect")}">Connect Fast</a>
+              <a class="button button-secondary" href="${withBase("/custom-pieces/")}">See Custom Work</a>
             </div>
           </div>
           <aside class="hero-card">
             <div>
-              <div class="hero-card-label">Start Here</div>
-              <strong>Tap in, look around, and message when something feels like your kind of build.</strong>
+              <div class="hero-card-label">Current Focus</div>
+              <strong>Strong contact links up front, live social proof, and a cleaner path into the work.</strong>
             </div>
             <p>
-              The homepage stays simple on purpose: quick contact, clear galleries, and a straightforward
-              path into the work without turning this into a heavy storefront.
+              If someone lands here from a tag, a post, or a custom piece in the real world, they should
+              be able to reach out fast, see what is active, and keep moving without hunting through the page.
             </p>
             <img class="hero-preview" src="${customLead.images[0]}" alt="${escapeHtml(customLead.heroAlt)}">
           </aside>
         </div>
       </section>
       <section class="section" id="connect">
-        <div class="section-card section-card-accent">
+        <div class="section-card section-card-accent connect-spotlight">
           <div class="section-header">
-            <h2>Connect Fast</h2>
-            <p>Facebook and Instagram stay up front so someone arriving from a tag can reach you without hunting through the page.</p>
+            <h2>Connect And Follow The Work</h2>
+            <p>Make the contact options obvious, keep the current reach visible, and let someone decide in seconds whether they want to message, follow, or keep browsing.</p>
           </div>
-          ${renderSocialLinks()}
+          <div class="connect-spotlight-grid">
+            <div class="connect-spotlight-copy">
+              <p class="lede">
+                Instagram and Facebook are the fastest way into the conversation. If someone wants to ask about a custom build,
+                check fresh progress photos, or see whether the bench is active, this is the lane.
+              </p>
+              ${renderSocialLinks({ spotlight: true })}
+            </div>
+            ${renderStatsGrid()}
+          </div>
         </div>
       </section>
       <section class="section">
@@ -472,15 +519,6 @@ function renderHomePage(sectionEntries) {
               <p>From quick makes to one-off commissions, the next step is figuring out the right format instead of forcing every project into a store listing.</p>
             </div>
           </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="section-card">
-          <div class="section-header">
-            <h2>Connect</h2>
-            <p>When you are ready to ask about something similar, a custom order, or what is available now, social is still the easiest way to reach out.</p>
-          </div>
-          ${renderSocialLinks()}
         </div>
       </section>
     `,
