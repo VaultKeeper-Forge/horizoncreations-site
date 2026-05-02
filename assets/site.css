@@ -603,6 +603,12 @@ h1 {
     font-size: 0.95rem;
 }
 
+.footer-disclaimer {
+    margin-top: 8px;
+    color: rgba(208, 189, 168, 0.72);
+    font-size: 0.84rem;
+}
+
 @media (max-width: 1000px) {
     .entry-grid,
     .category-grid,

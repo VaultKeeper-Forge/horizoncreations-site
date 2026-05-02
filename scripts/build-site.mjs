@@ -13,8 +13,10 @@ const site = {
     "Handmade leather goods, custom work, bench-built tools, and the rough shop side of Horizon Creations.",
   instagram: "https://instagram.com/horizoncreations.art/",
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
+  discord: process.env.SITE_DISCORD_URL || "",
   logo: "/HorizonCreaion-Base-logo.jpg",
   footer: "Horizon Creations. Handmade leather goods, custom work, and shop-built nonsense.",
+  disclaimer: "Web built and managed by AI. Still working out the bugs.",
   stats: {
     instagramFollowers: "1,529",
     facebookLikes: "65",
@@ -264,7 +266,10 @@ ${inlineSiteCss}
   <div class="page-shell">
     <main class="site-frame">
       ${body}
-      <div class="footer">${escapeHtml(site.footer)}</div>
+      <footer class="footer">
+        <div>${escapeHtml(site.footer)}</div>
+        <div class="footer-disclaimer">${escapeHtml(site.disclaimer)}</div>
+      </footer>
     </main>
   </div>
 </body>
@@ -274,6 +279,13 @@ ${inlineSiteCss}
 
 function renderSocialLinks({ spotlight = false } = {}) {
   const gridClass = spotlight ? "social-grid social-grid-spotlight" : "social-grid";
+  const discordLink = site.discord
+    ? `
+      <a class="social-link" href="${site.discord}" target="_blank" rel="noreferrer">
+        <strong>Discord</strong>
+        <span>Join The Shop for build talk, custom-order questions, bench updates, AI chat, and community projects.</span>
+      </a>`
+    : "";
 
   return `
     <div class="${gridClass}">
@@ -285,6 +297,7 @@ function renderSocialLinks({ spotlight = false } = {}) {
         <strong>Instagram</strong>
         <span>Bench photos, in-progress shots, and the weird stuff that shows up before it lands on the site.</span>
       </a>
+      ${discordLink}
     </div>
   `;
 }
