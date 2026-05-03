@@ -13,7 +13,7 @@ const site = {
     "Handmade leather goods, custom work, bench-built tools, and the rough shop side of Horizon Creations.",
   instagram: "https://instagram.com/horizoncreations.art/",
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
-  discord: process.env.SITE_DISCORD_URL || "",
+  discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
   logo: "/HorizonCreaion-Base-logo.jpg",
   footer: "Horizon Creations. Handmade leather goods, custom work, and shop-built nonsense.",
   disclaimer: "Web built and managed by AI. Still working out the bugs.",
