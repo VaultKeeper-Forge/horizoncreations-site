@@ -15,8 +15,8 @@ const site = {
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
   logo: "/HorizonCreaion-Base-logo.jpg",
-  footer: "Horizon Creations. Handmade leather goods, custom work, and shop-built nonsense.",
-  disclaimer: "Web built and managed by AI. Still working out the bugs.",
+  footer: "Horizon Creations. Handmade leather goods, custom work, and bench-built tools.",
+  disclaimer: "",
   stats: {
     instagramFollowers: "1,529",
     facebookLikes: "65",
@@ -34,7 +34,7 @@ const sections = [
     title: "Standard Pieces",
     navLabel: "Standard Pieces",
     summary:
-      "Regular builds. Pouches, straps, sheaths, and other pieces I can make again without pretending every one of them is a rare artifact.",
+      "Regular builds. Journals, pouches, straps, sheaths, and other pieces I can make again.",
   },
   {
     slug: "custom-pieces",
@@ -52,7 +52,7 @@ const sections = [
     title: "Workbench",
     navLabel: "Workbench",
     summary:
-      "The shop side of it. Tools, forms, scraps, half-finished pieces, and the mess that gets the work done.",
+      "The shop side of it. Tools, forms, scraps, and half-finished pieces.",
   },
 ];
 
@@ -268,7 +268,7 @@ ${inlineSiteCss}
       ${body}
       <footer class="footer">
         <div>${escapeHtml(site.footer)}</div>
-        <div class="footer-disclaimer">${escapeHtml(site.disclaimer)}</div>
+        ${site.disclaimer ? `<div class="footer-disclaimer">${escapeHtml(site.disclaimer)}</div>` : ""}
       </footer>
     </main>
   </div>
@@ -283,7 +283,7 @@ function renderSocialLinks({ spotlight = false } = {}) {
     ? `
       <a class="social-link" href="${site.discord}" target="_blank" rel="noreferrer">
         <strong>Discord</strong>
-        <span>Join The Shop for build talk, custom-order questions, bench updates, AI chat, and community projects.</span>
+        <span>Join The Shop for build talk, custom-order questions, bench updates, and community projects.</span>
       </a>`
     : "";
 
@@ -295,7 +295,7 @@ function renderSocialLinks({ spotlight = false } = {}) {
       </a>
       <a class="social-link" href="${site.instagram}" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
-        <span>Bench photos, in-progress shots, and the weird stuff that shows up before it lands on the site.</span>
+        <span>Bench photos, in-progress shots, and new work as it comes together.</span>
       </a>
       ${discordLink}
     </div>
@@ -420,10 +420,7 @@ function renderGalleryPage(section, entries) {
         <div class="section-card">
           <div class="section-header">
             <h2>${escapeHtml(section.title)}</h2>
-            <p>
-              This is the running pile for ${escapeHtml(section.label.toLowerCase())}. Some of it is cleaner,
-              some of it is rougher, but it all belongs here for a reason.
-            </p>
+            <p>Current ${escapeHtml(section.label.toLowerCase())} on the site.</p>
           </div>
           <div class="entry-grid">
             ${entries.map((entry) => renderEntryCard(entry)).join("")}
@@ -434,7 +431,7 @@ function renderGalleryPage(section, entries) {
         <div class="section-card section-card-accent">
           <div class="section-header">
             <h2>Want Something Like This?</h2>
-            <p>The fastest way to ask about a similar piece, a custom order, or what is ready now is still a direct message.</p>
+            <p>If you want one like it, send me a message.</p>
           </div>
           ${renderSocialLinks()}
         </div>
@@ -631,6 +628,7 @@ function renderContactPage(sectionEntries) {
 }
 
 function renderHomePage(sectionEntries) {
+  const standardLead = sectionEntries["standard-pieces"][0];
   const customLead = sectionEntries["custom-pieces"].find((entry) => entry.featured) || sectionEntries["custom-pieces"][0];
   const featuredEntries = sections
     .flatMap((section) => {
@@ -648,33 +646,30 @@ function renderHomePage(sectionEntries) {
         ${renderNav("/")}
         <div class="hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Leather / tools / custom work / shop mess</p>
-            <h1>Handmade leather goods with some grit on them.</h1>
+            <p class="eyebrow">Leather / tools / custom work / shop</p>
+            <h1>Handmade leather goods built to get used.</h1>
             <p>
-              This is the home base for Horizon Creations. I am a guy at the bench smashing stamps,
-              pounding rivets, slinging dye, and trying to make things that feel solid in the hand instead
-              of factory-flat.
+              This is the home base for Horizon Creations. I make leather journals, custom pieces,
+              and the bench-built tools that help me make them.
             </p>
             <p>
-              Some of it is clean everyday carry stuff. Some of it gets a little strange. If it looks like
-              something you would actually carry, wear, beat up, or hand to somebody and say "yeah, that
-              one is mine," you are in the right place.
+              The finished journals are up in Standard Pieces now. Custom work and bench photos are split
+              into their own sections so you can go straight to what you want.
             </p>
             <div class="button-row">
               <a class="button button-primary" href="${withBase("/contact/")}">Message Me</a>
-              <a class="button button-secondary" href="${withBase("/custom-pieces/")}">See The Work</a>
+              <a class="button button-secondary" href="${withBase("/standard-pieces/")}">See The Work</a>
             </div>
           </div>
           <aside class="hero-card">
             <div>
               <div class="hero-card-label">Bench Right Now</div>
-              <strong>Leather goods, custom pieces, and whatever else survives getting dragged across the bench.</strong>
+              <strong>Three finished journals are up now.</strong>
             </div>
             <p>
-              The point of this page is simple: show the work, make it easy to reach me, and keep the whole
-              thing feeling like an actual shop instead of a fake polished storefront.
+              Heresy, Banzai, and Turtles are on the shelf now. Message me if you want one.
             </p>
-            <img class="hero-preview" src="${customLead.images[0]}" alt="${escapeHtml(customLead.heroAlt)}">
+            <img class="hero-preview" src="${withBase("/assets/images/home/journals-group.jpg")}" alt="Finished Horizon Creations journals grouped together">
           </aside>
         </div>
       </section>
@@ -682,13 +677,12 @@ function renderHomePage(sectionEntries) {
         <div class="section-card section-card-accent connect-spotlight">
           <div class="section-header">
             <h2>Find Me Here</h2>
-            <p>If you want to ask about a build, watch new work show up, or just keep an eye on what is coming off the bench, this is where to do it.</p>
+            <p>Message me here, follow new work here, and keep up with what is coming off the bench.</p>
           </div>
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Facebook and Instagram are the fast lane. That is where the fresh stuff goes first, where progress shots land,
-                and where it is easiest to say "hey, can you make something like this?"
+                Facebook and Instagram are where I post new work, bench photos, and updates.
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>
@@ -701,8 +695,7 @@ function renderHomePage(sectionEntries) {
           <div class="section-header">
             <h2>What Is On The Bench</h2>
             <p>
-              The site is split up so you can go straight to the kind of stuff you actually want to see:
-              standard pieces, one-off customs, or the rough in-progress bench side of it.
+              Standard Pieces is repeatable work. Custom Pieces is one-offs and commissions. Workbench is tools, test pieces, and in-progress photos.
             </p>
           </div>
           ${renderCategoryCards(sectionEntries)}
@@ -713,7 +706,7 @@ function renderHomePage(sectionEntries) {
           <div class="section-header">
             <h2>Recent Pieces</h2>
             <p>
-              A few pieces pulled straight from the same folders that run the rest of the site. Nothing fancy, just the current work.
+              Current site picks.
             </p>
           </div>
           <div class="entry-grid">

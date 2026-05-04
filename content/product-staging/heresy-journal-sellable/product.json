@@ -1,0 +1,50 @@
+{
+  "kind": "sellable-product",
+  "title": "Heresy Journal",
+  "description": "Dark red hand-dyed leather journal with a bold circular stamped emblem, rugged hardware, and a wrap-style closure. $75 shipped domestic. PayPal, Venmo, or Cash App.",
+  "price": "75.00",
+  "status": "ready-for-review",
+  "quantity": 1,
+  "category": "journal",
+  "tags": ["leather", "journal", "heresy", "for sale"],
+  "images": [
+    {
+      "path": "/content/standard-pieces/heresy-journal/heresy-01.jpg",
+      "alt": "Heresy Journal front view",
+      "role": "hero"
+    },
+    {
+      "path": "/content/standard-pieces/heresy-journal/heresy-02.jpg",
+      "alt": "Heresy Journal back view",
+      "role": "detail"
+    },
+    {
+      "path": "/content/standard-pieces/heresy-journal/heresy-03.jpg",
+      "alt": "Heresy Journal inside left view",
+      "role": "detail"
+    },
+    {
+      "path": "/content/standard-pieces/heresy-journal/heresy-04.jpg",
+      "alt": "Heresy Journal inside right view",
+      "role": "detail"
+    }
+  ],
+  "sku": "HC-HJ-001",
+  "sellable": true,
+  "publish": false,
+  "source": {
+    "entrySection": "standard-pieces",
+    "entrySlug": "heresy-journal"
+  },
+  "workflow": {
+    "readyForReview": true,
+    "approvedForExport": false,
+    "notes": "Shelf item. Do not export until approved."
+  },
+  "shopify": {
+    "syncState": "not-ready",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}

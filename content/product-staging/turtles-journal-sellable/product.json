@@ -1,0 +1,50 @@
+{
+  "kind": "sellable-product",
+  "title": "Turtles Journal",
+  "description": "Blue hand-dyed leather journal with a sea turtle stamp and an ocean-inspired feel. $75 shipped domestic. PayPal, Venmo, or Cash App.",
+  "price": "75.00",
+  "status": "ready-for-review",
+  "quantity": 1,
+  "category": "journal",
+  "tags": ["leather", "journal", "sea turtle", "for sale"],
+  "images": [
+    {
+      "path": "/content/standard-pieces/turtles-journal/turtles-01.jpg",
+      "alt": "Turtles Journal front view",
+      "role": "hero"
+    },
+    {
+      "path": "/content/standard-pieces/turtles-journal/turtles-02.jpg",
+      "alt": "Turtles Journal back view",
+      "role": "detail"
+    },
+    {
+      "path": "/content/standard-pieces/turtles-journal/turtles-03.jpg",
+      "alt": "Turtles Journal inside left view",
+      "role": "detail"
+    },
+    {
+      "path": "/content/standard-pieces/turtles-journal/turtles-04.jpg",
+      "alt": "Turtles Journal inside right view",
+      "role": "detail"
+    }
+  ],
+  "sku": "HC-TJ-001",
+  "sellable": true,
+  "publish": false,
+  "source": {
+    "entrySection": "standard-pieces",
+    "entrySlug": "turtles-journal"
+  },
+  "workflow": {
+    "readyForReview": true,
+    "approvedForExport": false,
+    "notes": "Shelf item. Do not export until approved."
+  },
+  "shopify": {
+    "syncState": "not-ready",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}

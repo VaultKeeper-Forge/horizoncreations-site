@@ -1,0 +1,50 @@
+{
+  "kind": "sellable-product",
+  "title": "Banzai Journal",
+  "description": "Warm golden-brown hand-dyed leather journal with a bonsai tree stamp, rustic paneling, and a wrap-style closure. $75 shipped domestic. PayPal, Venmo, or Cash App.",
+  "price": "75.00",
+  "status": "ready-for-review",
+  "quantity": 1,
+  "category": "journal",
+  "tags": ["leather", "journal", "bonsai", "for sale"],
+  "images": [
+    {
+      "path": "/content/standard-pieces/banzai-journal/banzai-01.jpg",
+      "alt": "Banzai Journal front view",
+      "role": "hero"
+    },
+    {
+      "path": "/content/standard-pieces/banzai-journal/banzai-02.jpg",
+      "alt": "Banzai Journal back view",
+      "role": "detail"
+    },
+    {
+      "path": "/content/standard-pieces/banzai-journal/banzai-03.jpg",
+      "alt": "Banzai Journal inside left view",
+      "role": "detail"
+    },
+    {
+      "path": "/content/standard-pieces/banzai-journal/banzai-04.jpg",
+      "alt": "Banzai Journal inside right view",
+      "role": "detail"
+    }
+  ],
+  "sku": "HC-BJ-001",
+  "sellable": true,
+  "publish": false,
+  "source": {
+    "entrySection": "standard-pieces",
+    "entrySlug": "banzai-journal"
+  },
+  "workflow": {
+    "readyForReview": true,
+    "approvedForExport": false,
+    "notes": "Shelf item. Do not export until approved."
+  },
+  "shopify": {
+    "syncState": "not-ready",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}
