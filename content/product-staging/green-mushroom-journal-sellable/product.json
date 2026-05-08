@@ -1,0 +1,40 @@
+{
+  "kind": "sellable-product",
+  "title": "Green Mushroom Journal",
+  "description": "Bright green hand-dyed leather journal with a mushroom house front, mushroom border on the back, and double buckle straps. $75 shipped domestic. PayPal, Venmo, or Cash App.",
+  "price": "75.00",
+  "status": "ready-for-review",
+  "quantity": 1,
+  "category": "journal",
+  "tags": ["leather", "journal", "mushroom", "for sale"],
+  "images": [
+    {
+      "path": "/content/standard-pieces/green-mushroom-journal/mushroom-01.jpg",
+      "alt": "Green Mushroom Journal front view",
+      "role": "hero"
+    },
+    {
+      "path": "/content/standard-pieces/green-mushroom-journal/mushroom-02.jpg",
+      "alt": "Green Mushroom Journal back view",
+      "role": "detail"
+    }
+  ],
+  "sku": "HC-GMJ-001",
+  "sellable": true,
+  "publish": false,
+  "source": {
+    "entrySection": "standard-pieces",
+    "entrySlug": "green-mushroom-journal"
+  },
+  "workflow": {
+    "readyForReview": true,
+    "approvedForExport": false,
+    "notes": "Shelf item. Do not export until approved."
+  },
+  "shopify": {
+    "syncState": "not-ready",
+    "productId": "",
+    "lastSyncedAt": "",
+    "lastError": ""
+  }
+}
