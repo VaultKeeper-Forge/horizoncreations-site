@@ -6,6 +6,12 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
+const localAssetVersion = "2026-05-13-home-card-rotations-v2";
+const buildStamp = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(new Date());
 
 const site = {
   name: "Horizon Creations",
@@ -14,14 +20,16 @@ const site = {
   instagram: "https://instagram.com/horizoncreations.art/",
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
+  cults3d: "https://cults3d.com/en/users/horizoncreations/3d-models",
   logo: "/HorizonCreaion-Base-logo.jpg",
   footer: "Horizon Creations. Handmade leather goods, custom work, and bench-built tools.",
-  disclaimer: "",
+  lastUpdated: `Last updated ${buildStamp}.`,
+  disclaimer: "This page was built with AI and we're still working the gremlins.",
   stats: {
-    instagramFollowers: "1,529",
-    facebookLikes: "65",
-    facebookTalking: "156",
-    statsCheckedOn: "April 21, 2026",
+    instagramFollowers: "1,493",
+    facebookLikes: "82",
+    facebookTalking: "19",
+    statsCheckedOn: "May 13, 2026",
     pageHitsBadge: "https://visitor-badge.laobi.icu/badge?page_id=horizoncreations.art.home",
   },
 };
@@ -62,6 +70,19 @@ const infoPages = [
   { href: "/contact/", label: "Contact" },
 ];
 
+const stlMarketplace = {
+  label: "STL Files",
+  eyebrow: "Digital tools / FDM printing",
+  title: "FDM Leather Stamp STL Packs",
+  summary:
+    "Digital STL files for FDM-printed leather stamp tools, built for small-shop leatherworkers and 3D printer users.",
+  image: "/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg",
+  imageAlt: "FDM printed bracelet stamp STL pack samples by Horizon Creations",
+  ctaLabel: "Shop STL Files on Cults3D",
+  disclaimer:
+    "Digital files only. These are STL files for 3D printing leather press stamps. Results depend on printer settings, filament, leather casing, and press pressure. Test on scrap first.",
+};
+
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 
 function normalizeBasePath(value) {
@@ -79,6 +100,11 @@ function withBase(urlPath) {
   }
 
   return `${siteBasePath}${urlPath}`;
+}
+
+function withLocalAssetVersion(urlPath) {
+  const localPath = withBase(urlPath);
+  return `${localPath}${localPath.includes("?") ? "&" : "?"}v=${localAssetVersion}`;
 }
 
 function escapeHtml(value) {
@@ -148,9 +174,14 @@ async function readEntry(section) {
     const raw = await readFile(entryPath, "utf8");
     const data = JSON.parse(raw);
     const files = await readdir(entryDir, { withFileTypes: true });
+    const excludedImages = new Set(
+      Array.isArray(data.excludedImages) ? data.excludedImages : [],
+    );
+
     const imageFiles = files
       .filter((file) => file.isFile() && imageExtensions.has(path.extname(file.name).toLowerCase()))
       .map((file) => file.name)
+      .filter((fileName) => !excludedImages.has(fileName))
       .sort();
 
     if (!data.title || !data.caption) {
@@ -182,7 +213,7 @@ async function readEntry(section) {
       heroAlt: data.heroAlt || `${data.title} by Horizon Creations`,
       section,
       images: orderedImages.map(
-        (fileName) => withBase(`/content/${section.slug}/${folder.name}/${fileName}`),
+        (fileName) => withLocalAssetVersion(`/content/${section.slug}/${folder.name}/${fileName}`),
       ),
     });
   }
@@ -197,6 +228,7 @@ function renderNav(currentPath) {
       href: `/${section.slug}/`,
       label: section.navLabel,
     })),
+    { href: "/#stl-files", label: "STL Files" },
     ...infoPages,
   ];
 
@@ -268,6 +300,13 @@ ${inlineSiteCss}
       ${body}
       <footer class="footer">
         <div>${escapeHtml(site.footer)}</div>
+        <div class="footer-links">
+          <a href="${site.facebook}" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="${site.instagram}" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="${site.discord}" target="_blank" rel="noreferrer">Discord</a>
+          <a href="${site.cults3d}" target="_blank" rel="noreferrer">Cults3D STL Files</a>
+        </div>
+        ${site.lastUpdated ? `<div class="footer-update">${escapeHtml(site.lastUpdated)}</div>` : ""}
         ${site.disclaimer ? `<div class="footer-disclaimer">${escapeHtml(site.disclaimer)}</div>` : ""}
       </footer>
     </main>
@@ -296,6 +335,10 @@ function renderSocialLinks({ spotlight = false } = {}) {
       <a class="social-link" href="${site.instagram}" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
         <span>Bench photos, in-progress shots, and new work as it comes together.</span>
+      </a>
+      <a class="social-link" href="${site.cults3d}" target="_blank" rel="noreferrer">
+        <strong>Cults3D</strong>
+        <span>Digital STL files for FDM-printed leather stamp tools, bracelet stamps, and small-shop tooling experiments.</span>
       </a>
       ${discordLink}
     </div>
@@ -349,7 +392,53 @@ function renderCategoryCards(sectionEntries) {
           `;
         })
         .join("")}
+      ${renderMarketplaceCategoryCard()}
     </div>
+  `;
+}
+
+function renderMarketplaceCategoryCard() {
+  return `
+    <a class="category-link category-link-marketplace" href="${site.cults3d}" target="_blank" rel="noreferrer">
+      <img src="${withLocalAssetVersion(stlMarketplace.image)}" alt="${escapeHtml(stlMarketplace.imageAlt)}">
+      <div>
+        <span>${escapeHtml(stlMarketplace.eyebrow)}</span>
+        <h3>${escapeHtml(stlMarketplace.title)}</h3>
+        <p>${escapeHtml(stlMarketplace.summary)}</p>
+      </div>
+    </a>
+  `;
+}
+
+function renderStlMarketplaceSection() {
+  return `
+      <section class="section" id="stl-files">
+        <div class="section-card marketplace-section">
+          <div class="marketplace-copy">
+            <div class="marketplace-header">
+              <p class="eyebrow">3D printed leather stamp files</p>
+              <h2>STL Files For Leatherworkers</h2>
+              <p>
+                Now offering digital STL files for FDM-printed leather stamp tools - bracelet stamps,
+                border panels, and small-shop tooling experiments designed for leatherworkers with 3D printers.
+              </p>
+            </div>
+            <p>
+              This is an added product lane beside the leatherwork: experimental tools tested on veg tan leather,
+              built for makers who want to print, press, adjust, and keep learning at the bench.
+            </p>
+            <p class="marketplace-disclaimer">${escapeHtml(stlMarketplace.disclaimer)}</p>
+            <div class="button-row">
+              <a class="button button-primary" href="${site.cults3d}" target="_blank" rel="noreferrer">${escapeHtml(stlMarketplace.ctaLabel)}</a>
+              <a class="button button-secondary" href="${withBase("/workbench/")}">See Workbench</a>
+            </div>
+          </div>
+          <a class="marketplace-preview" href="${site.cults3d}" target="_blank" rel="noreferrer">
+            <img src="${withLocalAssetVersion(stlMarketplace.image)}" alt="${escapeHtml(stlMarketplace.imageAlt)}">
+            <span>Bracelet stamps, border panels, and FDM tooling packs</span>
+          </a>
+        </div>
+      </section>
   `;
 }
 
@@ -653,7 +742,7 @@ function renderHomePage(sectionEntries) {
               and the bench-built tools that help me make them.
             </p>
             <p>
-              The finished journals are up in Standard Pieces now. Custom work and bench photos are split
+              Finished journals and carry pieces are up in Standard Pieces now. Custom work and bench photos are split
               into their own sections so you can go straight to what you want.
             </p>
             <div class="button-row">
@@ -664,12 +753,13 @@ function renderHomePage(sectionEntries) {
           <aside class="hero-card">
             <div>
               <div class="hero-card-label">Bench Right Now</div>
-              <strong>Three finished journals are up now.</strong>
+              <strong>Finished journals and a carry pouch are up now.</strong>
             </div>
             <p>
-              Heresy, Banzai, and Turtles are on the shelf now. Message me if you want one.
+              Heresy, Banzai, Turtles, Green Mushroom, and the everyday carry pouch are on the shelf now.
+              Message me if you want one.
             </p>
-            <img class="hero-preview" src="${withBase("/assets/images/home/journals-group.jpg")}" alt="Finished Horizon Creations journals grouped together">
+            <img class="hero-preview" src="${withLocalAssetVersion("/assets/images/home/journals-group.jpg")}" alt="Finished Horizon Creations journals grouped together">
           </aside>
         </div>
       </section>
@@ -682,7 +772,7 @@ function renderHomePage(sectionEntries) {
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Facebook and Instagram are where I post new work, bench photos, and updates.
+                Facebook, Instagram, and Cults3D are the main public lanes right now. Leather goods and bench updates live on the socials, and the FDM stamp files live on Cults.
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>
@@ -690,12 +780,14 @@ function renderHomePage(sectionEntries) {
           </div>
         </div>
       </section>
+      ${renderStlMarketplaceSection()}
       <section class="section">
         <div class="section-card">
           <div class="section-header">
             <h2>What Is On The Bench</h2>
             <p>
-              Standard Pieces is repeatable work. Custom Pieces is one-offs and commissions. Workbench is tools, test pieces, and in-progress photos.
+              Standard Pieces is repeatable leatherwork. Custom Pieces is one-offs and commissions. Workbench is tools, test pieces, and in-progress photos.
+              STL Files are digital stamp-tool packs for makers with FDM printers.
             </p>
           </div>
           ${renderCategoryCards(sectionEntries)}

@@ -6,5 +6,6 @@
   "date": "2026-04-20",
   "featured": true,
   "featuredImage": "hero.jpg",
+  "excludedImages": ["detail-stamp.jpg"],
   "heroAlt": "Tree of Life leather pair by Horizon Creations"
 }

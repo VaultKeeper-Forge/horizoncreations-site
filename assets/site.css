@@ -106,6 +106,7 @@ img {
 .button,
 .social-link,
 .category-link,
+.marketplace-preview,
 .entry-link {
     transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
@@ -124,6 +125,7 @@ img {
 .button:hover,
 .social-link:hover,
 .category-link:hover,
+.marketplace-preview:hover,
 .entry-link:hover {
     transform: translateY(-2px);
     border-color: rgba(255, 230, 204, 0.3);
@@ -237,10 +239,12 @@ h1 {
 .hero-preview,
 .callout-preview {
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    object-position: center;
     border-radius: 18px;
     border: 1px solid var(--line);
+    background: var(--panel-soft);
 }
 
 .section {
@@ -448,6 +452,91 @@ h1 {
     font-size: 0.8rem;
 }
 
+.category-link-marketplace {
+    background:
+        linear-gradient(135deg, rgba(92, 125, 112, 0.2), transparent 56%),
+        var(--panel-strong);
+}
+
+.marketplace-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+    gap: 22px;
+    align-items: stretch;
+    background:
+        linear-gradient(135deg, rgba(92, 125, 112, 0.2), transparent 50%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 44%),
+        rgba(28, 21, 16, 0.97);
+}
+
+.marketplace-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.marketplace-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.marketplace-header h2 {
+    margin: 0;
+    max-width: 12ch;
+    font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+}
+
+.marketplace-header p {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.marketplace-copy > p {
+    max-width: 62ch;
+    margin: 0 0 16px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.marketplace-disclaimer {
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--text);
+}
+
+.marketplace-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.035);
+    text-decoration: none;
+}
+
+.marketplace-preview img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--line);
+}
+
+.marketplace-preview span {
+    color: var(--accent-soft);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
 .entry-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -473,8 +562,9 @@ h1 {
 .entry-hero {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
+    aspect-ratio: 16 / 10;
+    object-fit: contain;
+    object-position: center;
     border-radius: 16px;
     border: 1px solid var(--line);
     background: var(--panel-soft);
@@ -489,8 +579,9 @@ h1 {
 .thumb-strip img {
     display: block;
     width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    object-position: center;
     border-radius: 12px;
     border: 1px solid var(--line);
     background: var(--panel-soft);
@@ -603,8 +694,27 @@ h1 {
     font-size: 0.95rem;
 }
 
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 16px;
+    margin-top: 14px;
+}
+
+.footer-links a {
+    color: var(--accent-soft);
+    text-decoration: none;
+}
+
+.footer-update {
+    margin-top: 10px;
+    color: rgba(208, 189, 168, 0.82);
+    font-size: 0.88rem;
+}
+
 .footer-disclaimer {
-    margin-top: 8px;
+    margin-top: 6px;
     color: rgba(208, 189, 168, 0.72);
     font-size: 0.84rem;
 }
@@ -613,6 +723,7 @@ h1 {
     .entry-grid,
     .category-grid,
     .connect-spotlight-grid,
+    .marketplace-section,
     .detail-grid {
         grid-template-columns: 1fr;
     }
@@ -665,6 +776,7 @@ h1 {
     .process-step,
     .social-link,
     .category-link,
+    .marketplace-preview,
     .entry-card {
         padding: 20px;
     }
