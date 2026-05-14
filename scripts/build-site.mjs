@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-14-facebook-group-v1";
+const localAssetVersion = "2026-05-14-tip-jar-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -25,6 +25,14 @@ const site = {
   tiktok: "https://www.tiktok.com/@curtismalone82",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
   cults3d: "https://cults3d.com/en/users/horizoncreations/3d-models",
+  tipJar: {
+    url: "https://www.paypal.com/ncp/payment/TDSAPDXAFZLES",
+    label: "Maker Help",
+    title: "Need help making a file printable?",
+    copy:
+      "Logo cleanup, raised or embossed graphics, stamp-ready art, simple 3D print prep, and weird maker-file rescue.",
+    cta: "Tip / Support Maker Help",
+  },
   logo: "/HorizonCreaion-Base-logo.jpg",
   footer: "Horizon Creations. Handmade leather goods, custom work, and bench-built tools.",
   lastUpdated: `Last updated ${buildStamp}.`,
@@ -252,6 +260,7 @@ function renderNav(currentPath) {
       label: section.navLabel,
     })),
     { href: "/#stl-files", label: "STL Files" },
+    { href: "/#maker-help", label: "Maker Help" },
     ...infoPages,
   ];
 
@@ -332,6 +341,7 @@ ${inlineSiteCss}
           <a href="${site.tiktok}" target="_blank" rel="noreferrer">TikTok</a>
           <a href="${site.discord}" target="_blank" rel="noreferrer">Discord</a>
           <a href="${site.cults3d}" target="_blank" rel="noreferrer">Cults3D STL Files</a>
+          <a href="${site.tipJar.url}" target="_blank" rel="noreferrer">Maker Help Tip Jar</a>
         </div>
         ${site.lastUpdated ? `<div class="footer-update">${escapeHtml(site.lastUpdated)}</div>` : ""}
         ${site.disclaimer ? `<div class="footer-disclaimer">${escapeHtml(site.disclaimer)}</div>` : ""}
@@ -383,8 +393,27 @@ function renderSocialLinks({ spotlight = false } = {}) {
         <strong>Cults3D</strong>
         <span>Digital STL files for FDM-printed leather stamp tools, bracelet stamps, and small-shop tooling experiments.</span>
       </a>
+      <a class="social-link social-link-tip" href="${site.tipJar.url}" target="_blank" rel="noreferrer">
+        <strong>${escapeHtml(site.tipJar.title)}</strong>
+        <span>${escapeHtml(site.tipJar.copy)}</span>
+      </a>
       ${discordLink}
     </div>
+  `;
+}
+
+function renderTipJarSection() {
+  return `
+      <section class="section" id="maker-help">
+        <div class="section-card tip-jar-card">
+          <div class="tip-jar-copy">
+            <p class="eyebrow">${escapeHtml(site.tipJar.label)}</p>
+            <h2>${escapeHtml(site.tipJar.title)}</h2>
+            <p>${escapeHtml(site.tipJar.copy)}</p>
+          </div>
+          <a class="button button-primary tip-jar-button" href="${site.tipJar.url}" target="_blank" rel="noreferrer">${escapeHtml(site.tipJar.cta)}</a>
+        </div>
+      </section>
   `;
 }
 
@@ -818,6 +847,7 @@ function renderHomePage(sectionEntries) {
           </aside>
         </div>
       </section>
+      ${renderTipJarSection()}
       <section class="section" id="connect">
         <div class="section-card section-card-accent connect-spotlight">
           <div class="section-header">

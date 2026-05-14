@@ -317,6 +317,38 @@ h1 {
     line-height: 1.6;
 }
 
+.social-link-tip {
+    background:
+        linear-gradient(135deg, rgba(92, 125, 112, 0.2), transparent 58%),
+        rgba(255, 255, 255, 0.04);
+}
+
+.tip-jar-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+    background:
+        linear-gradient(135deg, rgba(92, 125, 112, 0.24), transparent 48%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 44%),
+        rgba(30, 23, 17, 0.96);
+}
+
+.tip-jar-copy h2 {
+    max-width: 16ch;
+}
+
+.tip-jar-copy p:last-child {
+    max-width: 62ch;
+    margin: 16px 0 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.tip-jar-button {
+    min-width: 230px;
+}
+
 .connect-spotlight {
     background:
         linear-gradient(135deg, rgba(217, 139, 58, 0.17), transparent 54%),
@@ -769,6 +801,7 @@ h1 {
     .category-grid,
     .connect-spotlight-grid,
     .marketplace-section,
+    .tip-jar-card,
     .detail-grid {
         grid-template-columns: 1fr;
     }
