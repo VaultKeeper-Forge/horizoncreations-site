@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-13-curtis-facebook-main-v1";
+const localAssetVersion = "2026-05-13-tiktok-link-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -21,6 +21,7 @@ const site = {
   facebook: "https://www.facebook.com/pcmalone",
   facebookPage: "https://www.facebook.com/profile.php?id=61574262374190",
   youtube: "https://www.youtube.com/@HorizonCreations-art",
+  tiktok: "https://www.tiktok.com/@curtismalone82",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
   cults3d: "https://cults3d.com/en/users/horizoncreations/3d-models",
   logo: "/HorizonCreaion-Base-logo.jpg",
@@ -326,6 +327,7 @@ ${inlineSiteCss}
           <a href="${site.facebookPage}" target="_blank" rel="noreferrer">Facebook Page</a>
           <a href="${site.instagram}" target="_blank" rel="noreferrer">Instagram</a>
           <a href="${site.youtube}" target="_blank" rel="noreferrer">YouTube</a>
+          <a href="${site.tiktok}" target="_blank" rel="noreferrer">TikTok</a>
           <a href="${site.discord}" target="_blank" rel="noreferrer">Discord</a>
           <a href="${site.cults3d}" target="_blank" rel="noreferrer">Cults3D STL Files</a>
         </div>
@@ -366,6 +368,10 @@ function renderSocialLinks({ spotlight = false } = {}) {
       <a class="social-link" href="${site.youtube}" target="_blank" rel="noreferrer">
         <strong>YouTube</strong>
         <span>Short bench clips, process shots, and maker-side updates in motion.</span>
+      </a>
+      <a class="social-link" href="${site.tiktok}" target="_blank" rel="noreferrer">
+        <strong>TikTok</strong>
+        <span>Quick maker clips, printer runs, bench chaos, and short hits from the shop side as they happen.</span>
       </a>
       <a class="social-link" href="${site.cults3d}" target="_blank" rel="noreferrer">
         <strong>Cults3D</strong>
@@ -815,7 +821,7 @@ function renderHomePage(sectionEntries) {
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Curtis Malone on Facebook is the main public feed right now. The Horizon Creations page still carries the business/shop signal, Instagram carries bench photos, YouTube carries motion and process, and the FDM stamp files live on Cults3D.
+                Curtis Malone on Facebook is the main public feed right now. The Horizon Creations page still carries the business/shop signal, Instagram carries bench photos, YouTube and TikTok carry motion and process, and the FDM stamp files live on Cults3D.
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>
