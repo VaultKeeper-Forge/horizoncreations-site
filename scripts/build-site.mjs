@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-13-stl-three-pack-v1";
+const localAssetVersion = "2026-05-13-youtube-link-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -19,6 +19,7 @@ const site = {
     "Handmade leather goods, custom work, bench-built tools, and the rough shop side of Horizon Creations.",
   instagram: "https://instagram.com/horizoncreations.art/",
   facebook: "https://www.facebook.com/profile.php?id=61574262374190",
+  youtube: "https://www.youtube.com/@HorizonCreations-art",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
   cults3d: "https://cults3d.com/en/users/horizoncreations/3d-models",
   logo: "/HorizonCreaion-Base-logo.jpg",
@@ -322,6 +323,7 @@ ${inlineSiteCss}
         <div class="footer-links">
           <a href="${site.facebook}" target="_blank" rel="noreferrer">Facebook</a>
           <a href="${site.instagram}" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="${site.youtube}" target="_blank" rel="noreferrer">YouTube</a>
           <a href="${site.discord}" target="_blank" rel="noreferrer">Discord</a>
           <a href="${site.cults3d}" target="_blank" rel="noreferrer">Cults3D STL Files</a>
         </div>
@@ -354,6 +356,10 @@ function renderSocialLinks({ spotlight = false } = {}) {
       <a class="social-link" href="${site.instagram}" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
         <span>Bench photos, in-progress shots, and new work as it comes together.</span>
+      </a>
+      <a class="social-link" href="${site.youtube}" target="_blank" rel="noreferrer">
+        <strong>YouTube</strong>
+        <span>Short bench clips, process shots, and maker-side updates in motion.</span>
       </a>
       <a class="social-link" href="${site.cults3d}" target="_blank" rel="noreferrer">
         <strong>Cults3D</strong>
@@ -803,7 +809,7 @@ function renderHomePage(sectionEntries) {
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Facebook, Instagram, and Cults3D are the main public lanes right now. Leather goods and bench updates live on the socials, and the FDM stamp files live on Cults.
+                Facebook, Instagram, YouTube, and Cults3D are the main public lanes right now. Leather goods and bench updates live on the socials, video clips live on YouTube, and the FDM stamp files live on Cults.
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>

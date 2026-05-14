@@ -532,6 +532,51 @@ h1 {
     text-decoration: none;
 }
 
+.marketplace-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+}
+
+.marketplace-pack-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.035);
+    text-decoration: none;
+    min-height: 100%;
+    transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.marketplace-pack-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 230, 204, 0.3);
+}
+
+.marketplace-pack-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+}
+
+.marketplace-pack-card strong {
+    font-size: 1rem;
+}
+
+.marketplace-pack-card span {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
 .marketplace-preview img {
     display: block;
     width: 100%;
@@ -737,6 +782,10 @@ h1 {
     .detail-grid {
         grid-template-columns: 1fr;
     }
+
+    .marketplace-preview-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 900px) {
@@ -836,7 +885,7 @@ h1 {
             <strong>Keep it simple</strong>
           </div>
           <p>Tell me what the piece needs to do, what it needs to fit, and anything important about the look. That is enough to start a real conversation.</p>
-          <img class="callout-preview" src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-13-standard-pieces-upright-v3" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
+          <img class="callout-preview" src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-13-youtube-link-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
         </aside>
       </div>
     </section>
@@ -856,6 +905,10 @@ h1 {
       <a class="social-link" href="https://instagram.com/horizoncreations.art/" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
         <span>Bench photos, in-progress shots, and new work as it comes together.</span>
+      </a>
+      <a class="social-link" href="https://www.youtube.com/@HorizonCreations-art" target="_blank" rel="noreferrer">
+        <strong>YouTube</strong>
+        <span>Short bench clips, process shots, and maker-side updates in motion.</span>
       </a>
       <a class="social-link" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">
         <strong>Cults3D</strong>
@@ -902,6 +955,7 @@ h1 {
         <div class="footer-links">
           <a href="https://www.facebook.com/profile.php?id=61574262374190" target="_blank" rel="noreferrer">Facebook</a>
           <a href="https://instagram.com/horizoncreations.art/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.youtube.com/@HorizonCreations-art" target="_blank" rel="noreferrer">YouTube</a>
           <a href="https://discord.gg/eWPXc8xF82" target="_blank" rel="noreferrer">Discord</a>
           <a href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">Cults3D STL Files</a>
         </div>
