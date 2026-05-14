@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-13-youtube-link-v1";
+const localAssetVersion = "2026-05-13-curtis-facebook-main-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -18,7 +18,8 @@ const site = {
   description:
     "Handmade leather goods, custom work, bench-built tools, and the rough shop side of Horizon Creations.",
   instagram: "https://instagram.com/horizoncreations.art/",
-  facebook: "https://www.facebook.com/profile.php?id=61574262374190",
+  facebook: "https://www.facebook.com/pcmalone",
+  facebookPage: "https://www.facebook.com/profile.php?id=61574262374190",
   youtube: "https://www.youtube.com/@HorizonCreations-art",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
   cults3d: "https://cults3d.com/en/users/horizoncreations/3d-models",
@@ -28,8 +29,8 @@ const site = {
   disclaimer: "This page was built with AI and we're still working the gremlins.",
   stats: {
     instagramFollowers: "1,493",
-    facebookLikes: "82",
-    facebookTalking: "19",
+    curtisFacebookFollowers: "1.5K",
+    facebookPageLikes: "82",
     statsCheckedOn: "May 13, 2026",
     pageHitsBadge: "https://visitor-badge.laobi.icu/badge?page_id=horizoncreations.art.home",
   },
@@ -322,6 +323,7 @@ ${inlineSiteCss}
         <div>${escapeHtml(site.footer)}</div>
         <div class="footer-links">
           <a href="${site.facebook}" target="_blank" rel="noreferrer">Facebook</a>
+          <a href="${site.facebookPage}" target="_blank" rel="noreferrer">Facebook Page</a>
           <a href="${site.instagram}" target="_blank" rel="noreferrer">Instagram</a>
           <a href="${site.youtube}" target="_blank" rel="noreferrer">YouTube</a>
           <a href="${site.discord}" target="_blank" rel="noreferrer">Discord</a>
@@ -350,8 +352,12 @@ function renderSocialLinks({ spotlight = false } = {}) {
   return `
     <div class="${gridClass}">
       <a class="social-link" href="${site.facebook}" target="_blank" rel="noreferrer">
-        <strong>Facebook</strong>
-        <span>Fresh posts, current work, and the easiest place to message me about something you want made.</span>
+        <strong>Curtis Malone On Facebook</strong>
+        <span>Main public profile. This is where I post more often, where the monetized posts live, and where the person behind Horizon Creations shows up directly.</span>
+      </a>
+      <a class="social-link" href="${site.facebookPage}" target="_blank" rel="noreferrer">
+        <strong>Horizon Creations Page</strong>
+        <span>The business page still matters. It is the cleaner public shop signal for Horizon Creations updates, page proof, and leatherwork receipts.</span>
       </a>
       <a class="social-link" href="${site.instagram}" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
@@ -379,14 +385,14 @@ function renderStatsGrid() {
         <p class="stat-note">What Instagram was showing publicly on ${escapeHtml(site.stats.statsCheckedOn)}.</p>
       </article>
       <article class="stat-card">
-        <div class="stat-label">Facebook Likes</div>
-        <div class="stat-value">${escapeHtml(site.stats.facebookLikes)}</div>
-        <p class="stat-note">Current public page likes on Facebook.</p>
+        <div class="stat-label">Curtis Facebook Followers</div>
+        <div class="stat-value">${escapeHtml(site.stats.curtisFacebookFollowers)}</div>
+        <p class="stat-note">What your personal Facebook profile was showing in the current profile view.</p>
       </article>
       <article class="stat-card">
-        <div class="stat-label">Talking About It</div>
-        <div class="stat-value">${escapeHtml(site.stats.facebookTalking)}</div>
-        <p class="stat-note">A quick read on whether the page is moving around right now.</p>
+        <div class="stat-label">Horizon Page Likes</div>
+        <div class="stat-value">${escapeHtml(site.stats.facebookPageLikes)}</div>
+        <p class="stat-note">Current public likes on the Horizon Creations Facebook page.</p>
       </article>
       <article class="stat-card">
         <div class="stat-label">Page Hits</div>
@@ -809,7 +815,7 @@ function renderHomePage(sectionEntries) {
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Facebook, Instagram, YouTube, and Cults3D are the main public lanes right now. Leather goods and bench updates live on the socials, video clips live on YouTube, and the FDM stamp files live on Cults.
+                Curtis Malone on Facebook is the main public feed right now. The Horizon Creations page still carries the business/shop signal, Instagram carries bench photos, YouTube carries motion and process, and the FDM stamp files live on Cults3D.
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>
