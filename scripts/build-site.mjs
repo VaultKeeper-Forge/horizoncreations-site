@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-14-tip-jar-v1";
+const localAssetVersion = "2026-05-14-conversion-pass-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -288,7 +288,6 @@ function renderNav(currentPath) {
 function renderPageHero({ currentPath, eyebrow, title, copy, primaryCta, secondaryCta, calloutLabel, calloutTitle, calloutCopy, imageUrl, imageAlt }) {
   return `
     <section class="page-hero">
-      ${renderNav(currentPath)}
       <div class="page-hero-grid">
         <div class="page-hero-copy">
           <p class="eyebrow">${escapeHtml(eyebrow)}</p>
@@ -329,6 +328,7 @@ ${inlineSiteCss}
 <body class="${bodyClass}">
   <div class="page-shell">
     <main class="site-frame">
+      ${renderNav(currentPath)}
       ${body}
       <footer class="footer">
         <div>${escapeHtml(site.footer)}</div>
@@ -405,13 +405,25 @@ function renderSocialLinks({ spotlight = false } = {}) {
 function renderTipJarSection() {
   return `
       <section class="section" id="maker-help">
-        <div class="section-card tip-jar-card">
-          <div class="tip-jar-copy">
-            <p class="eyebrow">${escapeHtml(site.tipJar.label)}</p>
-            <h2>${escapeHtml(site.tipJar.title)}</h2>
-            <p>${escapeHtml(site.tipJar.copy)}</p>
+        <div class="section-card maker-lanes-card">
+          <div class="section-header">
+            <h2>Maker Help</h2>
+            <p>File rescue, printable stamp prep, and the digital tool shelf are easier to find now.</p>
           </div>
-          <a class="button button-primary tip-jar-button" href="${site.tipJar.url}" target="_blank" rel="noreferrer">${escapeHtml(site.tipJar.cta)}</a>
+          <div class="maker-lane-grid">
+            <article class="maker-lane maker-lane-help">
+              <p class="eyebrow">${escapeHtml(site.tipJar.label)}</p>
+              <h3>${escapeHtml(site.tipJar.title)}</h3>
+              <p>${escapeHtml(site.tipJar.copy)}</p>
+              <a class="button button-primary tip-jar-button" href="${site.tipJar.url}" target="_blank" rel="noreferrer">${escapeHtml(site.tipJar.cta)}</a>
+            </article>
+            <article class="maker-lane maker-lane-stl">
+              <p class="eyebrow">${escapeHtml(stlMarketplace.eyebrow)}</p>
+              <h3>Print your own leather stamp tools.</h3>
+              <p>Bracelet stamps, border panels, plague doctor stamps, and other FDM-tested leather tooling experiments live on Cults3D.</p>
+              <a class="button button-secondary" href="${site.cults3d}" target="_blank" rel="noreferrer">${escapeHtml(stlMarketplace.ctaLabel)}</a>
+            </article>
+          </div>
         </div>
       </section>
   `;
@@ -563,8 +575,29 @@ function renderEntryCard(entry) {
         <p>${escapeHtml(entry.caption)}</p>
         <p>${escapeHtml(entry.description)}</p>
         ${tagsHtml}
+        <a class="entry-link" href="${withBase("/contact/")}">Ask About This Piece</a>
       </div>
     </article>
+  `;
+}
+
+function renderFeaturedWorkStrip(entries) {
+  return `
+      <section class="section visual-strip-section">
+        <div class="visual-strip">
+          ${entries
+            .map(
+              (entry) => `
+                <a class="visual-feature" href="${withBase(`/${entry.section.slug}/`)}">
+                  <img src="${entry.images[0]}" alt="${escapeHtml(entry.heroAlt)}">
+                  <span>${escapeHtml(entry.section.label)}</span>
+                  <strong>${escapeHtml(entry.title)}</strong>
+                </a>
+              `,
+            )
+            .join("")}
+        </div>
+      </section>
   `;
 }
 
@@ -816,7 +849,6 @@ function renderHomePage(sectionEntries) {
     currentPath: "/",
     body: `
       <section class="hero">
-        ${renderNav("/")}
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Leather / tools / custom work / shop</p>
@@ -829,9 +861,14 @@ function renderHomePage(sectionEntries) {
               Finished journals and carry pieces are up in Standard Pieces now. Custom work and bench photos are split
               into their own sections so you can go straight to what you want.
             </p>
-            <div class="button-row">
+            <p>
+              Need custom leatherwork, FDM stamp files, or help making a logo or sketch printable? Start with the lane
+              that fits the job.
+            </p>
+            <div class="button-row hero-actions">
               <a class="button button-primary" href="${withBase("/contact/")}">Message Me</a>
-              <a class="button button-secondary" href="${withBase("/standard-pieces/")}">See The Work</a>
+              <a class="button button-secondary" href="${site.cults3d}" target="_blank" rel="noreferrer">Shop STL Files</a>
+              <a class="button button-secondary" href="${withBase("/#maker-help")}">Maker Help</a>
             </div>
           </div>
           <aside class="hero-card">
@@ -847,6 +884,7 @@ function renderHomePage(sectionEntries) {
           </aside>
         </div>
       </section>
+      ${renderFeaturedWorkStrip(featuredEntries)}
       ${renderTipJarSection()}
       <section class="section" id="connect">
         <div class="section-card section-card-accent connect-spotlight">

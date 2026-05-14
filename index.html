@@ -62,7 +62,7 @@ img {
     margin: 0 auto;
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
-    overflow: hidden;
+    overflow: visible;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%),
         rgba(16, 12, 9, 0.72);
@@ -79,11 +79,20 @@ img {
 }
 
 .nav {
+    position: sticky;
+    top: 12px;
+    z-index: 20;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin-bottom: 52px;
+    margin: 0;
+    padding: 16px 24px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(20, 15, 11, 0.88);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
 }
 
 .brand {
@@ -183,6 +192,10 @@ h1 {
     flex-wrap: wrap;
     gap: 14px;
     margin-top: 30px;
+}
+
+.hero-actions .button {
+    min-width: 164px;
 }
 
 .button {
@@ -333,30 +346,113 @@ h1 {
         rgba(255, 255, 255, 0.04);
 }
 
-.tip-jar-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 22px;
-    align-items: center;
+.maker-lanes-card {
     background:
-        linear-gradient(135deg, rgba(92, 125, 112, 0.24), transparent 48%),
+        linear-gradient(135deg, rgba(92, 125, 112, 0.2), transparent 48%),
         linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 44%),
         rgba(30, 23, 17, 0.96);
 }
 
-.tip-jar-copy h2 {
-    max-width: 16ch;
+.maker-lane-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
 }
 
-.tip-jar-copy p:last-child {
+.maker-lane {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(135deg, rgba(92, 125, 112, 0.24), transparent 48%),
+        rgba(255, 255, 255, 0.035);
+}
+
+.maker-lane-stl {
+    background:
+        linear-gradient(135deg, rgba(217, 139, 58, 0.17), transparent 56%),
+        rgba(255, 255, 255, 0.035);
+}
+
+.maker-lane h3 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+    line-height: 1.05;
+}
+
+.maker-lane p {
     max-width: 62ch;
-    margin: 16px 0 0;
+    margin: 0;
     color: var(--muted);
     line-height: 1.7;
 }
 
 .tip-jar-button {
     min-width: 230px;
+}
+
+.visual-strip-section {
+    margin-top: -12px;
+}
+
+.visual-strip {
+    display: grid;
+    grid-template-columns: 1.2fr repeat(2, minmax(0, 0.9fr));
+    gap: 18px;
+}
+
+.visual-feature {
+    position: relative;
+    display: flex;
+    min-height: 310px;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--panel-strong);
+    text-decoration: none;
+    isolation: isolate;
+}
+
+.visual-feature img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.visual-feature::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(180deg, transparent 25%, rgba(12, 9, 7, 0.88) 100%),
+        linear-gradient(90deg, rgba(12, 9, 7, 0.36), transparent);
+}
+
+.visual-feature span {
+    color: var(--accent-soft);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.visual-feature strong {
+    max-width: 14ch;
+    margin-top: 8px;
+    font-size: clamp(1.6rem, 3vw, 2.7rem);
+    line-height: 0.98;
 }
 
 .connect-spotlight {
@@ -811,7 +907,8 @@ h1 {
     .category-grid,
     .connect-spotlight-grid,
     .marketplace-section,
-    .tip-jar-card,
+    .maker-lane-grid,
+    .visual-strip,
     .detail-grid {
         grid-template-columns: 1fr;
     }
@@ -841,6 +938,15 @@ h1 {
     .nav-links {
         justify-content: flex-start;
     }
+
+    .nav {
+        top: 8px;
+        border-radius: var(--radius-md);
+    }
+
+    .hero .hero-card {
+        order: -1;
+    }
 }
 
 @media (max-width: 640px) {
@@ -861,14 +967,27 @@ h1 {
         padding-bottom: 44px;
     }
 
+    h1 {
+        font-size: clamp(2.35rem, 13vw, 3.25rem);
+        line-height: 1;
+    }
+
+    .hero-copy p,
+    .page-hero-copy p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
     .section-card,
     .hero-card,
     .callout-card,
     .gallery-callout,
     .process-step,
+    .maker-lane,
     .social-link,
     .category-link,
     .marketplace-preview,
+    .visual-feature,
     .entry-card {
         padding: 20px;
     }
@@ -876,6 +995,15 @@ h1 {
     .button,
     .entry-link {
         width: 100%;
+    }
+
+    .nav {
+        position: static;
+        border-radius: var(--radius-lg);
+    }
+
+    .visual-feature {
+        min-height: 240px;
     }
 
     .thumb-strip {
@@ -889,8 +1017,6 @@ h1 {
   <div class="page-shell">
     <main class="site-frame">
       
-      <section class="hero">
-        
     <nav class="nav" aria-label="Primary">
       <a class="brand" href="/">
         <span class="brand-mark" aria-hidden="true"></span>
@@ -901,6 +1027,8 @@ h1 {
       </div>
     </nav>
   
+      
+      <section class="hero">
         <div class="hero-grid">
           <div class="hero-copy">
             <p class="eyebrow">Leather / tools / custom work / shop</p>
@@ -913,9 +1041,14 @@ h1 {
               Finished journals and carry pieces are up in Standard Pieces now. Custom work and bench photos are split
               into their own sections so you can go straight to what you want.
             </p>
-            <div class="button-row">
+            <p>
+              Need custom leatherwork, FDM stamp files, or help making a logo or sketch printable? Start with the lane
+              that fits the job.
+            </p>
+            <div class="button-row hero-actions">
               <a class="button button-primary" href="/contact/">Message Me</a>
-              <a class="button button-secondary" href="/standard-pieces/">See The Work</a>
+              <a class="button button-secondary" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">Shop STL Files</a>
+              <a class="button button-secondary" href="/#maker-help">Maker Help</a>
             </div>
           </div>
           <aside class="hero-card">
@@ -927,19 +1060,56 @@ h1 {
               Heresy, Banzai, Turtles, Green Mushroom, and the everyday carry pouch are on the shelf now.
               Message me if you want one.
             </p>
-            <img class="hero-preview" src="/assets/images/home/journals-group.jpg?v=2026-05-14-tip-jar-v1" alt="Finished Horizon Creations journals grouped together">
+            <img class="hero-preview" src="/assets/images/home/journals-group.jpg?v=2026-05-14-conversion-pass-v1" alt="Finished Horizon Creations journals grouped together">
           </aside>
         </div>
       </section>
       
+      <section class="section visual-strip-section">
+        <div class="visual-strip">
+          
+                <a class="visual-feature" href="/standard-pieces/">
+                  <img src="/content/standard-pieces/heresy-journal/heresy-01.jpg?v=2026-05-14-conversion-pass-v1" alt="Heresy Journal by Horizon Creations">
+                  <span>Standard Pieces</span>
+                  <strong>Heresy Journal</strong>
+                </a>
+              
+                <a class="visual-feature" href="/custom-pieces/">
+                  <img src="/content/custom-pieces/tree-of-life-pair/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Tree of Life leather pair by Horizon Creations">
+                  <span>Custom Pieces</span>
+                  <strong>Tree of Life Pair</strong>
+                </a>
+              
+                <a class="visual-feature" href="/workbench/">
+                  <img src="/content/workbench/molds-and-forms/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Molds and Forms by Horizon Creations">
+                  <span>Workbench</span>
+                  <strong>Molds and Forms</strong>
+                </a>
+              
+        </div>
+      </section>
+  
+      
       <section class="section" id="maker-help">
-        <div class="section-card tip-jar-card">
-          <div class="tip-jar-copy">
-            <p class="eyebrow">Maker Help</p>
-            <h2>Need help making a file printable?</h2>
-            <p>Logo cleanup, raised or embossed graphics, stamp-ready art, simple 3D print prep, and weird maker-file rescue.</p>
+        <div class="section-card maker-lanes-card">
+          <div class="section-header">
+            <h2>Maker Help</h2>
+            <p>File rescue, printable stamp prep, and the digital tool shelf are easier to find now.</p>
           </div>
-          <a class="button button-primary tip-jar-button" href="https://www.paypal.com/ncp/payment/TDSAPDXAFZLES" target="_blank" rel="noreferrer">Tip / Support Maker Help</a>
+          <div class="maker-lane-grid">
+            <article class="maker-lane maker-lane-help">
+              <p class="eyebrow">Maker Help</p>
+              <h3>Need help making a file printable?</h3>
+              <p>Logo cleanup, raised or embossed graphics, stamp-ready art, simple 3D print prep, and weird maker-file rescue.</p>
+              <a class="button button-primary tip-jar-button" href="https://www.paypal.com/ncp/payment/TDSAPDXAFZLES" target="_blank" rel="noreferrer">Tip / Support Maker Help</a>
+            </article>
+            <article class="maker-lane maker-lane-stl">
+              <p class="eyebrow">Digital tools / FDM printing</p>
+              <h3>Print your own leather stamp tools.</h3>
+              <p>Bracelet stamps, border panels, plague doctor stamps, and other FDM-tested leather tooling experiments live on Cults3D.</p>
+              <a class="button button-secondary" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">Shop STL Files on Cults3D</a>
+            </article>
+          </div>
         </div>
       </section>
   
@@ -1053,19 +1223,19 @@ h1 {
           <div class="marketplace-preview-grid">
             
           <a class="marketplace-pack-card" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">
-            <img src="/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg?v=2026-05-14-tip-jar-v1" alt="Bracelet stamp STL pack one samples by Horizon Creations">
+            <img src="/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg?v=2026-05-14-conversion-pass-v1" alt="Bracelet stamp STL pack one samples by Horizon Creations">
             <strong>Bracelet Pack 1</strong>
             <span>Nature, potion, and border-style bracelet stamp files tested on veg tan.</span>
           </a>
         
           <a class="marketplace-pack-card" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">
-            <img src="/Cults3D/Bracelet 10 pack-2/20260512_141802.jpg?v=2026-05-14-tip-jar-v1" alt="Bracelet stamp STL pack two samples by Horizon Creations">
+            <img src="/Cults3D/Bracelet 10 pack-2/20260512_141802.jpg?v=2026-05-14-conversion-pass-v1" alt="Bracelet stamp STL pack two samples by Horizon Creations">
             <strong>Bracelet Pack 2</strong>
             <span>More bracelet panel experiments with floral, skull, crystal, and gate motifs.</span>
           </a>
         
           <a class="marketplace-pack-card" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">
-            <img src="/Cults3D/Plague Doctor 10 pack-1/20260513_122737.jpg?v=2026-05-14-tip-jar-v1" alt="Plague Doctor leather stamp STL pack samples by Horizon Creations">
+            <img src="/Cults3D/Plague Doctor 10 pack-1/20260513_122737.jpg?v=2026-05-14-conversion-pass-v1" alt="Plague Doctor leather stamp STL pack samples by Horizon Creations">
             <strong>Plague Doctor Pack 1</strong>
             <span>Darker maker-side plague doctor stamp files for banners, bottles, ravens, and potion work.</span>
           </a>
@@ -1087,7 +1257,7 @@ h1 {
     <div class="category-grid">
       
             <a class="category-link" href="/standard-pieces/">
-              <img src="/content/standard-pieces/banzai-journal/banzai-01.jpg?v=2026-05-14-tip-jar-v1" alt="Banzai Journal by Horizon Creations">
+              <img src="/content/standard-pieces/banzai-journal/banzai-01.jpg?v=2026-05-14-conversion-pass-v1" alt="Banzai Journal by Horizon Creations">
               <div>
                 <span>Core work / repeatable builds</span>
                 <h3>Standard Pieces</h3>
@@ -1096,7 +1266,7 @@ h1 {
             </a>
           
             <a class="category-link" href="/custom-pieces/">
-              <img src="/content/custom-pieces/heresy-panel-run/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Red and black custom leather panel by Horizon Creations">
+              <img src="/content/custom-pieces/heresy-panel-run/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Red and black custom leather panel by Horizon Creations">
               <div>
                 <span>One-off builds / commissions</span>
                 <h3>Custom Pieces</h3>
@@ -1105,7 +1275,7 @@ h1 {
             </a>
           
             <a class="category-link" href="/workbench/">
-              <img src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
+              <img src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
               <div>
                 <span>Process / tools / shop</span>
                 <h3>Workbench</h3>
@@ -1115,7 +1285,7 @@ h1 {
           
       
     <a class="category-link category-link-marketplace" href="https://cults3d.com/en/users/horizoncreations/3d-models" target="_blank" rel="noreferrer">
-      <img src="/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg?v=2026-05-14-tip-jar-v1" alt="Bracelet stamp STL pack one samples by Horizon Creations">
+      <img src="/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg?v=2026-05-14-conversion-pass-v1" alt="Bracelet stamp STL pack one samples by Horizon Creations">
       <div>
         <span>Digital tools / FDM printing</span>
         <h3>FDM Leather Stamp STL Packs</h3>
@@ -1139,8 +1309,8 @@ h1 {
             
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/standard-pieces/heresy-journal/heresy-01.jpg?v=2026-05-14-tip-jar-v1" alt="Heresy Journal by Horizon Creations">
-        <div class="thumb-strip"><img src="/content/standard-pieces/heresy-journal/heresy-02.jpg?v=2026-05-14-tip-jar-v1" alt="Heresy Journal detail 1"><img src="/content/standard-pieces/heresy-journal/heresy-03.jpg?v=2026-05-14-tip-jar-v1" alt="Heresy Journal detail 2"><img src="/content/standard-pieces/heresy-journal/heresy-04.jpg?v=2026-05-14-tip-jar-v1" alt="Heresy Journal detail 3"></div>
+        <img class="entry-hero" src="/content/standard-pieces/heresy-journal/heresy-01.jpg?v=2026-05-14-conversion-pass-v1" alt="Heresy Journal by Horizon Creations">
+        <div class="thumb-strip"><img src="/content/standard-pieces/heresy-journal/heresy-02.jpg?v=2026-05-14-conversion-pass-v1" alt="Heresy Journal detail 1"><img src="/content/standard-pieces/heresy-journal/heresy-03.jpg?v=2026-05-14-conversion-pass-v1" alt="Heresy Journal detail 2"><img src="/content/standard-pieces/heresy-journal/heresy-04.jpg?v=2026-05-14-conversion-pass-v1" alt="Heresy Journal detail 3"></div>
       </div>
       <div class="entry-copy">
         <div class="badge-row">
@@ -1154,13 +1324,14 @@ h1 {
         <p>Dark red hand-dyed leather journal with a bold circular stamped emblem, rugged hardware, and a wrap-style closure.</p>
         <p>$75 shipped domestic. PayPal, Venmo, or Cash App. Built for writers, gamers, sketchers, and anyone who wants their notebook to feel like it came out of a forbidden archive.</p>
         <div class="tag-row"><span class="tag">leather</span><span class="tag">journal</span><span class="tag">heresy</span><span class="tag">for sale</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/custom-pieces/tree-of-life-pair/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Tree of Life leather pair by Horizon Creations">
-        <div class="thumb-strip"><img src="/content/custom-pieces/tree-of-life-pair/detail-pair.jpg?v=2026-05-14-tip-jar-v1" alt="Tree of Life Pair detail 1"></div>
+        <img class="entry-hero" src="/content/custom-pieces/tree-of-life-pair/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Tree of Life leather pair by Horizon Creations">
+        <div class="thumb-strip"><img src="/content/custom-pieces/tree-of-life-pair/detail-pair.jpg?v=2026-05-14-conversion-pass-v1" alt="Tree of Life Pair detail 1"></div>
       </div>
       <div class="entry-copy">
         <div class="badge-row">
@@ -1174,12 +1345,13 @@ h1 {
         <p>Leather pair with the tree motif carried through into finished pieces.</p>
         <p>Two finished pieces with the tree tooling, layered color, and carved line work shown together.</p>
         <div class="tag-row"><span class="tag">custom</span><span class="tag">tree of life</span><span class="tag">leather</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/workbench/molds-and-forms/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Molds and Forms by Horizon Creations">
+        <img class="entry-hero" src="/content/workbench/molds-and-forms/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Molds and Forms by Horizon Creations">
         
       </div>
       <div class="entry-copy">
@@ -1194,6 +1366,7 @@ h1 {
         <p>Forms, molds, and shaping fixtures on the bench.</p>
         <p>Bench shots of the molds, forms, and shaping pieces used during leatherwork.</p>
         <div class="tag-row"><span class="tag">workbench</span><span class="tag">molds</span><span class="tag">forming</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   

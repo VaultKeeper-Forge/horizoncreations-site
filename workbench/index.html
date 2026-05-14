@@ -62,7 +62,7 @@ img {
     margin: 0 auto;
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
-    overflow: hidden;
+    overflow: visible;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%),
         rgba(16, 12, 9, 0.72);
@@ -79,11 +79,20 @@ img {
 }
 
 .nav {
+    position: sticky;
+    top: 12px;
+    z-index: 20;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    margin-bottom: 52px;
+    margin: 0;
+    padding: 16px 24px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(20, 15, 11, 0.88);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
 }
 
 .brand {
@@ -183,6 +192,10 @@ h1 {
     flex-wrap: wrap;
     gap: 14px;
     margin-top: 30px;
+}
+
+.hero-actions .button {
+    min-width: 164px;
 }
 
 .button {
@@ -333,30 +346,113 @@ h1 {
         rgba(255, 255, 255, 0.04);
 }
 
-.tip-jar-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 22px;
-    align-items: center;
+.maker-lanes-card {
     background:
-        linear-gradient(135deg, rgba(92, 125, 112, 0.24), transparent 48%),
+        linear-gradient(135deg, rgba(92, 125, 112, 0.2), transparent 48%),
         linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 44%),
         rgba(30, 23, 17, 0.96);
 }
 
-.tip-jar-copy h2 {
-    max-width: 16ch;
+.maker-lane-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
 }
 
-.tip-jar-copy p:last-child {
+.maker-lane {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background:
+        linear-gradient(135deg, rgba(92, 125, 112, 0.24), transparent 48%),
+        rgba(255, 255, 255, 0.035);
+}
+
+.maker-lane-stl {
+    background:
+        linear-gradient(135deg, rgba(217, 139, 58, 0.17), transparent 56%),
+        rgba(255, 255, 255, 0.035);
+}
+
+.maker-lane h3 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.8vw, 2.2rem);
+    line-height: 1.05;
+}
+
+.maker-lane p {
     max-width: 62ch;
-    margin: 16px 0 0;
+    margin: 0;
     color: var(--muted);
     line-height: 1.7;
 }
 
 .tip-jar-button {
     min-width: 230px;
+}
+
+.visual-strip-section {
+    margin-top: -12px;
+}
+
+.visual-strip {
+    display: grid;
+    grid-template-columns: 1.2fr repeat(2, minmax(0, 0.9fr));
+    gap: 18px;
+}
+
+.visual-feature {
+    position: relative;
+    display: flex;
+    min-height: 310px;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--panel-strong);
+    text-decoration: none;
+    isolation: isolate;
+}
+
+.visual-feature img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.visual-feature::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(180deg, transparent 25%, rgba(12, 9, 7, 0.88) 100%),
+        linear-gradient(90deg, rgba(12, 9, 7, 0.36), transparent);
+}
+
+.visual-feature span {
+    color: var(--accent-soft);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.visual-feature strong {
+    max-width: 14ch;
+    margin-top: 8px;
+    font-size: clamp(1.6rem, 3vw, 2.7rem);
+    line-height: 0.98;
 }
 
 .connect-spotlight {
@@ -811,7 +907,8 @@ h1 {
     .category-grid,
     .connect-spotlight-grid,
     .marketplace-section,
-    .tip-jar-card,
+    .maker-lane-grid,
+    .visual-strip,
     .detail-grid {
         grid-template-columns: 1fr;
     }
@@ -841,6 +938,15 @@ h1 {
     .nav-links {
         justify-content: flex-start;
     }
+
+    .nav {
+        top: 8px;
+        border-radius: var(--radius-md);
+    }
+
+    .hero .hero-card {
+        order: -1;
+    }
 }
 
 @media (max-width: 640px) {
@@ -861,14 +967,27 @@ h1 {
         padding-bottom: 44px;
     }
 
+    h1 {
+        font-size: clamp(2.35rem, 13vw, 3.25rem);
+        line-height: 1;
+    }
+
+    .hero-copy p,
+    .page-hero-copy p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
     .section-card,
     .hero-card,
     .callout-card,
     .gallery-callout,
     .process-step,
+    .maker-lane,
     .social-link,
     .category-link,
     .marketplace-preview,
+    .visual-feature,
     .entry-card {
         padding: 20px;
     }
@@ -876,6 +995,15 @@ h1 {
     .button,
     .entry-link {
         width: 100%;
+    }
+
+    .nav {
+        position: static;
+        border-radius: var(--radius-lg);
+    }
+
+    .visual-feature {
+        min-height: 240px;
     }
 
     .thumb-strip {
@@ -889,9 +1017,6 @@ h1 {
   <div class="page-shell">
     <main class="site-frame">
       
-      
-    <section class="page-hero">
-      
     <nav class="nav" aria-label="Primary">
       <a class="brand" href="/">
         <span class="brand-mark" aria-hidden="true"></span>
@@ -902,6 +1027,9 @@ h1 {
       </div>
     </nav>
   
+      
+      
+    <section class="page-hero">
       <div class="page-hero-grid">
         <div class="page-hero-copy">
           <p class="eyebrow">Process / tools / shop</p>
@@ -918,7 +1046,7 @@ h1 {
             <strong>Tooling Block Bench Tests</strong>
           </div>
           <p>Printed blocks and first impressions on clean leather.</p>
-          <img class="callout-preview" src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
+          <img class="callout-preview" src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
         </aside>
       </div>
     </section>
@@ -933,8 +1061,8 @@ h1 {
             
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
-        <div class="thumb-strip"><img src="/content/workbench/tooling-block-bench-tests/detail-banner-block.jpg?v=2026-05-14-tip-jar-v1" alt="Tooling Block Bench Tests detail 1"><img src="/content/workbench/tooling-block-bench-tests/detail-border-block.jpg?v=2026-05-14-tip-jar-v1" alt="Tooling Block Bench Tests detail 2"><img src="/content/workbench/tooling-block-bench-tests/detail-first-impressions.jpg?v=2026-05-14-tip-jar-v1" alt="Tooling Block Bench Tests detail 3"></div>
+        <img class="entry-hero" src="/content/workbench/tooling-block-bench-tests/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Leather tooling test pieces and printed blocks on the Horizon Creations bench">
+        <div class="thumb-strip"><img src="/content/workbench/tooling-block-bench-tests/detail-banner-block.jpg?v=2026-05-14-conversion-pass-v1" alt="Tooling Block Bench Tests detail 1"><img src="/content/workbench/tooling-block-bench-tests/detail-border-block.jpg?v=2026-05-14-conversion-pass-v1" alt="Tooling Block Bench Tests detail 2"><img src="/content/workbench/tooling-block-bench-tests/detail-first-impressions.jpg?v=2026-05-14-conversion-pass-v1" alt="Tooling Block Bench Tests detail 3"></div>
       </div>
       <div class="entry-copy">
         <div class="badge-row">
@@ -948,13 +1076,14 @@ h1 {
         <p>Printed blocks and first impressions on clean leather.</p>
         <p>Bench shots of the block set, test impressions, and the early pattern check before the finished piece stage.</p>
         <div class="tag-row"><span class="tag">workbench</span><span class="tag">tooling blocks</span><span class="tag">process</span><span class="tag">bench tests</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/workbench/tree-of-life-bench-run/detail-close.jpg?v=2026-05-14-tip-jar-v1" alt="Tree of Life leatherwork detail by Horizon Creations">
-        <div class="thumb-strip"><img src="/content/workbench/tree-of-life-bench-run/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Tree of Life Bench Run detail 1"><img src="/content/workbench/tree-of-life-bench-run/layout-wide.jpg?v=2026-05-14-tip-jar-v1" alt="Tree of Life Bench Run detail 2"></div>
+        <img class="entry-hero" src="/content/workbench/tree-of-life-bench-run/detail-close.jpg?v=2026-05-14-conversion-pass-v1" alt="Tree of Life leatherwork detail by Horizon Creations">
+        <div class="thumb-strip"><img src="/content/workbench/tree-of-life-bench-run/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Tree of Life Bench Run detail 1"><img src="/content/workbench/tree-of-life-bench-run/layout-wide.jpg?v=2026-05-14-conversion-pass-v1" alt="Tree of Life Bench Run detail 2"></div>
       </div>
       <div class="entry-copy">
         <div class="badge-row">
@@ -968,12 +1097,13 @@ h1 {
         <p>Bench layout shots from a tree-of-life leather run.</p>
         <p>Pattern placement, close detail, and parts laid out on the bench during the run.</p>
         <div class="tag-row"><span class="tag">workbench</span><span class="tag">process</span><span class="tag">tree of life</span><span class="tag">leather</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/workbench/molds-and-forms/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Molds and Forms by Horizon Creations">
+        <img class="entry-hero" src="/content/workbench/molds-and-forms/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Molds and Forms by Horizon Creations">
         
       </div>
       <div class="entry-copy">
@@ -988,12 +1118,13 @@ h1 {
         <p>Forms, molds, and shaping fixtures on the bench.</p>
         <p>Bench shots of the molds, forms, and shaping pieces used during leatherwork.</p>
         <div class="tag-row"><span class="tag">workbench</span><span class="tag">molds</span><span class="tag">forming</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/workbench/shop-tooling-rig/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Shop Tooling Rig by Horizon Creations">
+        <img class="entry-hero" src="/content/workbench/shop-tooling-rig/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Shop Tooling Rig by Horizon Creations">
         
       </div>
       <div class="entry-copy">
@@ -1008,12 +1139,13 @@ h1 {
         <p>Shop-built tooling and support equipment.</p>
         <p>Bench shots of the tooling rig and support equipment used in the shop.</p>
         <div class="tag-row"><span class="tag">workbench</span><span class="tag">tooling</span><span class="tag">shop-built</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="/content/workbench/fabrication-corner/hero.jpg?v=2026-05-14-tip-jar-v1" alt="Fabrication Corner by Horizon Creations">
+        <img class="entry-hero" src="/content/workbench/fabrication-corner/hero.jpg?v=2026-05-14-conversion-pass-v1" alt="Fabrication Corner by Horizon Creations">
         
       </div>
       <div class="entry-copy">
@@ -1028,6 +1160,7 @@ h1 {
         <p>Shop setup with fixtures, prototyping, and support tools.</p>
         <p>Bench area with fabrication tools, fixtures, and prototype work.</p>
         <div class="tag-row"><span class="tag">workbench</span><span class="tag">shop</span><span class="tag">process</span></div>
+        <a class="entry-link" href="/contact/">Ask About This Piece</a>
       </div>
     </article>
   
