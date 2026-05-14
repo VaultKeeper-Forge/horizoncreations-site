@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-13-standard-pieces-upright-v3";
+const localAssetVersion = "2026-05-13-stl-three-pack-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -76,12 +76,31 @@ const stlMarketplace = {
   title: "FDM Leather Stamp STL Packs",
   summary:
     "Digital STL files for FDM-printed leather stamp tools, built for small-shop leatherworkers and 3D printer users.",
-  image: "/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg",
-  imageAlt: "FDM printed bracelet stamp STL pack samples by Horizon Creations",
   ctaLabel: "Shop STL Files on Cults3D",
   disclaimer:
     "Digital files only. These are STL files for 3D printing leather press stamps. Results depend on printer settings, filament, leather casing, and press pressure. Test on scrap first.",
 };
+
+const stlPacks = [
+  {
+    title: "Bracelet Pack 1",
+    summary: "Nature, potion, and border-style bracelet stamp files tested on veg tan.",
+    image: "/Cults3D/Bracelet 10 pack-1/Bracelet Pack 1 -all10.jpg",
+    imageAlt: "Bracelet stamp STL pack one samples by Horizon Creations",
+  },
+  {
+    title: "Bracelet Pack 2",
+    summary: "More bracelet panel experiments with floral, skull, crystal, and gate motifs.",
+    image: "/Cults3D/Bracelet 10 pack-2/20260512_141802.jpg",
+    imageAlt: "Bracelet stamp STL pack two samples by Horizon Creations",
+  },
+  {
+    title: "Plague Doctor Pack 1",
+    summary: "Darker maker-side plague doctor stamp files for banners, bottles, ravens, and potion work.",
+    image: "/Cults3D/Plague Doctor 10 pack-1/20260513_122737.jpg",
+    imageAlt: "Plague Doctor leather stamp STL pack samples by Horizon Creations",
+  },
+];
 
 const imageExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);
 
@@ -400,14 +419,24 @@ function renderCategoryCards(sectionEntries) {
 function renderMarketplaceCategoryCard() {
   return `
     <a class="category-link category-link-marketplace" href="${site.cults3d}" target="_blank" rel="noreferrer">
-      <img src="${withLocalAssetVersion(stlMarketplace.image)}" alt="${escapeHtml(stlMarketplace.imageAlt)}">
+      <img src="${withLocalAssetVersion(stlPacks[0].image)}" alt="${escapeHtml(stlPacks[0].imageAlt)}">
       <div>
         <span>${escapeHtml(stlMarketplace.eyebrow)}</span>
         <h3>${escapeHtml(stlMarketplace.title)}</h3>
-        <p>${escapeHtml(stlMarketplace.summary)}</p>
+        <p>${escapeHtml(`${stlMarketplace.summary} Three packs are live now on Cults3D.`)}</p>
       </div>
     </a>
   `;
+}
+
+function renderMarketplacePackCards() {
+  return stlPacks.map((pack) => `
+          <a class="marketplace-pack-card" href="${site.cults3d}" target="_blank" rel="noreferrer">
+            <img src="${withLocalAssetVersion(pack.image)}" alt="${escapeHtml(pack.imageAlt)}">
+            <strong>${escapeHtml(pack.title)}</strong>
+            <span>${escapeHtml(pack.summary)}</span>
+          </a>
+        `).join("");
 }
 
 function renderStlMarketplaceSection() {
@@ -427,16 +456,18 @@ function renderStlMarketplaceSection() {
               This is an added product lane beside the leatherwork: experimental tools tested on veg tan leather,
               built for makers who want to print, press, adjust, and keep learning at the bench.
             </p>
+            <p>
+              Right now the Cults3D shelf includes three active packs: Bracelet Pack 1, Bracelet Pack 2, and Plague Doctor Pack 1.
+            </p>
             <p class="marketplace-disclaimer">${escapeHtml(stlMarketplace.disclaimer)}</p>
             <div class="button-row">
               <a class="button button-primary" href="${site.cults3d}" target="_blank" rel="noreferrer">${escapeHtml(stlMarketplace.ctaLabel)}</a>
               <a class="button button-secondary" href="${withBase("/workbench/")}">See Workbench</a>
             </div>
           </div>
-          <a class="marketplace-preview" href="${site.cults3d}" target="_blank" rel="noreferrer">
-            <img src="${withLocalAssetVersion(stlMarketplace.image)}" alt="${escapeHtml(stlMarketplace.imageAlt)}">
-            <span>Bracelet stamps, border panels, and FDM tooling packs</span>
-          </a>
+          <div class="marketplace-preview-grid">
+            ${renderMarketplacePackCards()}
+          </div>
         </div>
       </section>
   `;
