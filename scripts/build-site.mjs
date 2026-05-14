@@ -6,7 +6,7 @@ const contentDir = path.join(rootDir, "content");
 const outputDir = rootDir;
 const siteBasePath = normalizeBasePath(process.env.SITE_BASE_PATH || "");
 const inlineSiteCss = await readFile(path.join(rootDir, "assets", "site.css"), "utf8");
-const localAssetVersion = "2026-05-13-tiktok-link-v1";
+const localAssetVersion = "2026-05-14-facebook-group-v1";
 const buildStamp = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
@@ -20,6 +20,7 @@ const site = {
   instagram: "https://instagram.com/horizoncreations.art/",
   facebook: "https://www.facebook.com/pcmalone",
   facebookPage: "https://www.facebook.com/profile.php?id=61574262374190",
+  facebookGroup: "https://www.facebook.com/groups/4037537753210600",
   youtube: "https://www.youtube.com/@HorizonCreations-art",
   tiktok: "https://www.tiktok.com/@curtismalone82",
   discord: process.env.SITE_DISCORD_URL || "https://discord.gg/eWPXc8xF82",
@@ -325,6 +326,7 @@ ${inlineSiteCss}
         <div class="footer-links">
           <a href="${site.facebook}" target="_blank" rel="noreferrer">Facebook</a>
           <a href="${site.facebookPage}" target="_blank" rel="noreferrer">Facebook Page</a>
+          <a href="${site.facebookGroup}" target="_blank" rel="noreferrer">Facebook Group</a>
           <a href="${site.instagram}" target="_blank" rel="noreferrer">Instagram</a>
           <a href="${site.youtube}" target="_blank" rel="noreferrer">YouTube</a>
           <a href="${site.tiktok}" target="_blank" rel="noreferrer">TikTok</a>
@@ -360,6 +362,10 @@ function renderSocialLinks({ spotlight = false } = {}) {
       <a class="social-link" href="${site.facebookPage}" target="_blank" rel="noreferrer">
         <strong>Horizon Creations Page</strong>
         <span>The business page still matters. It is the cleaner public shop signal for Horizon Creations updates, page proof, and leatherwork receipts.</span>
+      </a>
+      <a class="social-link" href="${site.facebookGroup}" target="_blank" rel="noreferrer">
+        <strong>3D Printing &amp; Lasers for Leather Workers</strong>
+        <span>A new group for leatherworkers using printers, lasers, CNC, molds, jigs, templates, stamps, and shop-built tools. Real tests, settings, failures, and useful shop nonsense belong there.</span>
       </a>
       <a class="social-link" href="${site.instagram}" target="_blank" rel="noreferrer">
         <strong>Instagram</strong>
@@ -821,7 +827,7 @@ function renderHomePage(sectionEntries) {
           <div class="connect-spotlight-grid">
             <div class="connect-spotlight-copy">
               <p class="lede">
-                Curtis Malone on Facebook is the main public feed right now. The Horizon Creations page still carries the business/shop signal, Instagram carries bench photos, YouTube and TikTok carry motion and process, and the FDM stamp files live on Cults3D.
+                Curtis Malone on Facebook is the main public feed right now. The Horizon Creations page still carries the business/shop signal, the leatherworker printer-and-laser group is where the tooling crossover lives, Instagram carries bench photos, YouTube and TikTok carry motion and process, and the FDM stamp files live on Cults3D.
               </p>
               ${renderSocialLinks({ spotlight: true })}
             </div>
