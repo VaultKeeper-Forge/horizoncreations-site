@@ -312,6 +312,11 @@ function renderPageHero({ currentPath, eyebrow, title, copy, primaryCta, seconda
 }
 
 function renderLayout({ title, description, currentPath, bodyClass = "", body }) {
+  const impactTrackingScript =
+    currentPath === "/"
+      ? `<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7313052-151f-4eee-9a2e-fa3a502160c51.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>`
+      : "";
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -324,6 +329,7 @@ function renderLayout({ title, description, currentPath, bodyClass = "", body })
 <style>
 ${inlineSiteCss}
 </style>
+${impactTrackingScript}
 </head>
 <body class="${bodyClass}">
   <div class="page-shell">
