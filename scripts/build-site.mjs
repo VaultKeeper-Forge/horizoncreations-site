@@ -147,6 +147,16 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function renderZoomImage({ className, src, alt }) {
+  const safeAlt = escapeHtml(alt);
+
+  return `
+    <button class="photo-zoom-button" type="button" data-photo-full="${src}" data-photo-alt="${safeAlt}" aria-label="Open larger photo: ${safeAlt}">
+      <img class="${className}" src="${src}" alt="${safeAlt}">
+      <span class="photo-zoom-label">View larger</span>
+    </button>`;
+}
+
 function slugToTitle(slug) {
   return slug
     .split("-")
@@ -304,11 +314,82 @@ function renderPageHero({ currentPath, eyebrow, title, copy, primaryCta, seconda
             <strong>${escapeHtml(calloutTitle)}</strong>
           </div>
           <p>${escapeHtml(calloutCopy)}</p>
-          <img class="callout-preview" src="${imageUrl}" alt="${escapeHtml(imageAlt)}">
+          ${renderZoomImage({ className: "callout-preview", src: imageUrl, alt: imageAlt })}
         </aside>
       </div>
     </section>
   `;
+}
+
+function renderPhotoLightboxScript() {
+  return `
+<script>
+(() => {
+  const triggers = document.querySelectorAll("[data-photo-full]");
+
+  if (!triggers.length) {
+    return;
+  }
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "photo-lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "Expanded photo viewer");
+  lightbox.hidden = true;
+  lightbox.innerHTML = \`
+    <button class="photo-lightbox-close" type="button" aria-label="Close expanded photo">Close</button>
+    <figure class="photo-lightbox-frame">
+      <img class="photo-lightbox-image" alt="">
+      <figcaption class="photo-lightbox-caption"></figcaption>
+    </figure>
+  \`;
+
+  document.body.appendChild(lightbox);
+
+  const closeButton = lightbox.querySelector(".photo-lightbox-close");
+  const image = lightbox.querySelector(".photo-lightbox-image");
+  const caption = lightbox.querySelector(".photo-lightbox-caption");
+  let lastFocused = null;
+
+  function openLightbox(trigger) {
+    lastFocused = trigger;
+    image.src = trigger.dataset.photoFull;
+    image.alt = trigger.dataset.photoAlt || "";
+    caption.textContent = trigger.dataset.photoAlt || "";
+    lightbox.hidden = false;
+    document.body.classList.add("photo-lightbox-open");
+    closeButton.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.classList.remove("photo-lightbox-open");
+    image.removeAttribute("src");
+
+    if (lastFocused) {
+      lastFocused.focus();
+    }
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => openLightbox(trigger));
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !lightbox.hidden) {
+      closeLightbox();
+    }
+  });
+})();
+</script>`;
 }
 
 function renderLayout({ title, description, currentPath, bodyClass = "", body }) {
@@ -354,6 +435,7 @@ ${impactTrackingScript}
       </footer>
     </main>
   </div>
+  ${renderPhotoLightboxScript()}
 </body>
 </html>
 `;
@@ -558,7 +640,11 @@ function renderEntryCard(entry) {
     ? `<div class="thumb-strip">${thumbImages
         .map(
           (imageUrl, index) =>
-            `<img src="${imageUrl}" alt="${escapeHtml(`${entry.title} detail ${index + 1}`)}">`,
+            renderZoomImage({
+              className: "thumb-image",
+              src: imageUrl,
+              alt: `${entry.title} detail ${index + 1}`,
+            }),
         )
         .join("")}</div>`
     : "";
@@ -566,7 +652,7 @@ function renderEntryCard(entry) {
   return `
     <article class="entry-card">
       <div class="entry-hero-wrap">
-        <img class="entry-hero" src="${entry.images[0]}" alt="${escapeHtml(entry.heroAlt)}">
+        ${renderZoomImage({ className: "entry-hero", src: entry.images[0], alt: entry.heroAlt })}
         ${thumbStrip}
       </div>
       <div class="entry-copy">
@@ -886,7 +972,11 @@ function renderHomePage(sectionEntries) {
               Heresy, Banzai, Turtles, Green Mushroom, and the everyday carry pouch are on the shelf now.
               Message me if you want one.
             </p>
-            <img class="hero-preview" src="${withLocalAssetVersion("/assets/images/home/journals-group.jpg")}" alt="Finished Horizon Creations journals grouped together">
+            ${renderZoomImage({
+              className: "hero-preview",
+              src: withLocalAssetVersion("/assets/images/home/journals-group.jpg"),
+              alt: "Finished Horizon Creations journals grouped together",
+            })}
           </aside>
         </div>
       </section>
