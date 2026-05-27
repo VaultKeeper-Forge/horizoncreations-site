@@ -1,0 +1,7 @@
+{
+  "platform": "instagram-business",
+  "label": "Horizon Creations Instagram",
+  "publicUrl": "https://www.instagram.com/horizoncreations.art/",
+  "accountIdEnv": "META_INSTAGRAM_BUSINESS_ACCOUNT_ID",
+  "manifestFile": "content/social-intake/candidates/instagram-business.json"
+}

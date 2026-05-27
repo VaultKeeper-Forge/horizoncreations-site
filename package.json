@@ -3,9 +3,24 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build-site.mjs",
+    "discord:bot": "node scripts/discord/bot.mjs",
+    "discord:commands": "node scripts/discord/register-commands.mjs",
+    "discord:setup-channels": "node scripts/discord/setup-channels.mjs",
+    "discord:post-rules": "node scripts/discord/post-rules-and-roles.mjs",
+    "discord:profile": "node scripts/discord/apply-server-profile.mjs",
+    "meta:validate": "node scripts/meta/validate-meta-config.mjs",
+    "meta:discover:dry-run": "node scripts/meta/discover-media.mjs --dry-run",
+    "meta:discover": "node scripts/meta/discover-media.mjs",
+    "meta:download:dry-run": "node scripts/meta/download-approved-media.mjs --dry-run",
+    "meta:download": "node scripts/meta/download-approved-media.mjs",
+    "meta:site-plan": "node scripts/meta/build-site-import-plan.mjs",
     "shopify:validate": "node scripts/shopify/validate-staged-products.mjs",
     "shopify:preview": "node scripts/shopify/preview-shopify-payloads.mjs",
     "shopify:export:dry-run": "node scripts/shopify/export-staged-products.mjs --dry-run",
     "shopify:export": "node scripts/shopify/export-staged-products.mjs"
+  },
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.4.7"
   }
 }

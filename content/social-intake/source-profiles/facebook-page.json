@@ -1,0 +1,7 @@
+{
+  "platform": "facebook-page",
+  "label": "Horizon Creations Facebook",
+  "publicUrl": "https://www.facebook.com/profile.php?id=61574262374190",
+  "accountIdEnv": "META_FACEBOOK_PAGE_ID",
+  "manifestFile": "content/social-intake/candidates/facebook-page.json"
+}
