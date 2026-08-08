@@ -140,12 +140,21 @@
     }
   });
 
+  const syncIntakePath = () => {
+    const guidedActive = method === 'guided';
+    const existingActive = method === 'bring_existing';
+    guidedPanel.hidden = !guidedActive;
+    existingPanel.hidden = !existingActive;
+    guidedPanel.querySelectorAll('input, textarea, select, button').forEach((control) => { control.disabled = !guidedActive; });
+    existingPanel.querySelectorAll('input, textarea, select, button').forEach((control) => { control.disabled = !existingActive; });
+  };
+
   document.querySelectorAll('[data-path]').forEach((button) => button.addEventListener('click', () => {
     method = button.dataset.path;
     document.querySelectorAll('[data-path]').forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
-    guidedPanel.hidden = method !== 'guided';
-    existingPanel.hidden = method !== 'bring_existing';
+    syncIntakePath();
   }));
+  syncIntakePath();
 
   document.querySelector('#existing-file').addEventListener('change', async (event) => {
     const file = event.target.files?.[0];
