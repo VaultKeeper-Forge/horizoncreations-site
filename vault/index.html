@@ -230,7 +230,7 @@
         <div class="field"><label for="starter-email">Contact email</label><input id="starter-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
         <div class="field"><label for="starter-goal">What should your Vault help you carry?</label><textarea id="starter-goal" name="goal" minlength="20" maxlength="2400" required placeholder="Projects, recurring work, decisions, context, or the things that keep getting dropped."></textarea></div>
         <fieldset><legend>How would you like to begin?</legend><div class="choice-stack"><label class="choice"><input type="radio" name="mode" value="guided" checked> Guided setup</label><label class="choice"><input type="radio" name="mode" value="bulk"> Bring structured answers from my current AI</label><label class="choice"><input type="radio" name="mode" value="not_sure"> I’m not sure yet</label></div></fieldset>
-        <div class="field"><label for="starter-invite">Pilot invite code</label><input id="starter-invite" name="invite_code" autocomplete="off" maxlength="128" required aria-describedby="invite-note"><p id="invite-note" class="form-note">The current pilot is invite-only.</p></div>
+        <div class="field"><label for="starter-invite">Pilot invite code</label><input id="starter-invite" name="invite_code" type="password" autocomplete="one-time-code" maxlength="128" required aria-describedby="invite-note"><p id="invite-note" class="form-note">The current pilot is invite-only.</p></div>
         <div class="website-trap" aria-hidden="true"><label for="starter-website">Website</label><input id="starter-website" name="website" tabindex="-1" autocomplete="off"></div>
         <label class="consent-line"><input id="starter-consent" name="consent" type="checkbox" required><span>I understand a real person will review this request and may contact me at the email above about the Vault, installation, and next steps.</span></label>
         <p class="form-boundary">Please do not enter passwords, API keys, account credentials, payment details, medical records, or other unnecessary sensitive information.</p>
@@ -303,6 +303,7 @@
     const success = document.querySelector('#request-success');
     const successMessage = document.querySelector('#request-success-message');
     const requestId = document.querySelector('#request-id');
+    const invite = document.querySelector('#starter-invite');
     const intakeEndpoint = 'https://horizon-creations.the-vaultkeeper.chatgpt.site/api/vault-requests';
 
     form.addEventListener('submit', async (event) => {
@@ -341,6 +342,7 @@
         if (!response.ok || !result.ok) {
           throw new Error(result.message || 'The request could not be saved. Nothing was submitted. Please try again.');
         }
+        invite.value = '';
         form.querySelectorAll('input, textarea, button').forEach((control) => {
           if (!control.closest('.request-success')) control.disabled = true;
         });
