@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://horizon-creations.the-vaultkeeper.chatgpt.site; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'">
   <link rel="icon" href="/vault/static/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/vault/static/storefront.css?v=production-005">
-<link rel="stylesheet" href="/vault/static/production.css?v=production-005">
+  <link rel="stylesheet" href="/vault/static/storefront.css?v=pilot-intake-006">
+<link rel="stylesheet" href="/vault/static/production.css?v=pilot-intake-006">
 </head><body>
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
@@ -210,38 +210,114 @@
       <ul class="privacy-list"><li><svg class="trust-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12.2 3 3 6-6.4"></path></svg><span>You control what you share; the process does not require your entire life story.</span></li><li><svg class="trust-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12.2 3 3 6-6.4"></path></svg><span>Answers prepared by an LLM are never silently treated as authoritative.</span></li><li><svg class="trust-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12.2 3 3 6-6.4"></path></svg><span>You review and correct the exact intake before submission.</span></li><li><svg class="trust-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12.2 3 3 6-6.4"></path></svg><span>Questionnaire contents are not placed in URLs, public pages, or application event logs.</span></li><li><svg class="trust-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12.2 3 3 6-6.4"></path></svg><span>Temporary processing data can be removed with Delete Now.</span></li><li><svg class="trust-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m7.5 12.2 3 3 6-6.4"></path></svg><span>The compiled starter package belongs to the customer who commissioned it.</span></li></ul>
     </section>
 
-
-    <section class="starter section-pad" id="starter" aria-labelledby="starter-title" data-story-beat="request-my-vault">
-      <div>
+<section class="starter section-pad" id="starter" aria-labelledby="starter-title" data-story-beat="request-my-vault">
+      <div class="starter-copy">
         <p class="eyebrow">Invite-only private pilot</p>
         <span class="public-pilot-note">Human reviewed · limited intake</span>
-        <h2 id="starter-title">Request a Starter Vault.</h2>
-        <p>This sends your Vault request to our team. We’ll review your information, compile your starter Vault, and contact you about the next steps and installation.</p>
+        <h2 id="starter-title">Start small. Build something that can grow with you.</h2>
+        <p>Your invite opens one guided request. You can answer five short questions or bring material you already have. Both paths produce the same reviewable intake.</p>
+        <p>The code is not consumed until your canonical request is saved. If you leave early, you can return and use it again.</p>
         <p>This is not an instant download, automatic installation, or immediate account creation.</p>
-        <ol class="request-flow" aria-label="Vault request follow-up">
-          <li><strong>01</strong><span>Request received</span></li>
-          <li><strong>02</strong><span>Information reviewed by a real person</span></li>
-          <li><strong>03</strong><span>Starter Vault compiled</span></li>
-          <li><strong>04</strong><span>Personal contact, review, installation, and next steps</span></li>
+        <ol class="request-flow" aria-label="Vault pilot request flow">
+          <li><strong>01</strong><span>Enter pilot access code</span></li>
+          <li><strong>02</strong><span>Choose Guided or Bring Existing</span></li>
+          <li><strong>03</strong><span>Review found answers, gaps, and conflicts</span></li>
+          <li><strong>04</strong><span>Human review, compilation, and personal follow-up</span></li>
         </ol>
+        <p class="wake-example"><span>Once your Vault is installed, wake it with:</span><strong>“Open my Vault and get caught up.”</strong></p>
       </div>
-      <form id="starter-form" novalidate>
-        <div class="field"><label for="starter-name">Name</label><input id="starter-name" name="name" autocomplete="name" maxlength="100" required></div>
-        <div class="field"><label for="starter-email">Contact email</label><input id="starter-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
-        <div class="field"><label for="starter-goal">What should your Vault help you carry?</label><textarea id="starter-goal" name="goal" minlength="20" maxlength="2400" required placeholder="Projects, recurring work, decisions, context, or the things that keep getting dropped."></textarea></div>
-        <fieldset><legend>How would you like to begin?</legend><div class="choice-stack"><label class="choice"><input type="radio" name="mode" value="guided" checked> Guided setup</label><label class="choice"><input type="radio" name="mode" value="bulk"> Bring structured answers from my current AI</label><label class="choice"><input type="radio" name="mode" value="not_sure"> I’m not sure yet</label></div></fieldset>
-        <div class="field"><label for="starter-invite">Pilot invite code</label><input id="starter-invite" name="invite_code" type="password" autocomplete="one-time-code" maxlength="128" required aria-describedby="invite-note"><p id="invite-note" class="form-note">The current pilot is invite-only.</p></div>
-        <div class="website-trap" aria-hidden="true"><label for="starter-website">Website</label><input id="starter-website" name="website" tabindex="-1" autocomplete="off"></div>
-        <label class="consent-line"><input id="starter-consent" name="consent" type="checkbox" required><span>I understand a real person will review this request and may contact me at the email above about the Vault, installation, and next steps.</span></label>
-        <p class="form-boundary">Please do not enter passwords, API keys, account credentials, payment details, medical records, or other unnecessary sensitive information.</p>
-        <p id="starter-status" class="form-status" role="alert" aria-live="polite"></p>
-        <button class="button" id="starter-submit" type="submit">Request My Vault</button>
-        <div class="request-success" id="request-success" role="status" aria-live="polite" tabindex="-1" hidden>
-          <strong>Your Vault request is in.</strong>
+
+      <div class="pilot-shell" id="pilot-app">
+        <ol class="pilot-progress" aria-label="Pilot request progress">
+          <li class="is-current" data-progress="access">Access</li>
+          <li data-progress="intake">Intake</li>
+          <li data-progress="review">Review</li>
+          <li data-progress="received">Received</li>
+        </ol>
+
+        <section class="pilot-stage" data-stage="access" aria-labelledby="pilot-access-title">
+          <p class="stage-kicker">Pilot access</p>
+          <h3 id="pilot-access-title">Have an invite?</h3>
+          <p>The landing page stays public. An invite is only required to start a private request.</p>
+          <form id="pilot-access-form" novalidate>
+            <div class="field"><label for="pilot-code">Invitation code</label><input id="pilot-code" name="invite_code" type="password" inputmode="text" autocomplete="one-time-code" maxlength="20" pattern="VC-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}" placeholder="VC-XXXX-XXXX-XXXX" required aria-describedby="pilot-code-note"></div>
+            <div class="website-trap" aria-hidden="true"><label for="pilot-website">Website</label><input id="pilot-website" name="website" tabindex="-1" autocomplete="off"></div>
+            <p id="pilot-code-note" class="form-note">Codes are single-use and can be revoked before redemption. Access failures use one generic message.</p>
+            <p class="form-status" id="pilot-access-status" role="alert" aria-live="polite"></p>
+            <button class="button" id="pilot-access-submit" type="submit">Continue with invite</button>
+          </form>
+        </section>
+
+        <section class="pilot-stage" data-stage="intake" aria-labelledby="pilot-intake-title" hidden>
+          <p class="stage-kicker">One intake, two entrances</p>
+          <h3 id="pilot-intake-title">How do you want to begin?</h3>
+          <div class="path-picker" role="group" aria-label="Choose intake path">
+            <button type="button" class="path-card" data-path="guided" aria-pressed="true"><strong>Guided Setup</strong><span>Five activation questions. No hundred-question maze.</span></button>
+            <button type="button" class="path-card" data-path="bring_existing" aria-pressed="false"><strong>Bring Existing Answers</strong><span>Paste notes, AI answers, Markdown, or JSON.</span></button>
+          </div>
+
+          <form id="pilot-intake-form" novalidate>
+            <div class="contact-grid">
+              <div class="field"><label for="request-name">Your name</label><input id="request-name" name="contact_name" autocomplete="name" maxlength="100" required></div>
+              <div class="field"><label for="request-email">Contact email</label><input id="request-email" name="contact_email" type="email" autocomplete="email" maxlength="254" required></div>
+            </div>
+
+            <div id="guided-panel" class="intake-panel">
+              <p class="panel-intro">Answer only what is needed to make the first Vault useful. Plain language is perfect.</p>
+              <div class="field"><label for="q-about">1. About you</label><textarea id="q-about" data-question="person.about" maxlength="2400" required placeholder="What should the assistant know about who you are or the kind of work/life you carry?"></textarea></div>
+              <div class="field"><label for="q-goal">2. What do you want help with first?</label><textarea id="q-goal" data-question="support.primary_goal" maxlength="2400" required placeholder="The load, project, or recurring friction you want help carrying."></textarea></div>
+              <div class="field"><label for="q-workflow">3. What is the first useful workflow?</label><textarea id="q-workflow" data-question="workflow.first" maxlength="2400" required placeholder="For example: track follow-ups, turn voice notes into project history, or prepare customer replies."></textarea></div>
+              <div class="field"><label for="q-communication">4. How should it communicate?</label><textarea id="q-communication" data-question="behavior.communication" maxlength="2400" required placeholder="Short or detailed, warm or blunt, formal or casual—and anything you cannot stand."></textarea></div>
+              <div class="field"><label for="q-boundaries">5. What requires your approval?</label><textarea id="q-boundaries" data-question="boundaries.approvals" maxlength="2400" required placeholder="What may it prepare, and what must it never send, spend, publish, delete, or change without you?"></textarea></div>
+            </div>
+
+            <div id="existing-panel" class="intake-panel" hidden>
+              <p class="panel-intro">Paste imperfect material. The compiler preserves the source, maps confident answers, and shows ambiguity or conflict instead of inventing an answer.</p>
+              <div class="field"><label for="existing-file">Optional text document</label><input id="existing-file" type="file" accept=".txt,.md,.json,text/plain,text/markdown,application/json" aria-describedby="existing-file-note"><p id="existing-file-note" class="form-note">TXT, Markdown, or JSON up to 20 KB. The browser reads the text into the box below; the file itself is not uploaded.</p></div>
+              <div class="field"><label for="existing-text">Existing answers or notes</label><textarea id="existing-text" maxlength="20000" placeholder="Paste custom instructions, notes, answers from another AI, Markdown, or JSON."></textarea></div>
+            </div>
+
+            <details class="personality-panel" open>
+              <summary><span>Shape the assistant’s personality</span><small>Optional, strongly encouraged</small></summary>
+              <div class="personality-grid">
+                <div class="field field-wide"><label for="personality-feel">How should it feel to talk to?</label><input id="personality-feel" name="feel" maxlength="300" placeholder="Warm and steady, dry and sharp, weird and playful…"></div>
+                <div class="field"><label for="personality-directness">Directness</label><select id="personality-directness" name="directness"><option value="balanced">Balanced</option><option value="gentle">Gentle</option><option value="direct">Direct</option><option value="blunt">Blunt</option></select></div>
+                <div class="field"><label for="personality-humor">Humor</label><select id="personality-humor" name="humor"><option value="light when natural">Light when natural</option><option value="low">Low</option><option value="dry">Dry</option><option value="playful">Playful</option><option value="dark within context">Dark within context</option></select></div>
+                <div class="field"><label for="personality-depth">Answer length</label><select id="personality-depth" name="answer_depth"><option value="adaptive">Adaptive</option><option value="concise">Concise</option><option value="think it through">Think it through</option></select></div>
+                <div class="field"><label for="personality-formality">Register</label><select id="personality-formality" name="formality"><option value="casual-professional">Casual-professional</option><option value="casual">Casual</option><option value="formal">Formal</option></select></div>
+                <fieldset class="trait-checks field-wide"><legend>What is welcome?</legend><label><input type="checkbox" name="sarcasm"> Sarcasm</label><label><input type="checkbox" name="profanity"> Profanity</label><label><input type="checkbox" name="teasing"> Teasing</label><label><input type="checkbox" name="challenge"> Challenge my assumptions</label></fieldset>
+                <div class="field field-wide"><label for="personality-avoid">What would make you hate talking to it?</label><input id="personality-avoid" name="avoid" maxlength="600" placeholder="Cheerleading, emojis, corporate filler, repeating disclaimers…"></div>
+                <div class="field field-wide"><label for="personality-inspiration">Optional vibe reference</label><input id="personality-inspiration" name="inspiration" maxlength="400" placeholder="A character, writer, dynamic, or plain-language description."></div>
+                <div class="field field-wide"><label for="personality-sample">Existing personality instructions or representative sample</label><textarea id="personality-sample" name="existing_sample" maxlength="5000" placeholder="Traits can transfer. Memories do not."></textarea></div>
+              </div>
+            </details>
+
+            <p class="form-boundary">Do not include passwords, API keys, payment details, medical records, or unnecessary sensitive information.</p>
+            <p class="form-status" id="pilot-intake-status" role="alert" aria-live="polite"></p>
+            <button class="button" id="pilot-review-submit" type="submit">Review my answers</button>
+          </form>
+        </section>
+
+        <section class="pilot-stage" data-stage="review" aria-labelledby="pilot-review-title" hidden>
+          <p class="stage-kicker">Canonical review</p>
+          <h3 id="pilot-review-title">See what the compiler found.</h3>
+          <p>Nothing missing was invented, and conflicts are not silently resolved.</p>
+          <div class="review-summary" id="review-summary"></div>
+          <div class="canonical-list" id="canonical-list"></div>
+          <details class="seed-preview"><summary>Preview the starter personality</summary><pre id="personality-preview"></pre></details>
+          <label class="consent-line"><input id="request-consent" type="checkbox" required><span>I understand a real person will review this private request and may contact me at the email provided about the Vault, installation, and next steps.</span></label>
+          <p class="form-status" id="pilot-review-status" role="alert" aria-live="polite"></p>
+          <div class="review-actions"><button class="button button-quiet" id="pilot-edit" type="button">Edit answers</button><button class="button" id="pilot-create" type="button">Create my request</button></div>
+        </section>
+
+        <section class="pilot-stage request-success" data-stage="received" aria-labelledby="pilot-received-title" tabindex="-1" hidden>
+          <p class="stage-kicker">Request received</p>
+          <h3 id="pilot-received-title">Your Vault request is in.</h3>
           <p id="request-success-message"></p>
           <p>Private request ID: <span class="request-id" id="request-id"></span></p>
-        </div>
-      </form>
+          <p>Your Starter Vault will be human-reviewed. The intended delivered workspace lives in your own Google Drive.</p>
+        </section>
+      </div>
     </section>
 
   </main>
@@ -296,69 +372,8 @@
     reducedMotion.addEventListener?.('change', configureMotion);
     configureMotion();
 
-
-    const form = document.querySelector('#starter-form');
-    const submit = document.querySelector('#starter-submit');
-    const status = document.querySelector('#starter-status');
-    const success = document.querySelector('#request-success');
-    const successMessage = document.querySelector('#request-success-message');
-    const requestId = document.querySelector('#request-id');
-    const invite = document.querySelector('#starter-invite');
-    const intakeEndpoint = 'https://horizon-creations.the-vaultkeeper.chatgpt.site/api/vault-requests';
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      status.textContent = '';
-      status.classList.remove('is-error');
-      success.hidden = true;
-
-      if (!form.reportValidity()) return;
-
-      const data = new FormData(form);
-      const payload = {
-        name: String(data.get('name') || '').slice(0, 100),
-        email: String(data.get('email') || '').slice(0, 254),
-        goal: String(data.get('goal') || '').slice(0, 2400),
-        mode: String(data.get('mode') || 'guided'),
-        invite_code: String(data.get('invite_code') || '').slice(0, 128),
-        website: String(data.get('website') || '').slice(0, 200),
-        consent: data.get('consent') === 'on',
-        source_page: 'https://horizoncreations.art/vault/',
-        source_version: 'SIO-2026-08-07-VC-PRODUCTION-005',
-        test_mode: false,
-      };
-
-      submit.disabled = true;
-      submit.textContent = 'Sending request…';
-      status.textContent = 'Saving your request to the private Horizon intake…';
-
-      try {
-        const response = await fetch(intakeEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || !result.ok) {
-          throw new Error(result.message || 'The request could not be saved. Nothing was submitted. Please try again.');
-        }
-        invite.value = '';
-        form.querySelectorAll('input, textarea, button').forEach((control) => {
-          if (!control.closest('.request-success')) control.disabled = true;
-        });
-        status.textContent = '';
-        successMessage.textContent = result.message;
-        requestId.textContent = result.request_id;
-        success.hidden = false;
-        success.focus();
-      } catch (error) {
-        status.textContent = error instanceof Error ? error.message : 'The request could not be saved. Nothing was submitted.';
-        status.classList.add('is-error');
-        submit.disabled = false;
-        submit.textContent = 'Request My Vault';
-      }
-    });
-
+    window.VAULT_COMPILER_CONFIG = {requestEndpoint: 'https://horizon-creations.the-vaultkeeper.chatgpt.site/api/vault-requests', sourceVersion: 'SIO-2026-08-07-VC-PILOT-INTAKE-006'};
   })();
   </script>
+<script src="/vault/static/pilot-intake.js?v=pilot-intake-006" defer></script>
 </body></html>
