@@ -397,6 +397,25 @@ function renderLayout({ title, description, currentPath, bodyClass = "", body })
     currentPath === "/"
       ? `<script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7313052-151f-4eee-9a2e-fa3a502160c51.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>`
       : "";
+  const vaultPromoStylesheet = currentPath === "/"
+    ? `<link rel="stylesheet" href="${withBase("/assets/vault-promo.css?v=2026-08-08")}">`
+    : "";
+  const vaultPromo = currentPath === "/"
+    ? `<aside class="vault-promo-shell" aria-label="Featured Horizon Creations project">
+      <details class="vault-promo">
+        <summary>
+          <span class="vault-promo-avatar" aria-hidden="true"><img src="${withBase("/vault/static/assistant-cards/assistant-card-01-maker.webp")}" alt=""></span>
+          <span class="vault-promo-title"><small>New project</small><strong>Meet Vault Compiler.</strong></span>
+          <span class="vault-promo-tease">A personal assistant built around your life</span>
+          <span class="vault-promo-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="vault-promo-drawer">
+          <div><p class="vault-promo-kicker">Private pilot now forming</p><p>Vault Compiler turns the way you already work, plan, create, and keep track of things into a portable assistant starter workspace—with human review and boundaries you control.</p></div>
+          <a class="vault-promo-link" href="${withBase("/vault/")}">Check out Vault Compiler <span aria-hidden="true">→</span></a>
+        </div>
+      </details>
+    </aside>`
+    : "";
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -407,6 +426,7 @@ function renderLayout({ title, description, currentPath, bodyClass = "", body })
 <meta name="description" content="${escapeHtml(description)}">
 <link rel="icon" type="image/jpeg" href="${withBase(site.logo)}">
 <link rel="stylesheet" href="${withBase("/assets/site.css")}">
+${vaultPromoStylesheet}
 <style>
 ${inlineSiteCss}
 </style>
@@ -414,6 +434,7 @@ ${impactTrackingScript}
 </head>
 <body class="${bodyClass}">
   <div class="page-shell">
+    ${vaultPromo}
     <main class="site-frame">
       ${renderNav(currentPath)}
       ${body}
