@@ -14,6 +14,11 @@
   const codeInput = document.querySelector('#pilot-code');
   const guidedPanel = document.querySelector('#guided-panel');
   const existingPanel = document.querySelector('#existing-panel');
+  const waitlistForm = document.querySelector('#waitlist-form');
+  const waitlistStatus = document.querySelector('#waitlist-status');
+  const waitlistSuccess = document.querySelector('#waitlist-success');
+  const waitlistWish = document.querySelector('#waitlist-wish');
+  const waitlistWishCount = document.querySelector('#waitlist-wish-count');
   let accessToken = '';
   let method = 'guided';
   let normalized = null;
@@ -136,6 +141,41 @@
       codeInput.value = '';
       setStatus(accessStatus, error.message, true);
     } finally {
+      submit.disabled = false;
+    }
+  });
+
+  const updateWaitlistWishCount = () => {
+    if (waitlistWish && waitlistWishCount) waitlistWishCount.textContent = `${waitlistWish.value.length} / 500`;
+  };
+  waitlistWish?.addEventListener('input', updateWaitlistWishCount);
+  updateWaitlistWishCount();
+
+  waitlistForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!waitlistForm.reportValidity()) return;
+    const submit = document.querySelector('#waitlist-submit');
+    submit.disabled = true;
+    setStatus(waitlistStatus, 'Adding you to the waitlist…');
+    try {
+      const data = new FormData(waitlistForm);
+      const result = await requestJson('/api/waitlist', {
+        email: String(data.get('email') || '').slice(0, 254),
+        assistant_wish: String(data.get('assistant_wish') || '').slice(0, 500),
+        consent: data.get('consent') === 'on',
+        website: String(data.get('website') || '').slice(0, 200),
+        source_page: window.location.href.split('#')[0].split('?')[0],
+        source_version: config.sourceVersion,
+      });
+      waitlistForm.reset();
+      updateWaitlistWishCount();
+      waitlistForm.hidden = true;
+      document.querySelector('#waitlist-success-message').textContent = result.message;
+      setStatus(waitlistStatus, '');
+      waitlistSuccess.hidden = false;
+      waitlistSuccess.focus();
+    } catch (error) {
+      setStatus(waitlistStatus, error.message, true);
       submit.disabled = false;
     }
   });

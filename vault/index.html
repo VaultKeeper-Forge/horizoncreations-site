@@ -11,10 +11,11 @@
 <meta property="og:description" content="The workspace behind a personal AI assistant. We build it. You own it.">
 <meta property="og:url" content="https://horizoncreations.art/vault/">
 <meta property="og:type" content="website">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://horizon-creations.the-vaultkeeper.chatgpt.site; font-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://horizon-creations.the-vaultkeeper.chatgpt.site; font-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
   <link rel="icon" href="/vault/static/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/vault/static/storefront.css?v=control-pilot-007">
-<link rel="stylesheet" href="/vault/static/production.css?v=control-pilot-007">
+  <link rel="stylesheet" href="/vault/static/storefront.css?v=waitlist-live-010">
+<link rel="stylesheet" href="/vault/static/production.css?v=waitlist-live-010">
 </head><body>
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header">
@@ -246,6 +247,33 @@
             <p class="form-status" id="pilot-access-status" role="alert" aria-live="polite"></p>
             <button class="button" id="pilot-access-submit" type="submit">Continue with invite</button>
           </form>
+
+          <div class="waitlist-divider" aria-hidden="true"><span>No invite yet?</span></div>
+
+          <section class="waitlist-card" aria-labelledby="waitlist-title">
+            <div class="waitlist-copy">
+              <p class="stage-kicker">Stay in the loop</p>
+              <h4 id="waitlist-title">Join the Vault Compiler waitlist.</h4>
+              <p>Leave one email. We’ll let you know when a private-pilot opening is available and send occasional Vault updates—nothing else.</p>
+            </div>
+            <form id="waitlist-form" novalidate>
+              <div class="field"><label for="waitlist-email">Email address</label><input id="waitlist-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="you@example.com" required></div>
+              <div class="field waitlist-wish-field">
+                <label for="waitlist-wish">What would you want an assistant to help with? <span class="field-optional">Optional</span></label>
+                <textarea id="waitlist-wish" name="assistant_wish" maxlength="500" rows="4" aria-describedby="waitlist-wish-note waitlist-wish-count" placeholder="A project, recurring headache, creative idea, or something you keep dropping."></textarea>
+                <div class="waitlist-field-meta"><span id="waitlist-wish-note">A rough thought is enough.</span><output id="waitlist-wish-count" for="waitlist-wish">0 / 500</output></div>
+              </div>
+              <div class="website-trap" aria-hidden="true"><label for="waitlist-website">Website</label><input id="waitlist-website" name="website" tabindex="-1" autocomplete="off"></div>
+              <label class="consent-line waitlist-consent"><input id="waitlist-consent" name="consent" type="checkbox" required><span>Add me to the Vault Compiler waitlist. Horizon Creations may email me about pilot openings and occasional Vault updates.</span></label>
+              <p class="waitlist-privacy">No account. No intake questions. You can opt out of future emails at any time.</p>
+              <p class="form-status" id="waitlist-status" role="alert" aria-live="polite"></p>
+              <button class="button waitlist-button" id="waitlist-submit" type="submit">Join the waitlist</button>
+            </form>
+            <div class="waitlist-success" id="waitlist-success" role="status" aria-live="polite" tabindex="-1" hidden>
+              <span class="waitlist-check" aria-hidden="true">✓</span>
+              <div><strong>You’re on the list.</strong><p id="waitlist-success-message">We’ll email when a private-pilot opening is available.</p></div>
+            </div>
+          </section>
         </section>
 
         <section class="pilot-stage" data-stage="intake" aria-labelledby="pilot-intake-title" hidden>
@@ -323,57 +351,6 @@
   </main>
 
   <footer><div><strong>Vault Compiler</strong><p>A human-reviewed path to a portable personal-assistant workspace.</p></div><div><p>Invite-only private pilot</p><a href="#privacy">Privacy and retention overview</a></div></footer>
-  <script>
-  (() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const scenes = [...document.querySelectorAll('[data-scroll-scene]')];
-    let sceneFrameRequested = false;
-
-    const updateScenes = () => {
-      sceneFrameRequested = false;
-      scenes.forEach((scene) => {
-        const property = scene.dataset.scrollScene === 'collapse' ? '--collapse' : '--mesh-reveal';
-        if (reducedMotion.matches) {
-          scene.style.setProperty(property, scene.dataset.scrollScene === 'collapse' ? '.72' : '1');
-          return;
-        }
-        const rect = scene.getBoundingClientRect();
-        const travel = Math.max(1, rect.height - window.innerHeight);
-        const progress = Math.max(0, Math.min(1, -rect.top / travel));
-        scene.style.setProperty(property, progress.toFixed(3));
-      });
-    };
-
-    const requestSceneUpdate = () => {
-      if (sceneFrameRequested) return;
-      sceneFrameRequested = true;
-      window.requestAnimationFrame(updateScenes);
-    };
-
-    const configureMotion = () => {
-      const canObserve = 'IntersectionObserver' in window;
-      document.documentElement.classList.toggle('motion-ready', canObserve && !reducedMotion.matches);
-      updateScenes();
-    };
-
-    if ('IntersectionObserver' in window) {
-      const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        });
-      }, { rootMargin: '0px 0px -8% 0px', threshold: .12 });
-      document.querySelectorAll('[data-reveal]').forEach((item) => revealObserver.observe(item));
-    }
-
-    window.addEventListener('scroll', requestSceneUpdate, { passive: true });
-    window.addEventListener('resize', requestSceneUpdate, { passive: true });
-    reducedMotion.addEventListener?.('change', configureMotion);
-    configureMotion();
-
-    window.VAULT_COMPILER_CONFIG = {requestEndpoint: 'https://horizon-creations.the-vaultkeeper.chatgpt.site/api/vault-requests', sourceVersion: 'SIO-2026-08-08-VC-CONTROL-PILOT-007'};
-  })();
-  </script>
-<script src="/vault/static/pilot-intake.js?v=control-pilot-007" defer></script>
+<script src="/vault/static/storefront.js?v=waitlist-live-010" defer></script>
+<script src="/vault/static/pilot-intake.js?v=waitlist-live-010" defer></script>
 </body></html>

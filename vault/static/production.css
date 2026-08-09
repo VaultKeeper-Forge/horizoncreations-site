@@ -259,6 +259,166 @@
   backdrop-filter: none;
 }
 
+.waitlist-divider {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: .8rem;
+  align-items: center;
+  margin: 1.6rem 0 1.15rem;
+  color: #6d7e82;
+  font-size: .68rem;
+  font-weight: 850;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.waitlist-divider::before,
+.waitlist-divider::after {
+  content: "";
+  height: 1px;
+  background: #bdc9ca;
+}
+
+.waitlist-card {
+  position: relative;
+  display: grid;
+  gap: 1.15rem;
+  padding: clamp(1.1rem, 3vw, 1.5rem);
+  overflow: hidden;
+  border: 1px solid #40585d;
+  border-radius: .4rem;
+  background:
+    radial-gradient(circle at 92% 6%, rgba(102, 203, 215, .18), transparent 30%),
+    linear-gradient(145deg, #172328 0%, #233439 100%);
+  color: #f3f5f2;
+  box-shadow: 0 1rem 2.4rem rgba(19, 30, 34, .15);
+}
+
+.waitlist-copy {
+  max-width: 34rem;
+}
+
+.waitlist-card h4 {
+  margin: .3rem 0 .45rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.waitlist-card p {
+  margin-top: 0;
+  color: #c7d4d5;
+  line-height: 1.55;
+}
+
+.waitlist-card .stage-kicker {
+  color: #f39a72;
+}
+
+.waitlist-card .field label {
+  color: #f3f5f2;
+}
+
+.waitlist-card input[type="email"],
+.waitlist-card textarea {
+  border-color: #70888c;
+  background: rgba(250, 252, 251, .98);
+  color: #162126;
+}
+
+.waitlist-card textarea {
+  width: 100%;
+  min-height: 7rem;
+  margin-top: .35rem;
+  padding: .72rem .78rem;
+  border: 1px solid #70888c;
+  border-radius: .18rem;
+  resize: vertical;
+  font: inherit;
+}
+
+.field-optional {
+  color: #a9babc;
+  font-size: .68rem;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.waitlist-field-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: .8rem;
+  margin-top: .4rem;
+  color: #9eb0b3;
+  font-size: .72rem;
+  line-height: 1.4;
+}
+
+.waitlist-field-meta output {
+  flex: none;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.waitlist-consent {
+  margin-top: .15rem;
+  color: #e7eceb;
+  font-size: .86rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.waitlist-privacy {
+  margin: -.15rem 0 .2rem !important;
+  color: #9eb0b3 !important;
+  font-size: .75rem;
+}
+
+.waitlist-button {
+  width: 100%;
+}
+
+.waitlist-success {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .9rem;
+  align-items: start;
+  padding: 1rem;
+  border: 1px solid rgba(118, 216, 179, .38);
+  background: rgba(23, 70, 53, .42);
+}
+
+.waitlist-success[hidden] {
+  display: none;
+}
+
+.waitlist-success:focus {
+  outline: 2px solid #7bd8c1;
+  outline-offset: 3px;
+}
+
+.waitlist-success strong {
+  display: block;
+  margin-bottom: .25rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+}
+
+.waitlist-success p {
+  margin: 0;
+  color: #dbe8e4;
+}
+
+.waitlist-check {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  place-items: center;
+  border: 1px solid #7bd8c1;
+  border-radius: 50%;
+  color: #a9f0dc;
+  font-weight: 900;
+}
+
 .pilot-shell textarea,
 .pilot-shell select {
   width: 100%;
