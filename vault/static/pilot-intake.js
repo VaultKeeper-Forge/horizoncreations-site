@@ -23,6 +23,8 @@
   let method = 'guided';
   let normalized = null;
   let pendingPayload = null;
+  let receiptToken = '';
+  let receivedRequestId = '';
 
   const show = (name) => {
     stages.forEach((stage) => { stage.hidden = stage.dataset.stage !== name; });
@@ -247,15 +249,51 @@
     try {
       const result = await requestJson('/api/vault-requests', { ...pendingPayload, consent: true });
       accessToken = '';
+      receiptToken = result.receipt_token;
+      receivedRequestId = result.request_id;
       pendingPayload = null;
       normalized = null;
       document.querySelector('#request-success-message').textContent = result.message;
       document.querySelector('#request-id').textContent = result.request_id;
+      document.querySelector('#package-ready').hidden = !result.package_ready;
       setStatus(reviewStatus, '');
       show('received');
       document.querySelector('[data-stage="received"]').focus();
     } catch (error) {
       setStatus(reviewStatus, error.message, true);
+      button.disabled = false;
+    }
+  });
+
+  document.querySelector('#package-download').addEventListener('click', async () => {
+    const button = document.querySelector('#package-download');
+    const status = document.querySelector('#package-status');
+    if (!receiptToken || !receivedRequestId) return;
+    button.disabled = true;
+    setStatus(status, 'Assembling the deterministic Starter Vault ZIP…');
+    try {
+      const response = await fetch(`${apiBase}/api/vault-requests/package`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ request_id: receivedRequestId, receipt_token: receiptToken }),
+      });
+      if (!response.ok) {
+        const data = await response.json().catch(() => ({}));
+        throw new Error(data.message || 'The Starter Vault package is not ready.');
+      }
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Vault-Compiler-${receivedRequestId}.zip`;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      setStatus(status, 'Fictional Starter Vault downloaded.');
+      receiptToken = '';
+    } catch (error) {
+      setStatus(status, error.message, true);
       button.disabled = false;
     }
   });

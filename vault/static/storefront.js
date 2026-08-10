@@ -46,5 +46,5 @@
     reducedMotion.addEventListener?.('change', configureMotion);
     configureMotion();
 
-    window.VAULT_COMPILER_CONFIG = {requestEndpoint: 'https://horizon-creations.the-vaultkeeper.chatgpt.site/api/vault-requests', sourceVersion: 'SIO-2026-08-08-VC-WAITLIST-LIVE-010'};
+    window.VAULT_COMPILER_CONFIG = {requestEndpoint: 'https://horizon-creations.the-vaultkeeper.chatgpt.site/api/vault-requests', sourceVersion: 'SIO-2026-08-09-VC-TRUE-BETA-011'};
   })();

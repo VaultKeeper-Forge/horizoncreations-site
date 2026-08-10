@@ -628,6 +628,24 @@
   background: transparent;
 }
 
+.package-ready {
+  display: grid;
+  gap: .7rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #2f675f;
+  background: #e8f4ef;
+}
+
+.package-ready[hidden] { display: none; }
+
+.package-ready strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+}
+
+.package-ready p { margin: 0; }
+
 @media (max-width: 980px) {
   .starter-copy { position: static; }
 }
