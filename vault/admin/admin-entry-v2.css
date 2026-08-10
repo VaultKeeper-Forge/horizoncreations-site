@@ -1,0 +1,20 @@
+@import url("/vault/admin/admin-entry.css");
+
+.owner-entry {
+  display: grid;
+  place-items: center;
+  min-height: 3.2rem;
+  margin: 2rem 0;
+  padding: .85rem;
+  border: 0;
+  background: var(--orange);
+  color: #12191b;
+  font: 900 .95rem/1 ui-sans-serif, system-ui;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.owner-entry:hover {
+  filter: brightness(1.08);
+}

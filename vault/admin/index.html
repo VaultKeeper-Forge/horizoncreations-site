@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; form-action https://horizon-creations.the-vaultkeeper.chatgpt.site; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self' data:; base-uri 'none'; object-src 'none'">
   <title>Vault Compiler — Owner entry</title>
-  <link rel="stylesheet" href="/vault/admin/admin-entry.css">
+  <link rel="stylesheet" href="/vault/admin/admin-entry-v2.css">
 </head>
 <body>
   <main>
@@ -15,14 +15,8 @@
     <section aria-labelledby="owner-entry-title">
       <p class="eyebrow">Private operator boundary</p>
       <h1 id="owner-entry-title">Enter the owner cockpit.</h1>
-      <p>This form posts directly to the secure Vault Worker. The session is established there with a bounded, server-revocable cookie. Credentials are never stored by this public page.</p>
-      <form action="https://horizon-creations.the-vaultkeeper.chatgpt.site/api/admin/session" method="post">
-        <label for="owner-username">Admin name</label>
-        <input id="owner-username" name="username" value="Forge" autocomplete="username" maxlength="100" required>
-        <label for="owner-password">Admin password</label>
-        <input id="owner-password" name="password" type="password" autocomplete="current-password" maxlength="200" required>
-        <button type="submit">Open owner cockpit</button>
-      </form>
+      <p>Continue to the secure Vault Worker to sign in. Keeping the form and session on one origin prevents browsers from blocking the owner login and keeps credentials off this public page.</p>
+      <a class="owner-entry" href="https://horizon-creations.the-vaultkeeper.chatgpt.site/vault/admin/login/">Continue to secure owner sign-in</a>
       <p class="boundary">No invite code, receipt token, or client-side bearer token can substitute for owner authentication.</p>
     </section>
   </main>
