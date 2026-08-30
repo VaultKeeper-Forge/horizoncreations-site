@@ -23,7 +23,7 @@ Final Lighthouse: mobile 99/100/100/100 and desktop 100/100/100/100 for Performa
 ## Provenance
 
 - Work branch: `codex/horizon-v2-rebuild`
-- Local branch head: `c44e9810b90c3ba7d89e6b009739949da72cbd14`
+- V2 code head before the receipt-only commit: `c44e9810b90c3ba7d89e6b009739949da72cbd14`
 - Pushed Sites source: `15bb890cb1262c7a4705179a640b6645cefaa3cc` — remote readback MATCH
 - Saved version: 21 — source SHA MATCH
 - Deployment: `appgdep_6a93c9887ba48191a1acf5819af1d263` — `succeeded`

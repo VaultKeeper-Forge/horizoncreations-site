@@ -104,7 +104,7 @@ Primary proof files:
 
 - Work branch: `codex/horizon-v2-rebuild`
 - Main V2 implementation commit: `ce947da9713f58de3c1bf40b7c6a8344be50b05d`
-- Current local V2 branch head: `c44e9810b90c3ba7d89e6b009739949da72cbd14`
+- V2 code head before the receipt-only commit: `c44e9810b90c3ba7d89e6b009739949da72cbd14`
 - Minimal Sites source commit: `15bb890cb1262c7a4705179a640b6645cefaa3cc`
 - Sites source branch SHA readback: MATCH
 - Sites archive: `artifacts/horizon-v2/horizon-v2-sites.tgz`
