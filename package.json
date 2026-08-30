@@ -2,7 +2,10 @@
   "name": "horizoncreations-website",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-site.mjs",
+    "build": "node scripts/build-v2.mjs",
+    "build:legacy": "node scripts/build-site.mjs",
+    "dev": "npm run build && node scripts/serve-v2.mjs",
+    "verify:v2": "node scripts/verify-v2.mjs",
     "discord:bot": "node scripts/discord/bot.mjs",
     "discord:commands": "node scripts/discord/register-commands.mjs",
     "discord:setup-channels": "node scripts/discord/setup-channels.mjs",
