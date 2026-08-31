@@ -91,6 +91,11 @@ for (const file of htmlFiles) {
   if (!html.includes('<link rel="canonical"')) fail(`${fileName} missing canonical URL`);
   if (!html.includes('class="skip-link"')) fail(`${fileName} missing skip link`);
 
+  if (expectedPages.includes(fileName)) {
+    const maloneCreditLinks = [...html.matchAll(/<a class="footer-credit" href="https:\/\/www\.maloneintegratedtech\.com\/"/g)].length;
+    if (maloneCreditLinks !== 1) fail(`${fileName} must contain exactly one approved Malone footer credit, found ${maloneCreditLinks}`);
+  }
+
   const imageTags = [...html.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
   for (const tag of imageTags) {
     for (const attr of ["alt=", "width=", "height=", "loading=", "decoding="]) {

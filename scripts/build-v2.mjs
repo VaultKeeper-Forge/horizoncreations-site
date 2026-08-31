@@ -98,6 +98,14 @@ function footer() {
           <a href="${site.cults3d}" target="_blank" rel="noreferrer">Leather Stamp Files</a>
         </nav>
       </div>
+      <div class="footer-credit-row">
+        <a class="footer-credit" href="https://www.maloneintegratedtech.com/" target="_blank" rel="noopener noreferrer" aria-label="Website by Malone Integrated Tech">
+          <span class="footer-credit-label">Website by</span>
+          <span class="footer-credit-lockup" aria-hidden="true">
+            <img src="/brand/malone-lockup.png" alt="" width="1800" height="675" loading="lazy" decoding="async">
+          </span>
+        </a>
+      </div>
       <div class="footer-bottom">
         <span>© ${new Date().getUTCFullYear()} Horizon Creations</span>
         <span>Real leather changes as you use it. I build for that.</span>
@@ -523,6 +531,7 @@ async function build() {
   await mkdir(path.join(clientDir, "assets"), { recursive: true });
   await cp(path.join(sourceDir, "styles.css"), path.join(clientDir, "assets", "site.css"));
   await cp(path.join(sourceDir, "site.js"), path.join(clientDir, "assets", "site.js"));
+  await cp(path.join(sourceDir, "brand"), path.join(clientDir, "brand"), { recursive: true });
   await cp(path.join(sourceDir, "images"), path.join(clientDir, "images"), { recursive: true });
   await cp(path.join(rootDir, "HorizonCreaion-Base-logo.jpg"), path.join(clientDir, "favicon.jpg"));
 
@@ -581,7 +590,7 @@ async function build() {
   await writeFile(path.join(distDir, ".openai", "hosting.json"), JSON.stringify(normalizedHosting, null, 2), "utf8");
 
   const allowedTopLevel = new Set([
-    "404.html", "CNAME", "about", "assets", "contact", "custom-orders", "custom-pieces", "custom-work",
+    "404.html", "CNAME", "about", "assets", "brand", "contact", "custom-orders", "custom-pieces", "custom-work",
     "favicon.jpg", "images", "index.html", "og.jpg", "robots.txt", "shop", "site.webmanifest", "sitemap.xml",
     "standard-pieces", "workbench",
   ]);

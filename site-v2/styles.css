@@ -995,6 +995,53 @@ h3 {
   font-size: 0.82rem;
 }
 
+.footer-credit-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+
+.footer-credit {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #a99c8d;
+  text-decoration: none;
+}
+
+.footer-credit-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.footer-credit-lockup {
+  display: block;
+  width: 184px;
+  border-radius: 6px;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.footer-credit-lockup img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+.footer-credit:hover .footer-credit-lockup,
+.footer-credit:focus-visible .footer-credit-lockup {
+  box-shadow: 0 0 0 1px rgba(47, 140, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.footer-credit:focus-visible {
+  outline: 2px solid #2f8cff;
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+
 .footer-bottom {
   display: flex;
   justify-content: space-between;
@@ -1715,6 +1762,15 @@ h3 {
   .footer-bottom {
     display: grid;
     gap: 8px;
+  }
+
+  .footer-credit {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .footer-credit-lockup {
+    width: 168px;
   }
 
   .page-hero {
