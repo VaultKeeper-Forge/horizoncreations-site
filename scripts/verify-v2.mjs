@@ -126,6 +126,16 @@ for (const soldName of ["Banzai Journal", "Turtles Journal", "Green Mushroom Jou
 if (!home.includes("Heresy Journal") || !home.includes("AVAILABLE")) fail("Homepage missing confirmed AVAILABLE Heresy Journal");
 if (!home.includes("Everyday Carry Pouch") || !home.includes("MADE TO ORDER")) fail("Homepage missing MADE TO ORDER pouch");
 
+for (const productPage of ["shop/heresy-journal/index.html", "shop/everyday-carry-pouch/index.html"]) {
+  const html = await readFile(path.join(clientDir, productPage), "utf8");
+  if (!html.includes('data-commerce-mode="disabled"')) fail(`${productPage} must build with public commerce disabled`);
+  if (!/<button[^>]*data-commerce-add[^>]*\sdisabled(?:\s|>|=)/.test(html)) fail(`${productPage} has an enabled public commerce control`);
+  if (html.includes("Add to mock cart") || html.includes("http://127.0.0.1:8787")) fail(`${productPage} contains local mock checkout details in the public artifact`);
+}
+for (const asset of ["assets/commerce-client.js", "assets/commerce-client.css"]) {
+  if (!allRelative.has(asset)) fail(`Missing commerce safety asset: ${asset}`);
+}
+
 const primaryNavMatch = home.match(/<nav class="primary-nav"[\s\S]*?<\/nav>/);
 if (!primaryNavMatch) fail("Homepage missing primary navigation");
 else {

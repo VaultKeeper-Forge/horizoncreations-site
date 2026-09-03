@@ -38,6 +38,7 @@ export const imageDimensions = {
 export const products = [
   {
     slug: "heresy-journal",
+    commerceId: "prd_horizon_heresy_journal",
     title: "Heresy Journal",
     state: "AVAILABLE",
     price: 75,
@@ -53,6 +54,7 @@ export const products = [
   },
   {
     slug: "everyday-carry-pouch",
+    commerceId: "prd_horizon_everyday_carry_pouch",
     title: "Everyday Carry Pouch",
     state: "MADE TO ORDER",
     price: 85,

@@ -17,6 +17,8 @@ const distDir = path.resolve(rootDir, "dist");
 const clientDir = path.join(distDir, "client");
 const serverDir = path.join(distDir, "server");
 const sourceDir = path.join(rootDir, "site-v2");
+// Public artifacts always keep commerce disabled. Mock mode is an explicit local preview only.
+const commerceMode = process.env.HORIZON_COMMERCE_MODE === "mock" ? "mock" : "disabled";
 
 function assertWithinRoot(target) {
   const relative = path.relative(rootDir, path.resolve(target));
@@ -124,6 +126,19 @@ function dialog() {
   </dialog>`;
 }
 
+function commerceControl(product) {
+  const label = product.state === "AVAILABLE" ? "Online checkout in setup" : "Made-to-order checkout in setup";
+  const liveCopy = product.state === "AVAILABLE"
+    ? "This piece is available. Online checkout is being prepared; ask Curtis about it in the meantime."
+    : "This pattern is made to order. Online checkout is being prepared; ask Curtis about the next build.";
+  const mockCopy = "Private mock-cart preview only. No payment, shipping purchase, or public checkout is active.";
+  const controlLabel = commerceMode === "mock" ? "Add to mock cart" : label;
+  return `<div class="commerce-control" data-commerce-control>
+    <button class="button button-primary commerce-control-button" type="button" data-commerce-add data-product-id="${escapeHtml(product.commerceId)}"${commerceMode === "mock" ? "" : " disabled"} aria-describedby="commerce-status-${escapeHtml(product.slug)}">${controlLabel}</button>
+    <p class="commerce-control-status" id="commerce-status-${escapeHtml(product.slug)}" data-commerce-status role="status">${commerceMode === "mock" ? mockCopy : liveCopy}</p>
+  </div>`;
+}
+
 function layout({
   title,
   description,
@@ -167,10 +182,12 @@ function layout({
   <link rel="icon" type="image/jpeg" href="/favicon.jpg">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/commerce-client.css">
   <script type="application/ld+json">${jsonScript(schemaItems)}</script>
   <script type="module" src="/assets/site.js"></script>
+  <script type="module" src="/assets/commerce-client.js"></script>
 </head>
-<body>
+<body data-commerce-mode="${commerceMode}" data-commerce-api="${commerceMode === "mock" ? "http://127.0.0.1:8787" : ""}">
   <a class="skip-link" href="#main">Skip to content</a>
   ${nav(currentPath, solidHeader)}
   <main id="main">
@@ -431,7 +448,7 @@ function productPage(product) {
           <div class="piece-fact"><dt>Material</dt><dd>Hand-dyed leather with bench-selected hardware and finish</dd></div>
           <div class="piece-fact"><dt>Variation</dt><dd>Grain and hand finishing mean no two builds land exactly alike</dd></div>
         </dl>
-        <div class="button-row"><a class="button button-primary" href="/contact/?piece=${encodeURIComponent(product.title)}&state=${encodeURIComponent(product.state)}">Ask about this piece</a><a class="button" href="/shop/">Back to shop</a></div>
+        <div class="button-row">${commerceControl(product)}<a class="button" href="/contact/?piece=${encodeURIComponent(product.title)}&state=${encodeURIComponent(product.state)}">Ask about this piece</a><a class="button" href="/shop/">Back to shop</a></div>
       </div>
     </div></section>
     <section class="section"><div class="section-inner"><div class="section-heading" data-reveal><div><p class="eyebrow">Look closer</p><h2>Built in the details.</h2></div><p>Open any photograph for a full view of the tooling, color, hardware, and finish.</p></div><div class="gallery-grid">${gallery}</div></div></section>
@@ -531,6 +548,8 @@ async function build() {
   await mkdir(path.join(clientDir, "assets"), { recursive: true });
   await cp(path.join(sourceDir, "styles.css"), path.join(clientDir, "assets", "site.css"));
   await cp(path.join(sourceDir, "site.js"), path.join(clientDir, "assets", "site.js"));
+  await cp(path.join(rootDir, "assets", "commerce-client.css"), path.join(clientDir, "assets", "commerce-client.css"));
+  await cp(path.join(rootDir, "assets", "commerce-client.js"), path.join(clientDir, "assets", "commerce-client.js"));
   await cp(path.join(sourceDir, "brand"), path.join(clientDir, "brand"), { recursive: true });
   await cp(path.join(sourceDir, "images"), path.join(clientDir, "images"), { recursive: true });
   await cp(path.join(rootDir, "HorizonCreaion-Base-logo.jpg"), path.join(clientDir, "favicon.jpg"));
