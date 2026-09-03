@@ -29,6 +29,7 @@
 - The service container built successfully and, in a temporary local container, returned `/health = ok`, provider `mock`, gate `closed`, and `/ready.publicCheckout = false`.
 - Horizon V2 build and verification passed with zero forbidden public paths and zero internal-link failures. Its verification now asserts that the default public artifact keeps commerce disabled and omits local mock details.
 - Browser smoke tests passed on the local Horizon artifact at desktop and iPhone-width. The private mock cart endpoint returned `201`; production-mode UI showed a disabled control and no local mock endpoint; browser console had zero errors/warnings; mobile readback found no horizontal overflow and no loaded-image failures after lazy assets were exercised.
+- Draft PR [#2](https://github.com/VaultKeeper-Forge/horizoncreations-site/pull/2) was read back as open, mergeable, and draft. Its pre-connection verification workflow run `33810055431` completed successfully.
 
 ## Explicitly not performed
 
