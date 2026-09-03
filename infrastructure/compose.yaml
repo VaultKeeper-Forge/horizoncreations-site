@@ -1,0 +1,40 @@
+name: malone-commerce-control
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: malone_commerce
+      POSTGRES_USER: malone_commerce
+      POSTGRES_PASSWORD: local-only
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U malone_commerce -d malone_commerce"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "5432:5432"
+    volumes:
+      - commerce-postgres:/var/lib/postgresql/data
+
+  commerce-control:
+    build:
+      context: ../server
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+      PORT: "8787"
+      DATABASE_URL: postgres://malone_commerce:local-only@postgres:5432/malone_commerce
+      COMMERCE_PROVIDER: mock
+      SHOPIFY_CONNECTION_GATE: closed
+      PUBLIC_CHECKOUT: "off"
+      OWNER_AUTH_MODE: local-test
+      STOREFRONT_ORIGINS: http://127.0.0.1:4173,https://horizoncreations.art
+    ports:
+      - "8787:8787"
+
+volumes:
+  commerce-postgres:

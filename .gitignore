@@ -4,6 +4,12 @@ Desktop.ini
 node_modules/
 tmp/
 .playwright-mcp/
+.playwright-cli/
+dist/
+output/
+artifacts/horizon-v2/*.log
+server/artifacts/
+server/coverage/
 .rivet-*.err
 .rivet-*.out
 New Photos Move Assests As Needed/

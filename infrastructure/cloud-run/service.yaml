@@ -1,0 +1,34 @@
+# Template only. No Cloud Run service has been created by this package.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: malone-commerce-control
+  annotations:
+    run.googleapis.com/ingress: internal-and-cloud-load-balancing
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/minScale: "0"
+    spec:
+      serviceAccountName: REQUIRED_AT_DEPLOYMENT
+      containers:
+        - image: REQUIRED_AT_DEPLOYMENT
+          ports:
+            - containerPort: 8787
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: COMMERCE_PROVIDER
+              value: mock
+            - name: SHOPIFY_CONNECTION_GATE
+              value: closed
+            - name: PUBLIC_CHECKOUT
+              value: "off"
+            - name: OWNER_AUTH_MODE
+              value: oauth-required
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
