@@ -1,8 +1,8 @@
 # Horizon Shopify Connection Packet — owner action required
 
-**Work order:** `MCC-HORIZON-RIVET-2026-09-03-001`  
-**Package pointer:** `53ee0bc20514524be1653437b9e28a3655aa7863`  
-**State:** `READY_AT_SHOPIFY_CONNECTION_GATE` only after the associated PR readback passes.  
+**Work order:** `MCC-HORIZON-RIVET-2026-09-03-001`
+**Package pointer:** `53ee0bc20514524be1653437b9e28a3655aa7863`
+**State:** `READY_AT_SHOPIFY_CONNECTION_GATE` only after the associated PR readback passes.
 **Current provider state:** mock / disconnected. No Shopify account or credentials were accessed for this package.
 
 ## What Curtis must decide or provide at the gate
